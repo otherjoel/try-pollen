@@ -4,7 +4,7 @@
 ◊(define-meta doc-publish-date "25/08/2015")
 ◊(define-meta author           "Joel Dueck")
 
-These pages are my playground for trying out ◊hyperlink["http://pollenpub.com"]{Pollen}, a system for publishing books on the web or anywhere else. The Pollen source is available on Github.
+These pages are my playground for trying out ◊hyperlink["http://pollenpub.com"]{Pollen}, a system for publishing books on the web or anywhere else. The Pollen source is available ◊hyperlink["https://github.com/otherjoel/try-pollen"]{on Github}.
 
 The CSS design comes from the ◊hyperlink["http://www.daveliepmann.com/tufte-css/"]{Tufte CSS} project.
 
