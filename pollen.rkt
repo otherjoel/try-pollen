@@ -13,6 +13,7 @@
     #:inline-txexpr-proc (compose margin-figure-decoder numbered-note-decoder)
     #:txexpr-elements-proc detect-paragraphs
     #:string-proc (compose smart-quotes smart-dashes)
+	#:exclude-tags '(script style)
     )))
 
 (define (numbered-note-decoder itx)
@@ -68,7 +69,7 @@
 	`(pre [[class "code"]] ,@text))
 
 (define (verse . text)
-  `(pre [[class "verse"]] ,@text)
+  `(div [[class "poem"]] (pre [[class "verse"]] ,@text))
 )
 
 (define (poem-heading . words)

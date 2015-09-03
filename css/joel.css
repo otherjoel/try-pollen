@@ -1,9 +1,15 @@
+div.poem {
+    max-width: 55%;
+    font-size: 1.4rem;
+    line-height: 2rem;
+    margin-top: 1.4rem;
+    margin-bottom: 1.4rem; }
+
 /* *** */
 pre.verse {
   font-family: ETBembo, Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
 	margin: 1.5em auto;
 	width: auto;
-    max-width: 55%;
     display:table;
     white-space: pre-wrap;
     /* Whitespace is preserved by the browser.
@@ -47,3 +53,6 @@ p.poem-heading {
     font-size: 95%;
     letter-spacing: 1px;
 }
+
+@media (max-width: 760px) {
+    div.poem { max-width: 90%; } }
