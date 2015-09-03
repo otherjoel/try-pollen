@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>◊(hash-ref metas 'title)</title>
+  <link rel="stylesheet" href="css/tufte.css"/>
+  <link rel="stylesheet" href="css/joel.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style type="text/css">
+   img { mix-blend-mode: multiply; }
+  </style>
+</head>
+<body><article>
+    <h1>◊(hash-ref metas 'title)</h1>
+    ◊when/block[(hash-ref metas 'author)]{
+        <h2>◊(hash-ref metas 'author)</h2>
+    }
+    <nav><ul>
+        ◊when/block[(and (previous here) (not (eq? (parent here) (previous here))))]{
+            <li><a href="◊|(previous here)|">&larr; Previous</a></li>
+        }
+        ◊when/block[(and (parent here) (not (eq? (parent here) 'pagetree-root)))]{<li><a href="◊|(parent here)|">&uarr; Up</a></li>}
+        ◊when/block[(or (not (parent here)) (eq? (parent here) 'pagetree-root))]{<li><a href="main.html">&uarr; Up</a></li>}
+        ◊when/block[(next here)]{
+            <li><a href="◊|(next here)|">Next &rarr;</a></li>
+        }
+    </ul></nav>
+
+	◊(map ->html (select-from-doc 'body here))
+</article>
+</body>
+</html>

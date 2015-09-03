@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>◊(hash-ref metas 'site-title)</title>
+  <link rel="stylesheet" href="css/tufte.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style type="text/css">
+   img { mix-blend-mode: multiply; }
+  </style>
+</head>
+<body>
+    <article>
+	<h1>◊(hash-ref metas 'site-title)</h1>
+    <h2>◊(hash-ref metas 'author)</h2>
+
+    ◊(map ->html (select-from-doc 'body here))
+
+        <h2>Poems</h2>
+        <ul>
+	◊(map (lambda(x) (->html
+                      `(li (a [[href ,(symbol->string x)]]
+                       (i ,(select-from-metas 'title x))) " by "
+                       ,(select-from-metas 'author x) )))
+        (children here))
+        </ul>
+
+    <p><span class="newthought" style="font-size: smaller"><a href="colophon.html">Notes</a></span></p>
+    </article>
+</body>
+</html>

@@ -1,0 +1,48 @@
+/* *** */
+pre.verse {
+  font-family: ETBembo, Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
+	margin: 1.5em auto;
+	width: auto;
+    display:table;
+    white-space: pre-wrap;
+    /* Whitespace is preserved by the browser.
+    Text will wrap when necessary, and on line breaks */
+}
+pre.verse p { width: auto; }
+
+nav {
+    width: 100%;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    border: solid #ccc 1px;
+    padding: 0; margin: 0;
+    background-color: #efefef;
+    display: block;
+}
+
+nav ul {
+    margin:0; padding: 0;
+}
+
+ nav ul li {
+     display: inline-block;
+     border-left: solid #ccc 1px;
+     border-right: solid #ccc 1px;
+     width: 5em;
+     margin: 0; padding: 0;
+     text-align: center;
+     font-size: 80%;
+ }
+
+nav ul li a {
+    text-decoration: none; border: none;
+    font-style: italic;
+}
+
+p.poem-heading {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 95%;
+    letter-spacing: 1px;
+}
