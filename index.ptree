@@ -1,6 +1,6 @@
 #lang pollen
 
-◊main.html{
+◊index.html{
 01-homes.html
 02-milkweed.html
 }
