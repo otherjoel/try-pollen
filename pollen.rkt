@@ -10,7 +10,9 @@
 
 (define (root . elements)
    (make-txexpr 'body null (decode-elements elements
-    #:inline-txexpr-proc (compose margin-figure-decoder numbered-note-decoder)
+    #:inline-txexpr-proc (compose margin-figure-decoder
+								  numbered-note-decoder
+								  margin-note-decoder)
     #:txexpr-elements-proc detect-paragraphs
     #:string-proc (compose smart-quotes smart-dashes)
 	#:exclude-tags '(script style)
@@ -37,6 +39,16 @@
        (apply margin-figure (get-elements itx)) ; if so, apply processing
        itx)) ; if not, pass it through
 
+(define (margin-note-decoder itx)
+	(define (margin-note . text)
+		(define refid (uuid-generate))
+		(list `(label [[for ,refid] [class "margin-toggle"]] 8853 )
+			  `(input [[type "checkbox"] [id ,refid] [class "margin-toggle"]] )
+			  `(span [[class "marginnote"]] ,@text)))
+	(if (eq? 'margin-note (get-tag itx))
+		(apply margin-note (get-elements itx))
+		itx))
+
 (register-block-tag 'pre)
 (register-block-tag 'figure)
 
@@ -47,11 +59,7 @@
 (define (doc-section title . text)
     `(section (h2 ,title) ,@text))
 
-(define (margin-note . text)
-		(define refid (uuid-generate))
-		`(span (label [[for ,refid] [class "margin-toggle"]] 8853 )
-			(input [[type "checkbox"] [id ,refid] [class "margin-toggle"]] )
-			(span [[class "marginnote"]] ,@text)))
+
 
 (define (figure source . caption)
 	`(figure (img [[src ,source]]) (figcaption ,@caption)))
