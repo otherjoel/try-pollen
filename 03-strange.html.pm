@@ -13,7 +13,7 @@
 Place a swarm of bees at his ears. Bees love truth and will destroy the deceiver's lies.
 Place salt in his mouth lest the deceiver attempt to delight him with the taste of honey, or disgust him with the taste of ashes.
 Nail his hand with an ◊index-entry["metal fasteners"]{iron nail} so that he shall not raise it to do the deceiver's bidding.
-Place his heart in a secret place so that all his desires shall be his own and the deceiver shall find no hold there.}
+Place his heart in a secret place so that all his ◊index-entry["desires"]{desires} shall be his own and the deceiver shall find no hold there.}
 
 ◊i{Memorandom. The colour red may be found beneficial.}
 

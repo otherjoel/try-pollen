@@ -9,7 +9,7 @@
 ◊verse{We are the smiling comfortable homes
 With happy families enthroned therein,
 Where baby souls are brought to meet the world,
-Where women end their duties and desires,
+Where women end their duties and ◊index-entry["desires"]{desires},
 For which men labor as the goal of life,
 That people worship now instead of God.
 
