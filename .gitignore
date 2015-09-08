@@ -1,6 +1,7 @@
 *.html
 !template.html
 !template-index.html
+!template-bookindex.html
 compiled/
 pollen-cache/
 pollen.cache
