@@ -13,7 +13,7 @@ Where women end their duties and desires,
 For which men labor as the goal of life,
 That people worship now instead of God.
 
-Do we not teach the child to worship God? —
+Do we not teach the child to ◊index-entry["worship"]{worship} God? —
 Whose soul’s young range is bounded by the homes
 Of those he loves, and where he learns that life
 Is all constrained to serve the wants therein,

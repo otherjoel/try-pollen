@@ -1,11 +1,16 @@
-#lang racket/base
+#lang racket
 
 (require libuuid)
 (require pollen/decode
 	 txexpr
 	 pollen/tag
-	 pollen/template)
+	 pollen/template
+	 pollen/pagetree)
 
+(provide add-between
+		 attr-ref
+		 attrs-have-key?
+		 make-txexpr)
 (provide (all-defined-out))
 
 (define (root . elements)
@@ -59,7 +64,8 @@
 (define (doc-section title . text)
     `(section (h2 ,title) ,@text))
 
-
+(define (index-entry entry . text)
+	`(a [[id ,entry] [class "index-entry"]] ,@text))
 
 (define (figure source . caption)
 	`(figure (img [[src ,source]]) (figcaption ,@caption)))
@@ -89,3 +95,50 @@
 
 (define (hyperlink url . words)
     `(a [[href ,url]] ,@words))
+
+; Index functionality: allows creation of a book-style keyword index.
+;
+; An index ENTRY refers to the heading that will appear in the index.
+; An index LINK is a txexpr that has class="index-entry" and
+; id="ENTRY-WORD". (Created in docs with the ◊index-entry tag above)
+
+; Returns a list of all elements in xpr that have class="index-entry"
+; and an id key.
+(define (filter-index-entries xpr)
+	(define is-index-entry? (λ(x) (and (txexpr? x)
+                               (attrs-have-key? x 'class)
+							   (attrs-have-key? x 'id)
+                               (equal? "index-entry" (attr-ref x 'class)))))
+     (let-values ([(x y) (splitf-txexpr xpr is-index-entry?)]) y))
+
+; Given a file, returns a list of links to each index entry within that file
+(define (get-index-links file)
+   (define file-body (select-from-doc 'body file))
+   (if file-body
+	   (map (λ(x)
+	         `(a [[href ,(string-append (symbol->string file) "#" (attr-ref x 'id))]
+		         [id ,(attr-ref x 'id)]]
+	             ,(select-from-metas 'title file)))
+	         (filter-index-entries (make-txexpr 'div '() file-body)))
+	    ; return a dummy entry when `file` has no 'body (for debugging)
+		(list `(a [[class "index-entry"] [id ,(symbol->string file)]]
+		          "Not a txexpr: " ,(symbol->string file)) )))
+
+; Returns a list of index links (not entries!) for all files in file-list.
+(define (collect-index-links file-list)
+	(apply append (map get-index-links file-list)))
+
+; Given a list of index links, returns a list of headings (keywords). This list
+; has duplicates removed and is sorted in ascending alphabetical order.
+; Note that the list is case-sensitive by design; "thing" and "Thing" are
+; treated as separate keywords.
+(define (index-headings entrylink-list)
+	(sort (remove-duplicates (map (λ(tx) (attr-ref tx 'id))
+	                              entrylink-list))
+	      string-ci<?))
+
+; Given a heading and a list of index links, returns only the links that match
+; the heading.
+(define (match-index-links keyword entrylink-list)
+	(filter (λ(link)(string=? (attr-ref link 'id) keyword))
+		    entrylink-list))

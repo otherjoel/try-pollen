@@ -54,5 +54,7 @@ p.poem-heading {
     letter-spacing: 1px;
 }
 
+a.index-entry { text-decoration: none; border: none; }
+
 @media (max-width: 760px) {
     div.poem { max-width: 90%; } }
