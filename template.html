@@ -20,7 +20,7 @@
             <li><a href="◊|(previous here)|">&larr; Previous</a></li>
         }
         ◊when/block[(and (parent here) (not (eq? (parent here) 'pagetree-root)))]{<li><a href="◊|(parent here)|">&uarr; Up</a></li>}
-        ◊when/block[(or (not (parent here)) (eq? (parent here) 'pagetree-root))]{<li><a href="main.html">&uarr; Up</a></li>}
+        ◊when/block[(or (not (parent here)) (eq? (parent here) 'pagetree-root))]{<li><a href="index.html">&uarr; Up</a></li>}
         ◊when/block[(next here)]{
             <li><a href="◊|(next here)|">Next &rarr;</a></li>
         }
