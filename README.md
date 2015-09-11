@@ -22,6 +22,16 @@ So far I've added two minor innovations to this project:
 
      You can see the code used to generate the index at the bottom of `pollen.rkt` and in `template-bookindex.html` file.
 
+### Converting Markdown to Pollen
+
+I've created a basic custom writer for [pandoc]() that allows you to convert Markdown files (or anything, really) into Pollen markup. The code is in `pandoc-pollen.lua`, and you can use it like so:
+
+    pandoc -t pandoc-pollen.lua -o pollen-out.html.pm sourcefile.txt
+
+Ideally you should open up `pandoc-pollen.lua` and customize the code to match the Pollen markup for your project.
+
+I’d see three possible uses for this. One is for banging out first drafts that consist of long stretches of simple prose. In those cases there's not a lot of structure or metadata to be concerned with at the very outset, and you can take advantage of editors and tools that recognize Markdown syntax. Second, it allows you to more easily accept drafts in other formats from other people who aren't familiar with Pollen concepts. Third (the big one for me) it can help a lot with automating the process of mass-importing old material into a Pollen publication.
+
 ## Other good examples
 
 Besides getting answers to my inane noob questions in the discussion group (which I try my best to keep to a minimum), I'm greatly assisted by being able to peruse the code of a couple of other Pollen creations.
