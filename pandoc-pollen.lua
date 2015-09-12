@@ -253,8 +253,8 @@ function DefinitionList(items)
   local buffer = {}
   for _,item in pairs(items) do
     for k, v in pairs(item) do
-      table.insert(buffer,"◊dt{" .. k .. "}\n◊dd{" ..
-                        table.concat(v,"}\n◊dd{") .. "}")
+      table.insert(buffer,"◊dt{" .. k .. "}\n    ◊dd{" ..
+                        table.concat(v,"}\n    ◊dd{") .. "}")
     end
   end
   return "◊dl{\n" .. table.concat(buffer, "\n") .. "\n}"
