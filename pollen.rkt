@@ -95,7 +95,7 @@
 (define (hyperlink url . words)
   `(a [[href ,url]] ,@words))
 
-  (define (list-posts-in-series s)
+(define (list-posts-in-series s)
     (define (make-li post)
       `(li (a [[href ,(symbol->string post)]]
               (i ,(select-from-metas 'title post))) " by " ,(select-from-metas 'author post)))
