@@ -3,6 +3,7 @@
 ◊(define-meta title            "English Magick")
 ◊(define-meta doc-publish-date "08/09/2015")
 ◊(define-meta author           "Susanna Clarke")
+◊(define-meta series           "series/poems.html")
 
 ◊newthought{For a} novel about the return of English ◊index-entry["magic"]{magic}, ◊i{Jonathan Strange and Mr Norrell} is quite sparing with direct quotes from actual spells of magic. Only perhaps two or three such quotations are given in the entire 800-page book. Clarke's 'spells' have a poetic form that is simple, sturdy, and elegant, in a way that avoids the kitsch and spook common to popular magical depictions (with their sing-song rhymes); and she makes use of a rich allusionary vocabulary that seems to stretch all through Western history and mythology.
 

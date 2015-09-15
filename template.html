@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8"/>
   <title>◊(hash-ref metas 'title)</title>
-  <link rel="stylesheet" href="css/tufte.css"/>
-  <link rel="stylesheet" href="css/joel.css"/>
+  <link rel="stylesheet" href="/css/tufte.css"/>
+  <link rel="stylesheet" href="/css/joel.css"/>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style type="text/css">
    img { mix-blend-mode: multiply; }
@@ -17,12 +17,12 @@
     }
     <nav><ul>
         ◊when/block[(and (previous here) (not (eq? (parent here) (previous here))))]{
-            <li><a href="◊|(previous here)|">&larr; Previous</a></li>
+            <li><a href="/◊|(previous here)|">&larr; Previous</a></li>
         }
-        ◊when/block[(and (parent here) (not (eq? (parent here) 'pagetree-root)))]{<li><a href="◊|(parent here)|">&uarr; Up</a></li>}
-        ◊when/block[(or (not (parent here)) (eq? (parent here) 'pagetree-root))]{<li><a href="index.html">&uarr; Up</a></li>}
+        ◊when/block[(and (parent here) (not (eq? (parent here) 'pagetree-root)))]{<li><a href="/◊|(parent here)|">&uarr; Up</a></li>}
+        ◊when/block[(or (not (parent here)) (eq? (parent here) 'pagetree-root))]{<li><a href="/index.html">&uarr; Up</a></li>}
         ◊when/block[(next here)]{
-            <li><a href="◊|(next here)|">Next &rarr;</a></li>
+            <li><a href="/◊|(next here)|">Next &rarr;</a></li>
         }
     </ul></nav>
 

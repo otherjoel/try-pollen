@@ -15,16 +15,21 @@
 	<h1>◊(hash-ref metas 'title)</h1>
     <h2>◊(hash-ref metas 'author)</h2>
 
+    ◊; Insert the content from the page (index.html.pm in this case)
     ◊(map ->html (select-from-doc 'body here))
 
-        <h2>Poems</h2>
-        <ul>
-	◊(map (lambda(x) (->html
-                      `(li (a [[href ,(symbol->string x)]]
-                       (i ,(select-from-metas 'title x))) " by "
-                       ,(select-from-metas 'author x) )))
-        (children here))
-        </ul>
+    ◊; HERE IS a simple way of listing pages by an arbitrary grouping.
+    ◊; I call them ‘series’ but they're the same as what you’d call
+    ◊; ‘categories’ in a blog.
+    ◊;    For every child of series.html in the pagetree, we list that page’s
+    ◊; title and body, then we list all the children of posts.html that
+    ◊; specify that series in their meta definitions.
+    ◊;    See the function `list-posts-in-series` in pollen.rkt for more.
+
+    ◊(map (lambda(ss) (->html `(section (h2 ,(select-from-metas 'title ss))
+                                        ,@(select-from-doc 'body ss)
+                                        ,(list-posts-in-series ss))))
+          (children 'series.html))
 
     <p>
         <a href="colophon.html">Notes</a> &middot;

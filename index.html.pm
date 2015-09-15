@@ -1,6 +1,9 @@
 #lang pollen
 
+◊; This page is going to have a different design than most others, so instead
+◊; of using the default template we can specify a different one.
 ◊(define-meta template         "template-index.html")
+
 ◊(define-meta title            "Secretary of Foreign Relations")
 ◊(define-meta doc-publish-date "25/08/2015")
 ◊(define-meta author           "Joel Dueck")

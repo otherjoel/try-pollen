@@ -1,9 +1,13 @@
 #lang pollen
 
-◊index.html{
-01-homes.html
-02-milkweed.html
-03-strange.html
+index.html
+◊posts.html{
+    posts/01-homes.html
+    posts/02-milkweed.html
+    posts/03-strange.html
+}
+◊series.html{
+    series/poems.html
 }
 colophon.html
 bookindex.html
