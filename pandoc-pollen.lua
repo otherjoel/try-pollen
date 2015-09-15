@@ -153,9 +153,9 @@ function Image(s, src, tit)
 --         escape(tit,true) .. "\"\]{}"
 end
 
-function CaptionedImage(s, src, tit)
-    return '◊figure\["' .. escape(src,true) .. "\"\]{" ..
-      escape(s,true) .. "}"
+function CaptionedImage(src, tit, caption)
+   return "◊figure\[\"" .. escape(src,true) .. "\"\]{" ..
+      caption .. "}"
 end
 
 function Code(s, attr)
