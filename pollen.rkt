@@ -66,6 +66,8 @@
 
 (define (smallcaps . words) `(span [[class "smallcaps"]] ,@words))
 
+(define (center . words) `(div [[style "text-align: center"]] ,@words))
+
 (define (doc-section title . text)
   `(section (h2 ,title) ,@text))
 
