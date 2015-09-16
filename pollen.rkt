@@ -60,6 +60,7 @@
 (register-block-tag 'pre)
 (register-block-tag 'figure)
 (register-block-tag 'center)
+(register-block-tag 'blockquote)
 
 (define (author . words) `(p [(class "subtitle")] ,@words))
 
@@ -107,11 +108,12 @@
       `(li (a [[href ,(symbol->string post)]]
               (i ,(select-from-metas 'title post))) " by " ,(select-from-metas 'author post)))
 
-    `(ul ,@(map (λ(post)
-                  (if (equal? s (string->symbol (select-from-metas 'series post)))
-                      (make-li post)
-                      '()))
-                (children 'posts.html))))
+    `(ul ,@(filter identity
+                   (map (λ(post)
+                          (if (equal? s (string->symbol (select-from-metas 'series post)))
+                              (make-li post)
+                              #f))
+                        (children 'posts.html)))))
 
 ; Index functionality: allows creation of a book-style keyword index.
 ;
