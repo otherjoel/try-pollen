@@ -56,5 +56,11 @@ p.poem-heading {
 
 a.index-entry { text-decoration: none; border: none; }
 
+.smallcaps {
+    font-variant: small-caps;
+    font-size: 0.9em;
+    letter-spacing: 1px;
+}
+
 @media (max-width: 760px) {
     div.poem { max-width: 90%; } }

@@ -64,6 +64,8 @@
 
 (define (newthought . words) `(span [[class "newthought"]] ,@words))
 
+(define (smallcaps . words) `(span [[class "smallcaps"]] ,@words))
+
 (define (doc-section title . text)
   `(section (h2 ,title) ,@text))
 
