@@ -45,6 +45,7 @@ p.subtitle { font-style: italic;
              line-height: 1; }
 
 table { width: 98%;
+        clear: left;
         text-align: right;
         font-size: 1.2rem;
         line-height: 1.4;
@@ -158,6 +159,10 @@ img { max-width: 100%; }
                          line-height: 1.6;
                          vertical-align: baseline;
                          position: relative; }
+blockquote .sidenote,
+blockquote .marginnote {
+    margin-right: -72%;
+}
 
 .table-caption { float:right;
                  clear:right;
@@ -221,7 +226,7 @@ input.margin-toggle { display: none; }
 
 label.sidenote-number { display: inline; }
 
-label.margin-toggle:not(.sidenote-number) { display: none; color: #f00000; }
+label.margin-toggle:not(.sidenote-number) { display: none; }
 
 @media (max-width: 760px) { label.margin-toggle:not(.sidenote-number) { display: inline; }
                             .sidenote, .marginnote { display: none; }
