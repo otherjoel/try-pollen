@@ -1,16 +1,18 @@
 #lang racket
 
-(require libuuid)
 (require pollen/decode
          txexpr
          pollen/tag
          pollen/template
-         pollen/pagetree)
+         pollen/pagetree
+         libuuid            ; for uuid-generate
+         srfi/13)           ; for string-search
 
 (provide add-between
          attr-ref
          attrs-have-key?
-         make-txexpr)
+         make-txexpr
+         string-contains)
 (provide (all-defined-out))
 
 (define (root . elements)
