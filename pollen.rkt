@@ -59,6 +59,7 @@
 
 (register-block-tag 'pre)
 (register-block-tag 'figure)
+(register-block-tag 'center)
 
 (define (author . words) `(p [(class "subtitle")] ,@words))
 
