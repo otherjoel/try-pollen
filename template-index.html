@@ -18,6 +18,11 @@
     ◊; Insert the content from the page (index.html.pm in this case)
     ◊(map ->html (select-from-doc 'body here))
 
+    <p>
+        <a href="colophon.html">Notes</a> &middot;
+        <a href="bookindex.html">Index</a>
+    </p>
+
     ◊; HERE IS a simple way of listing pages by an arbitrary grouping.
     ◊; I call them ‘series’ but they're the same as what you’d call
     ◊; ‘categories’ in a blog.
@@ -31,10 +36,28 @@
                                         ,(list-posts-in-series ss))))
           (children 'series.html))
 
-    <p>
-        <a href="colophon.html">Notes</a> &middot;
-        <a href="bookindex.html">Index</a>
-    </p>
+    <h2>Flatland: A Romance of Many Dimensions</h2>
+
+    <p><label for="margin-bookcover" class="margin-toggle">&#8853;</label>
+        <input type="checkbox" id="margin-bookcover" class="margin-toggle" />
+        <span class="marginnote"><img src="flatland/img/flatland-cover.png" /></span></p>
+
+    ◊(define (chapter-li chapter)
+             (->html `(li (span [[class "smallcaps"]]
+                             ,(select-from-metas 'chapter-num chapter) ". "
+                             (a [[href ,(symbol->string chapter)]]
+                                ,(select-from-metas 'title chapter))))))
+
+    <h3>Part I: This World</h3>
+    <ul>
+        ◊(map chapter-li (children 'flatland/part-1.html))
+    </ul>
+
+    <h3>Part II: Other Worlds</h3>
+    <ul>
+        ◊(map chapter-li (children 'flatland/part-2.html))
+    </ul>
+
     </article>
 </body>
 </html>

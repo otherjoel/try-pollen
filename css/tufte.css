@@ -118,12 +118,14 @@ blockquote p { font-size: 1.1rem;
 blockquote footer { width: 50%;
                     text-align: right; }
 
-ul { width: 45%;
+ul, ol { width: 45%;
      -webkit-padding-start: 5%;
-     -webkit-padding-end: 5%;
-     list-style-type: none; }
+     -webkit-padding-end: 5%; }
 
-li { padding: 0.5rem 0; }
+ul { list-style-type: none; }
+
+li { padding: 0.5rem 0;
+     line-height: 2rem; }
 
 figure { max-width: 55%;
          -webkit-margin-start: 0;
@@ -160,7 +162,11 @@ img { max-width: 100%; }
                          vertical-align: baseline;
                          position: relative; }
 blockquote .sidenote,
-blockquote .marginnote {
+blockquote .marginnote,
+ol .sidenote,
+ol .marginnote,
+ul .sidenote,
+ul .marginnote {
     margin-right: -72%;
 }
 
@@ -198,7 +204,7 @@ p, footer, div.table-wrapper { width: 55%; }
 
 @media screen and (max-width: 760px) { p, footer { width: 90%; }
                                        pre.code { width: 87.5%; }
-                                       ul { width: 85%; }
+                                       ul, ol { width: 85%; }
                                        figure { max-width: 90%; }
                                        figcaption, figure.fullwidth figcaption { margin-right: 0%; }
                                        blockquote p, blockquote footer { width: 90%; }}

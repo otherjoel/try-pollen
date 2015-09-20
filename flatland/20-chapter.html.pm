@@ -1,0 +1,33 @@
+#lang pollen
+
+◊(define-meta chapter-num      "20")
+◊(define-meta title            "How the Sphere encouraged me in a Vision.")
+◊(define-meta doc-publish-date "25/08/2015")
+
+◊newthought{Although I} had less than a minute for reflection, I felt, by a kind of instinct, that I must conceal my experiences from my Wife. Not that I apprehended, at the moment, any danger from her divulging my secret, but I knew that to any Woman in Flatland the narrative of my adventures must needs be unintelligible. So I endeavoured to reassure her by some story, invented for the occasion, that I had accidentally fallen through the trap-door of the cellar, and had there lain stunned.
+
+The Southward attraction in our country is so slight that even to a Woman my tale necessarily appeared extraordinary and well- nigh incredible; but my Wife, whose good sense far exceeds that of the average of her Sex, and who perceived that I was unusually excited, did not argue with me on the subject, but insisted that I was ill and required repose. I was glad of an excuse for retiring to my chamber to think quietly over what had happened. When I was at last by myself, a drowsy sensation fell on me; but before my eyes closed I endeavoured to reproduce the Third Dimension, and especially the process by which a Cube is constructed through the motion of a Square. It was not so clear as I could have wished; but I remembered that it must be "Upward, and yet not Northward," and I determined steadfastly to retain these words as the clue which, if firmly grasped, could not fail to guide me to the solution. So mechanically repeating, like a charm, the words, "Upward, yet not Northward," I fell into a sound refreshing sleep.
+
+During my slumber I had a dream. I thought I was once more by the side of the Sphere, whose lustrous hue betokened that he had exchanged his wrath against me for perfect placability. We were moving together towards a bright but infinitesimally small Point, to which my Master directed my attention. As we approached, methought there issued from it a slight humming noise as from one of your Spaceland blue-bottles, only less resonant by far, so slight indeed that even in the perfect stillness of the Vacuum through which we soared, the sound reached not our ears till we checked our flight at a distance from it of something under twenty human diagonals.
+
+"Look yonder," said my Guide, "in Flatland thou hast lived; of Lineland thou hast received a vision; thou hast soared with me to the heights of Spaceland; now, in order to complete the range of thy experience, I conduct thee downward to the lowest depth of existence, even to the realm of Pointland, the Abyss of No dimensions.
+
+"Behold yon miserable creature. That Point is a Being like ourselves, but confined to the non-dimensional Gulf. He is himself his own World, his own Universe; of any other than himself he can form no conception; he knows not Length, nor Breadth, nor Height, for he has had no experience of them; he has no cognizance even of the number Two; nor has he a thought of Plurality; for he is himself his One and All, being really Nothing. Yet mark his perfect self- contentment, and hence learn this lesson, that to be self-contented is to be vile and ignorant, and that to aspire is better than to be blindly and impotently happy. Now listen."
+
+He ceased; and there arose from the little buzzing creature a tiny, low, monotonous, but distinct tinkling, as from one of your Spaceland phonographs, from which I caught these words, "Infinite beatitude of existence! It is; and there is none else beside It."
+
+"What," said I, "does the puny creature mean by it'?" "He means himself," said the Sphere: "have you not noticed before now, that babies and babyish people who cannot distinguish themselves from the world, speak of themselves in the Third Person? But hush!"
+
+"It fills all Space," continued the little soliloquizing Creature, "and what It fills, It is. What It thinks, that It utters; and what It utters, that It hears; and It itself is Thinker, Utterer, Hearer, Thought, Word, Audition; it is the One, and yet the All in All. Ah, the happiness ah, the happiness of Being!"
+
+"Can you not startle the little thing out of its complacency?" said I. "Tell it what it really is, as you told me; reveal to it the narrow limitations of Pointland, and lead it up to something higher." "That is no easy task," said my Master; "try you."
+
+Hereon, raising my voice to the uttermost, I addressed the Point as follows:
+
+"Silence, silence, contemptible Creature. You call yourself the All in All, but you are the Nothing: your so-called Universe is a mere speck in a Line, and a Line is a mere shadow as compared with --- " "Hush, hush, you have said enough," interrupted the Sphere, "now listen, and mark the effect of your harangue on the King of Pointland."
+
+The lustre of the Monarch, who beamed more brightly than ever upon hearing my words, shewed clearly that he retained his complacency; and I had hardly ceased when he took up his strain again. "Ah, the joy, ah, the joy of Thought! What can It not achieve by thinking! Its own Thought coming to Itself, suggestive of Its disparagement, thereby to enhance Its happiness! Sweet rebellion stirred up to result in triumph! Ah, the divine creative power of the All in One! Ah, the joy, the joy of Being!"
+
+"You see," said my Teacher, "how little your words have done. So far as the Monarch understands them at all, he accepts them as his own --- for he cannot conceive of any other except himself --- and plumes himself upon the variety of Its Thought' as an instance of creative Power. Let us leave this God of Pointland to the ignorant fruition of his omnipresence and omniscience: nothing that you or I can do can rescue him from his self-satisfaction."
+
+After this, as we floated gently back to Flatland, I could hear the mild voice of my Companion pointing the moral of my vision, and stimulating me to aspire, and to teach others to aspire. He had been angered at first --- he confessed --- by my ambition to soar to Dimensions above the Third; but, since then, he had received fresh insight, and he was not too proud to acknowledge his error to a Pupil. Then he proceeded to initiate me into mysteries yet higher than those I had witnessed, shewing me how to construct Extra-Solids by the motion of Solids, and Double Extra-Solids by the motion of Extra-Solids, and all "strictly according to Analogy," all by methods so simple, so easy, as to be patent even to the Female Sex.

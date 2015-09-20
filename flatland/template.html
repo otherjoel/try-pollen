@@ -15,10 +15,9 @@
   </style>
 </head>
 <body><article>
-    <h1>◊(hash-ref metas 'title)</h1>
-    ◊when/block[(select-from-metas 'author metas)]{
-        <h2>◊(hash-ref metas 'author)</h2>
-    }
+    <h1>◊when/block[(select-from-metas 'chapter-num metas)]{
+        ◊(hash-ref metas 'chapter-num). }<i>◊(hash-ref metas 'title)</i></h1>
+
     <nav><ul>
         ◊when/block[(and (previous here) (not (eq? (parent here) (previous here))))]{
             <li><a href="◊|path-prefix|◊|(previous here)|">&larr; Previous</a></li>

@@ -9,5 +9,32 @@ index.html
 ◊series.html{
     series/poems.html
 }
+flatland/00-preface.html
+◊flatland/part-1.html{
+    flatland/01-chapter.html
+    flatland/02-chapter.html
+    flatland/03-chapter.html
+    flatland/04-chapter.html
+    flatland/05-chapter.html
+    flatland/06-chapter.html
+    flatland/07-chapter.html
+    flatland/08-chapter.html
+    flatland/09-chapter.html
+    flatland/10-chapter.html
+    flatland/11-chapter.html
+    flatland/12-chapter.html
+}
+◊flatland/part-2.html{
+    flatland/13-chapter.html
+    flatland/14-chapter.html
+    flatland/15-chapter.html
+    flatland/16-chapter.html
+    flatland/17-chapter.html
+    flatland/18-chapter.html
+    flatland/19-chapter.html
+    flatland/20-chapter.html
+    flatland/21-chapter.html
+    flatland/22-chapter.html
+}
 colophon.html
 bookindex.html

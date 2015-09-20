@@ -23,7 +23,7 @@
                                                               margin-note-decoder)
                                 #:txexpr-elements-proc detect-paragraphs
                                 #:string-proc (compose smart-quotes smart-dashes)
-                                #:exclude-tags '(script style)
+                                #:exclude-tags '(script style figure)
                                 )))
 
 (define (numbered-note-decoder itx)
