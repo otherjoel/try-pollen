@@ -6,6 +6,15 @@ The code is not very well commented yet. I’m working on it though.
 
 Thanks to Matthew Butterick and Malcolm Still for their help with my Racket and Pollen questions.
 
+## Setup
+
+1. Install Pollen ([instructions](http://pkg-build.racket-lang.org/doc/pollen/Installation.html))
+2. Install libuuid at the command line with `raco pkg install libuuid`
+3. Clone or download this repo
+4. `raco pollen start` from the main folder, then point your browser to `http://localhost:8080`
+
+To generate the static website into a folder on your desktop, do `raco pollen publish`. See the [docs on `raco pollen`](http://pkg-build.racket-lang.org/doc/pollen/raco-pollen.html) for info on other ways of generating the files.
+
 ## Points of interest
 
 A brief and incomplete self-guided tour of the code follows. I add new things from time to time, so check back.
