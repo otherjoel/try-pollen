@@ -23,14 +23,14 @@
                                                               margin-note-decoder)
                                 #:txexpr-elements-proc detect-paragraphs
                                 #:string-proc (compose smart-quotes smart-dashes)
-                                #:exclude-tags '(script style figure)
-                                )))
+                                #:exclude-tags '(script style figure))))
+
 
 (define (numbered-note-decoder itx)
   (define (numbered-note . text)
     (define refid (uuid-generate))
-    (list `(label [[for ,refid] [class "margin-toggle sidenote-number"]] )
-          `(input [[type "checkbox"] [id ,refid] [class "margin-toggle"]] )
+    (list `(label [[for ,refid] [class "margin-toggle sidenote-number"]])
+          `(input [[type "checkbox"] [id ,refid] [class "margin-toggle"]])
           `(span [(class "sidenote")] ,@text)))
   (if (eq? 'numbered-note (get-tag itx)) ; check if it's the tag we want
       (apply numbered-note (get-elements itx)) ; if so, apply processing
@@ -41,8 +41,8 @@
     (define refid (uuid-generate))
     (list `(label [[for ,refid] [class "margin-toggle"]] 8853)
           `(input [[type "checkbox"] [id ,refid] [class "margin-toggle"]])
-          `(span [[class "marginnote"]] (img [[src ,source]]) ,@caption))
-    )
+          `(span [[class "marginnote"]] (img [[src ,source]]) ,@caption)))
+
   (if (eq? 'margin-figure (get-tag itx)) ; check if it's the tag we want
       (apply margin-figure (get-elements itx)) ; if so, apply processing
       itx)) ; if not, pass it through
@@ -50,8 +50,8 @@
 (define (margin-note-decoder itx)
   (define (margin-note . text)
     (define refid (uuid-generate))
-    (list `(label [[for ,refid] [class "margin-toggle"]] 8853 )
-          `(input [[type "checkbox"] [id ,refid] [class "margin-toggle"]] )
+    (list `(label [[for ,refid] [class "margin-toggle"]] 8853)
+          `(input [[type "checkbox"] [id ,refid] [class "margin-toggle"]])
           `(span [[class "marginnote"]] ,@text)))
   (if (eq? 'margin-note (get-tag itx))
       (apply margin-note (get-elements itx))
@@ -137,11 +137,11 @@
       (map (λ(x)
              `(a [[href ,(string-append (symbol->string file) "#" (attr-ref x 'id))]
                   [id ,(attr-ref x 'id)]]
-                 ,(select-from-metas 'title file)))
+                 (select-from-metas 'title file)))
            (filter-index-entries (make-txexpr 'div '() file-body)))
       ; return a dummy entry when `file` has no 'body (for debugging)
       (list `(a [[class "index-entry"] [id ,(symbol->string file)]]
-                "Not a txexpr: " ,(symbol->string file)) )))
+                "Not a txexpr: " ,(symbol->string file)))))
 
 ; Returns a list of index links (not entries!) for all files in file-list.
 (define (collect-index-links file-list)
