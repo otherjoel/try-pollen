@@ -108,11 +108,14 @@
                               #f))
                         (children 'posts.html)))))
 
-; Index functionality: allows creation of a book-style keyword index.
-;
-; An index ENTRY refers to the heading that will appear in the index.
-; An index LINK is a txexpr that has class="index-entry" and
-; id="ENTRY-WORD". (Created in docs with the ◊index-entry tag above)
+#|
+Index functionality: allows creation of a book-style keyword index.
+
+* An index ENTRY refers to the heading that will appear in the index.
+* An index LINK is a txexpr that has class="index-entry" and
+  id="ENTRY-WORD". (Created in docs with the ◊index-entry tag above)
+
+|#
 
 ; Returns a list of all elements in xpr that have class="index-entry"
 ; and an id key.
