@@ -18,44 +18,37 @@
 (define (root . elements)
   (make-txexpr 'body null
                (decode-elements elements
-                                #:inline-txexpr-proc (compose margin-figure-decoder
-                                                              numbered-note-decoder
-                                                              margin-note-decoder)
-                                #:txexpr-elements-proc detect-paragraphs
-                                #:string-proc (compose smart-quotes smart-dashes)
+                                #:txexpr-elements-proc (compose1 detect-paragraphs splice)
+                                #:string-proc (compose1 smart-quotes smart-dashes)
                                 #:exclude-tags '(script style figure))))
 
+#|
+`splice` lifts the elements of an X-expression into its enclosing X-expression.
+|#
+(define (splice xs)
+  (define tags-to-splice '(splice-me))
+  (apply append (for/list ([x (in-list xs)])
+                  (if (and (txexpr? x) (member (get-tag x) tags-to-splice))
+                      (get-elements x)
+                      (list x)))))
 
-(define (numbered-note-decoder itx)
-  (define (numbered-note . text)
+(define (numbered-note . text)
     (define refid (uuid-generate))
-    (list `(label [[for ,refid] [class "margin-toggle sidenote-number"]])
-          `(input [[type "checkbox"] [id ,refid] [class "margin-toggle"]])
-          `(span [(class "sidenote")] ,@text)))
-  (if (eq? 'numbered-note (get-tag itx)) ; check if it's the tag we want
-      (apply numbered-note (get-elements itx)) ; if so, apply processing
-      itx)) ; if not, pass it through
+    `(splice-me (label [[for ,refid] [class "margin-toggle sidenote-number"]])
+                (input [[type "checkbox"] [id ,refid] [class "margin-toggle"]])
+                (span [(class "sidenote")] ,@text)))
 
-(define (margin-figure-decoder itx)
-  (define (margin-figure source . caption)
+(define (margin-figure source . caption)
     (define refid (uuid-generate))
-    (list `(label [[for ,refid] [class "margin-toggle"]] 8853)
-          `(input [[type "checkbox"] [id ,refid] [class "margin-toggle"]])
-          `(span [[class "marginnote"]] (img [[src ,source]]) ,@caption)))
+    `(splice-me (label [[for ,refid] [class "margin-toggle"]] 8853)
+                (input [[type "checkbox"] [id ,refid] [class "margin-toggle"]])
+                (span [[class "marginnote"]] (img [[src ,source]]) ,@caption)))
 
-  (if (eq? 'margin-figure (get-tag itx)) ; check if it's the tag we want
-      (apply margin-figure (get-elements itx)) ; if so, apply processing
-      itx)) ; if not, pass it through
-
-(define (margin-note-decoder itx)
-  (define (margin-note . text)
+(define (margin-note . text)
     (define refid (uuid-generate))
-    (list `(label [[for ,refid] [class "margin-toggle"]] 8853)
-          `(input [[type "checkbox"] [id ,refid] [class "margin-toggle"]])
-          `(span [[class "marginnote"]] ,@text)))
-  (if (eq? 'margin-note (get-tag itx))
-      (apply margin-note (get-elements itx))
-      itx))
+    `(splice-me (label [[for ,refid] [class "margin-toggle"]] 8853)
+                (input [[type "checkbox"] [id ,refid] [class "margin-toggle"]])
+                (span [[class "marginnote"]] ,@text)))
 
 (register-block-tag 'pre)
 (register-block-tag 'figure)
