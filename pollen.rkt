@@ -136,8 +136,8 @@
   (if file-body
       (map (λ(x)
              `(a [[href ,(string-append (symbol->string file) "#" (attr-ref x 'id))]
-                  [id ,(attr-ref x 'id)]
-                  ,(select-from-metas 'title file)]))
+                  [id ,(attr-ref x 'id)]]
+                 ,(select-from-metas 'title file)))
            (filter-index-entries (make-txexpr 'div '() file-body)))
       ; return a dummy entry when `file` has no 'body (for debugging)
       (list `(a [[class "index-entry"] [id ,(symbol->string file)]]
