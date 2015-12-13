@@ -1,6 +1,7 @@
 #lang racket
 
 (require pollen/decode
+         pollen/world       ; For world:current-poly-target
          txexpr
          pollen/tag
          pollen/template
@@ -14,6 +15,10 @@
          make-txexpr
          string-contains)
 (provide (all-defined-out))
+
+(module config racket/base
+    (provide (all-defined-out))
+    (define poly-targets '(html ltx)))
 
 (define (root . elements)
   (make-txexpr 'body null
@@ -34,67 +39,135 @@
 
 (define (numbered-note . text)
     (define refid (uuid-generate))
-    `(splice-me (label [[for ,refid] [class "margin-toggle sidenote-number"]])
-                (input [[type "checkbox"] [id ,refid] [class "margin-toggle"]])
-                (span [(class "sidenote")] ,@text)))
+    (case (world:current-poly-target)
+      [(ltx pdf) (apply string-append `("\\footnote{" ,@text "}"))]
+      [else
+        `(splice-me (label [[for ,refid] [class "margin-toggle sidenote-number"]])
+                    (input [[type "checkbox"] [id ,refid] [class "margin-toggle"]])
+                    (span [(class "sidenote")] ,@text))]))
 
 (define (margin-figure source . caption)
     (define refid (uuid-generate))
-    `(splice-me (label [[for ,refid] [class "margin-toggle"]] 8853)
-                (input [[type "checkbox"] [id ,refid] [class "margin-toggle"]])
-                (span [[class "marginnote"]] (img [[src ,source]]) ,@caption)))
+    (case (world:current-poly-target)
+      [(ltx pdf) (apply string-append `("\\begin{marginfigure}"
+                                        "\\includegraphics{" ,source "}"
+                                        "\\caption{" ,@caption "}"
+                                        "\\end{marginfigure}"))]
+      [else
+        `(splice-me (label [[for ,refid] [class "margin-toggle"]] 8853)
+                    (input [[type "checkbox"] [id ,refid] [class "margin-toggle"]])
+                    (span [[class "marginnote"]] (img [[src ,source]]) ,@caption))]))
 
 (define (margin-note . text)
     (define refid (uuid-generate))
-    `(splice-me (label [[for ,refid] [class "margin-toggle"]] 8853)
-                (input [[type "checkbox"] [id ,refid] [class "margin-toggle"]])
-                (span [[class "marginnote"]] ,@text)))
+    (case (world:current-poly-target)
+      [(ltx pdf) (apply string-append `("\\marginnote{" ,@text "}"))]
+      [else
+        `(splice-me (label [[for ,refid] [class "margin-toggle"]] 8853)
+                    (input [[type "checkbox"] [id ,refid] [class "margin-toggle"]])
+                    (span [[class "marginnote"]] ,@text))]))
 
 (register-block-tag 'pre)
 (register-block-tag 'figure)
 (register-block-tag 'center)
 (register-block-tag 'blockquote)
 
+;DEPRECATED
 (define (author . words) `(p [(class "subtitle")] ,@words))
 
-(define (newthought . words) `(span [[class "newthought"]] ,@words))
+(define (newthought . words)
+  (case (world:current-poly-target)
+    [(ltx pdf) (apply string-append `("\\newthought{" ,@words "}"))]
+    [else `(span [[class "newthought"]] ,@words)]))
 
-(define (smallcaps . words) `(span [[class "smallcaps"]] ,@words))
+(define (smallcaps . words)
+  (case (world:current-poly-target)
+    [(ltx pdf) (apply string-append `("\\textsc{" ,@words "}"))]
+    [else `(span [[class "smallcaps"]] ,@words)]))
 
-(define (center . words) `(div [[style "text-align: center"]] ,@words))
+(define (center . words)
+  (case (world:current-poly-target)
+    [(ltx pdf) (apply string-append `("\\begin{center}" ,@words "\\end{center}"))]
+    [else `(div [[style "text-align: center"]] ,@words)]))
 
 (define (doc-section title . text)
-  `(section (h2 ,title) ,@text))
+  (case (world:current-poly-target)
+    [(ltx pdf) (apply string-append `("\\section*{" ,title "}" ,@text))]
+    [else `(section (h2 ,title) ,@text)]))
 
 (define (index-entry entry . text)
-  `(a [[id ,entry] [class "index-entry"]] ,@text))
+  (case (world:current-poly-target)
+    [(ltx pdf) (apply string-append `("\\index{" ,entry "}" ,@text))]
+    [else `(a [[id ,entry] [class "index-entry"]] ,@text)]))
 
 (define (figure source . caption)
-  `(figure (img [[src ,source]]) (figcaption ,@caption)))
-
-(define (margin-image src)
-  `(img [[src ,src]]))
+  (case (world:current-poly-target)
+    [(ltx pdf) (apply string-append `("\\begin{figure}"
+                                      "\\includegraphics{" ,source "}"
+                                      "\\caption{" ,caption "}"
+                                      "\\end{figure}"))]
+    [else `(figure (img [[src ,source]]) (figcaption ,@caption))]))
 
 (define (fullwidthfigure source . caption)
-  `(figure [[class "fullwidth"]] (img [[src ,source] [alt ,@caption]]) (figcaption ,@caption)))
+  (case (world:current-poly-target)
+    [(ltx pdf) (apply string-append `("\\begin{figure}"
+                                      "\\includegraphics[width=\\linewidth]{" ,source "}"
+                                      "\\caption{" ,caption "}"
+                                      "\\end{figure}"))]
+    [else `(figure [[class "fullwidth"]] (img [[src ,source] [alt ,@caption]]) (figcaption ,@caption))]))
 
 (define (code . text)
-  `(span [[class "code"]] ,@text))
+  (case (world:current-poly-target)
+    [(ltx pdf) (apply string-append `("\\texttt{" ,@text "}"))]
+    [else `(span [[class "code"]] ,@text)]))
 
 (define (blockcode . text)
-  `(pre [[class "code"]] ,@text))
+  (case (world:current-poly-target)
+    [(ltx pdf) (apply string-append `("\\begin{verbatim}" ,@text "\\end{verbatim}"))]
+    [else `(pre [[class "code"]] ,@text)]))
 
-(define (verse . text)
-  `(div [[class "poem"]] (pre [[class "verse"]] ,@text)))
+#|
+Typesetting poetry in LaTeX or HTML. HTML uses a straightforward <pre> with
+appropriate CSS. In LaTeX we explicitly specify the longest line for centering
+purposes, and replace double-spaces with \vin to indent lines.
+|#
+(define (verse title . text)
+  (case (world:current-poly-target)
+    [(ltf pdf) (apply string-append `("\\poemtitle{" ,title "}"
+                                      "\\settowidth{\\versewidth}{"
+                                      ,(longest-line (apply string-append (list text)))
+                                      "}"
+                                      "\\begin{verse}[\\versewidth]"
+                                      ,(string-replace (apply string-append (list text)
+                                                        "  " "\\vin "))
+                                      "\\end{verse}"))]
+    [else `(div [[class "poem"]] (pre [[class "verse"]] ,@text))]))
 
+#|
+Helper function for typesetting poetry in LaTeX. Poetry should be centered
+on the longest line. Browsers will do this automatically with proper CSS but
+in LaTeX we need to tell it what the longest line is.
+|#
+(define (longest-line str)
+  (first (sort (string-split str (~a #\newline))
+               (λ(x y) (> (string-length x) (string-length y))))))
+
+; DEPRECATED
 (define (poem-heading . words)
-  `(p [[class "poem-heading"]] ,@words))
+  (case (world:current-poly-target)
+    [(ltx pdf) (apply string-append `("\\poemtitle{" ,@words "}"))]
+    [else `(p [[class "poem-heading"]] ,@words)]))
 
 (define (grey . text)
-  `(span [[style "color: #777"]] ,@text))
+  (case (world:current-poly-target)
+    [(ltx pdf) (apply string-append `("\\textcolor{gray}{" ,@text "}"))]
+    [else `(span [[style "color: #777"]] ,@text)]))
 
 (define (hyperlink url . words)
-  `(a [[href ,url]] ,@words))
+  (case (world:current-poly-target)
+    [(ltx pdf) (apply string-append `("\\href{" ,url "}"
+                                      "{" ,@words "}"))]
+    [else `(a [[href ,url]] ,@words)]))
 
 (define (list-posts-in-series s)
     (define (make-li post)
@@ -153,7 +226,7 @@ Index functionality: allows creation of a book-style keyword index.
         string-ci<?))
 
 ; Given a heading and a list of index links, returns only the links that match
-; the heading.
+; the heading.((
 (define (match-index-links keyword entrylink-list)
   (filter (λ(link)(string=? (attr-ref link 'id) keyword))
           entrylink-list))
