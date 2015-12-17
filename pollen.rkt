@@ -133,7 +133,7 @@ purposes, and replace double-spaces with \vin to indent lines.
 |#
 (define (verse title . text)
   (case (world:current-poly-target)
-    [(ltf pdf) (apply string-append `("\\poemtitle{" ,title "}"
+    [(ltx pdf) (apply string-append `("\\poemtitle{" ,title "}"
                                       "\\settowidth{\\versewidth}{"
                                       ,(longest-line (apply string-append (list text)))
                                       "}"
@@ -141,7 +141,10 @@ purposes, and replace double-spaces with \vin to indent lines.
                                       ,(string-replace (apply string-append (list text)
                                                         "  " "\\vin "))
                                       "\\end{verse}"))]
-    [else `(div [[class "poem"]] (pre [[class "verse"]] ,@text))]))
+    [else `(div [[class "poem"]]
+             (pre [[class "verse"]]
+               (p [[class "poem-heading"]] ,title)
+               ,@text))]))
 
 #|
 Helper function for typesetting poetry in LaTeX. Poetry should be centered
@@ -151,12 +154,6 @@ in LaTeX we need to tell it what the longest line is.
 (define (longest-line str)
   (first (sort (string-split str (~a #\newline))
                (λ(x y) (> (string-length x) (string-length y))))))
-
-; DEPRECATED
-(define (poem-heading . words)
-  (case (world:current-poly-target)
-    [(ltx pdf) (apply string-append `("\\poemtitle{" ,@words "}"))]
-    [else `(p [[class "poem-heading"]] ,@words)]))
 
 (define (grey . text)
   (case (world:current-poly-target)
