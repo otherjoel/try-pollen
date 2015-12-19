@@ -6,6 +6,7 @@
          pollen/tag
          pollen/template
          pollen/pagetree
+         racket/date
          libuuid)            ; for uuid-generate
 
 ; We want srfi/13 for string-contains but need to avoid collision between
@@ -24,11 +25,19 @@
     (define poly-targets '(html ltx)))
 
 (define (root . elements)
-  (make-txexpr 'body null
-               (decode-elements elements
-                                #:txexpr-elements-proc (compose1 detect-paragraphs splice)
-                                #:string-proc (compose1 smart-quotes smart-dashes)
-                                #:exclude-tags '(script style figure))))
+  (case (world:current-poly-target)
+    [(ltx pdf)
+     (make-txexpr 'body null
+                   (decode-elements elements
+                                    #:txexpr-elements-proc (compose1 detect-paragraphs splice)
+                                    #:exclude-tags '(script style figure)))]
+
+    [else
+      (make-txexpr 'body null
+                   (decode-elements elements
+                                    #:txexpr-elements-proc (compose1 detect-paragraphs splice)
+                                    #:string-proc (compose1 smart-quotes smart-dashes)
+                                    #:exclude-tags '(script style figure)))]))
 
 #|
 `splice` lifts the elements of an X-expression into its enclosing X-expression.
@@ -129,10 +138,20 @@
     [(ltx pdf) (apply string-append `("\\begin{verbatim}" ,@text "\\end{verbatim}"))]
     [else `(pre [[class "code"]] ,@text)]))
 
+; In HTML these two tags won't look much different. But when outputting to
+; LaTeX, ◊i will italicize multiple blocks of text, where ◊emph should be
+; used for words or phrases that are intended to be emphasized. In LaTeX,
+; if the surrounding text is already italic then the emphasized words will be
+; non-italicized.
 (define (i . text)
   (case (world:current-poly-target)
-    [(ltx pdf) (apply string-append `("\\textit{" ,@text "}"))]
+    [(ltx pdf) (format "{\\itshape ~a}" (apply string-append text))]
     [else `(i ,@text)]))
+
+(define (emph . text)
+  (case (world:current-poly-target)
+    [(ltx pdf) (format "\\emph{~a}" (apply string-append text))]
+    [else `(em ,@text)]))
 
 #|
 Typesetting poetry in LaTeX or HTML. HTML uses a straightforward <pre> with
@@ -140,21 +159,26 @@ appropriate CSS. In LaTeX we explicitly specify the longest line for centering
 purposes, and replace double-spaces with \vin to indent lines.
 |#
 (define verse
-    (lambda (#:title [title ""] . text)
+    (lambda (#:title [title ""] #:italic [italic #f] . text)
      (case (world:current-poly-target)
       [(ltx pdf)
        (define poem-title (if (non-empty-string? title)
                               (apply string-append `("\\poemtitle{" ,title "}"))
                               ""))
-       (apply string-append `(,poem-title
-                              "\\settowidth{\\versewidth}{"
-                              ,(longest-line (apply string-append text))
+
+       ; Replace double spaces with "\vin " to indent lines
+       (define poem-text (string-replace (apply string-append text) "  " "\\vin"))
+
+       ; Optionally italicize poem text
+       (define fmt-text (if italic (format "{\\itshape ~a}" poem-text) poem-text))
+
+       (apply string-append `("\n\n" ,poem-title
+                              "\n\\settowidth{\\versewidth}{"
+                              ,(longest-line poem-text)
                               "}"
-                              "\\begin{verse}[\\versewidth]"
-                              ,(string-replace (apply string-append text)
-                                               "  "
-                                               "\\vin ")
-                              "\\end{verse}"))]
+                              "\n\\begin{verse}[\\versewidth]"
+                              ,fmt-text
+                              "\\end{verse}\n\n"))]
       [else
         `(div [[class "poem"]]
               (pre [[class "verse"]]
@@ -167,7 +191,7 @@ on the longest line. Browsers will do this automatically with proper CSS but
 in LaTeX we need to tell it what the longest line is.
 |#
 (define (longest-line str)
-  (first (sort (string-split str (~a #\newline))
+  (first (sort (string-split str "\n")
                (λ(x y) (> (string-length x) (string-length y))))))
 
 (define (grey . text)
@@ -242,3 +266,22 @@ Index functionality: allows creation of a book-style keyword index.
 (define (match-index-links keyword entrylink-list)
   (filter (λ(link)(string=? (attr-ref link 'id) keyword))
           entrylink-list))
+
+; Modified from https://github.com/malcolmstill/mstill.io/blob/master/blog/pollen.rkt
+; Converts a string "2015-12-19" or "2015-12-19 16:02" to string "Saturday, December 19th, 2015"
+(define (datestring->date datetime)
+  (match (string-split datetime)
+    [(list date time) (match (map string->number (append (string-split date "-") (string-split time ":")))
+                        [(list year month day hour minutes) (date->string (seconds->date (find-seconds 0
+                                                                                                       minutes
+                                                                                                       hour
+                                                                                                       day
+                                                                                                       month
+                                                                                                       year)))])]
+    [(list date) (match (map string->number (string-split date "-"))
+                   [(list year month day) (date->string (seconds->date (find-seconds 0
+                                                                                     0
+                                                                                     0
+                                                                                     day
+                                                                                     month
+                                                                                     year)))])]))
