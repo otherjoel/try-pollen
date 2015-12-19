@@ -131,20 +131,26 @@ Typesetting poetry in LaTeX or HTML. HTML uses a straightforward <pre> with
 appropriate CSS. In LaTeX we explicitly specify the longest line for centering
 purposes, and replace double-spaces with \vin to indent lines.
 |#
-(define (verse title . text)
-  (case (world:current-poly-target)
-    [(ltx pdf) (apply string-append `("\\poemtitle{" ,title "}"
-                                      "\\settowidth{\\versewidth}{"
-                                      ,(longest-line (apply string-append (list text)))
-                                      "}"
-                                      "\\begin{verse}[\\versewidth]"
-                                      ,(string-replace (apply string-append (list text)
-                                                        "  " "\\vin "))
-                                      "\\end{verse}"))]
-    [else `(div [[class "poem"]]
-             (pre [[class "verse"]]
-               (p [[class "poem-heading"]] ,title)
-               ,@text))]))
+(define verse
+    (lambda (#:title [title ""] . text)
+     (case (world:current-poly-target)
+      [(ltx pdf)
+       (define poem-title (if (non-empty-string? title)
+                              (apply string-append `("\\poemtitle{" ,title "}"))
+                              ""))
+       (apply string-append `(,poem-title
+                              "\\settowidth{\\versewidth}{"
+                              ,(longest-line (apply string-append (list text)))
+                              "}"
+                              "\\begin{verse}[\\versewidth]"
+                              ,(string-replace (apply string-append (list text))
+                                               "  " "\\vin ")
+                              "\\end{verse}"))]
+      [else
+        `(div [[class "poem"]]
+              (pre [[class "verse"]]
+                   (p [[class "poem-heading"]] ,title)
+                   ,@text))])))
 
 #|
 Helper function for typesetting poetry in LaTeX. Poetry should be centered
