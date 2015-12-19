@@ -8,6 +8,11 @@
 \renewcommand*{\theHpoemline}{\arabic{verse@envctr}.\arabic{poemline}}
 \makeatother
 
+% Set up the spacing using fontspec features
+% See https://groups.google.com/d/topic/tufte-latex-commits/JcgGP-1R138/discussion
+   \renewcommand\allcapsspacing[1]{{\addfontfeature{LetterSpace=15}#1}}
+   \renewcommand\smallcapsspacing[1]{{\addfontfeature{LetterSpace=10}#1}}
+
 %\geometry{showframe}% for debugging purposes -- displays the margins
 
 \usepackage{amsmath}
@@ -17,9 +22,9 @@
 \setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
 \graphicspath{{graphics/}}
 
-\title{An Example TK}
-\author[The Tufte-LaTeX Developers]{The Tufte-\LaTeX\ Developers}
-% \date{24 January 2016}  % if the \date{} command is left out, the current date will be used
+\title{◊(hash-ref metas 'title)}
+\author{◊(hash-ref metas 'author)}
+\date{◊(datestring->date (hash-ref metas 'doc-publish-date))}  % if the \date{} command is left out, the current date will be used
 
 % The following package makes prettier tables.  We're all about the bling!
 \usepackage{booktabs}
