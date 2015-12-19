@@ -6,8 +6,11 @@
          pollen/tag
          pollen/template
          pollen/pagetree
-         libuuid            ; for uuid-generate
-         srfi/13)           ; for string-search
+         libuuid)            ; for uuid-generate
+
+; We want srfi/13 for string-contains but need to avoid collision between
+; its string-replace function and the one in racket/string
+(require (only-in srfi/13 string-contains))
 
 (provide add-between
          attr-ref
@@ -126,6 +129,11 @@
     [(ltx pdf) (apply string-append `("\\begin{verbatim}" ,@text "\\end{verbatim}"))]
     [else `(pre [[class "code"]] ,@text)]))
 
+(define (i . text)
+  (case (world:current-poly-target)
+    [(ltx pdf) (apply string-append `("\\textit{" ,@text "}"))]
+    [else `(i ,@text)]))
+
 #|
 Typesetting poetry in LaTeX or HTML. HTML uses a straightforward <pre> with
 appropriate CSS. In LaTeX we explicitly specify the longest line for centering
@@ -140,11 +148,12 @@ purposes, and replace double-spaces with \vin to indent lines.
                               ""))
        (apply string-append `(,poem-title
                               "\\settowidth{\\versewidth}{"
-                              ,(longest-line (apply string-append (list text)))
+                              ,(longest-line (apply string-append text))
                               "}"
                               "\\begin{verse}[\\versewidth]"
-                              ,(string-replace (apply string-append (list text))
-                                               "  " "\\vin ")
+                              ,(string-replace (apply string-append text)
+                                               "  "
+                                               "\\vin ")
                               "\\end{verse}"))]
       [else
         `(div [[class "poem"]]
