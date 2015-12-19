@@ -1,4 +1,6 @@
 *.html
+*.ltx
+!template.ltx
 !template.html
 !template-index.html
 !template-bookindex.html
