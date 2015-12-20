@@ -110,7 +110,10 @@
 (define (index-entry entry . text)
   (case (world:current-poly-target)
     [(ltx pdf) (apply string-append `("\\index{" ,entry "}" ,@text))]
-    [else `(a [[id ,entry] [class "index-entry"]] ,@text)]))
+    [else
+      (case (apply string-append text)
+        [("") `(a [[id ,entry] [class "index-entry"]])]
+        [else `(a [[id ,entry] [class "index-entry"]] ,@text)])]))
 
 (define (figure source . caption)
   (case (world:current-poly-target)
