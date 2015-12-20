@@ -1,7 +1,7 @@
 #lang pollen
 
 ◊(define-meta title            "Part II: Other Worlds")
-◊(define-meta doc-publish-date "25/08/2015")
+◊(define-meta doc-publish-date "2015-08-25")
 
 ◊verse{◊i{                       "O brave new worlds,
 That have such people in them!"}}

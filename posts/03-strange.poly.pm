@@ -1,7 +1,7 @@
 #lang pollen
 
 ◊(define-meta title            "English Magick")
-◊(define-meta doc-publish-date "2015-12-19")
+◊(define-meta doc-publish-date "2015-08-25")
 ◊(define-meta author           "Susanna Clarke")
 ◊(define-meta series           "series/poems.html")
 

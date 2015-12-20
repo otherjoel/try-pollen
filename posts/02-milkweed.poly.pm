@@ -1,7 +1,7 @@
 #lang pollen
 
 ◊(define-meta title            "Two Voices in a Meadow")
-◊(define-meta doc-publish-date "25/08/2015")
+◊(define-meta doc-publish-date "2015-08-25")
 ◊(define-meta author           "Richard Wilbur")
 ◊(define-meta series           "series/poems.html")
 

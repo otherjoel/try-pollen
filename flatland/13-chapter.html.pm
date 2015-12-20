@@ -2,7 +2,7 @@
 
 ◊(define-meta chapter-num      "13")
 ◊(define-meta title            "How I had a Vision of Lineland.")
-◊(define-meta doc-publish-date "25/08/2015")
+◊(define-meta doc-publish-date "2015-08-25")
 
 ◊newthought{It was} the last day but one of the 1999th year of our era, and the first day of the Long Vacation. Having amused myself till a late hour with my favourite recreation of Geometry, I had retired to rest with an unsolved problem in my mind. In the night I had a dream.
 

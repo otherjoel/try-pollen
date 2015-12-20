@@ -2,7 +2,7 @@
 
 ◊(define-meta chapter-num      "18")
 ◊(define-meta title            "How I came to Spaceland, and what I saw there.")
-◊(define-meta doc-publish-date "25/08/2015")
+◊(define-meta doc-publish-date "2015-08-25")
 
 ◊newthought{An unspeakable} horror seized me. There was a darkness; then a dizzy, sickening sensation of sight that was not like seeing; I saw a Line that was no Line; Space that was not Space: I was myself, and not myself. When I could find voice, I shrieked aloud in agony, "Either this is madness or it is Hell." "It is neither," calmly replied the voice of the Sphere, "it is Knowledge; it is Three Dimensions: open your eye once again and try to look steadily."
 I looked, and, behold, a new world! There stood before me, visibly incorporate, all that I had before inferred, conjectured, dreamed, of perfect Circular beauty. What seemed the centre of the Stranger's form lay open to my view: yet I could see no heart, nor lungs, nor arteries, only a beautiful harmonious Something --- for which I had no words; but you, my Readers in Spaceland, would call it the surface of the Sphere.

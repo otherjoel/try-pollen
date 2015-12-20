@@ -1,7 +1,7 @@
 #lang pollen
 
 ◊(define-meta title            "En Route")
-◊(define-meta doc-publish-date "20/09/2015")
+◊(define-meta doc-publish-date "2015-09-20")
 ◊(define-meta author           "J. Brander Matthews")
 ◊(define-meta series           "series/poems.html")
 
