@@ -17,6 +17,12 @@
 
 \usepackage{amsmath}
 
+
+% Set the main and monospaced fonts
+%
+\setromanfont[Mapping=tex-text,Ligatures={Common, Rare, Discretionary},Numbers=OldStyle]{Adobe Caslon Pro}
+\setmonofont[Mapping=tex-text,Scale=MatchLowercase]{Triplicate T4c}
+
 % Set up the images/graphics package
 \usepackage{graphicx}
 \setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}

@@ -1,9 +1,6 @@
 *.html
 *.ltx
-!template.ltx
-!template.html
-!template-index.html
-!template-bookindex.html
+*.pdf
 compiled/
 pollen-cache/
 pollen.cache
