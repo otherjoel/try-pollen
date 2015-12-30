@@ -22,14 +22,15 @@
 
 (module config racket/base
     (provide (all-defined-out))
-    (define poly-targets '(html ltx)))
+    (define poly-targets '(html ltx pdf)))
 
 (define (root . elements)
   (case (world:current-poly-target)
     [(ltx pdf)
      (make-txexpr 'body null
                    (decode-elements elements
-                                    #:txexpr-elements-proc (compose1 detect-paragraphs splice)
+                                    #:txexpr-elements-proc (compose1 splice)
+                                    #:string-proc (compose1 smart-quotes smart-dashes)
                                     #:exclude-tags '(script style figure)))]
 
     [else
@@ -84,8 +85,10 @@
 (register-block-tag 'center)
 (register-block-tag 'blockquote)
 
-;DEPRECATED
-(define (author . words) `(p [(class "subtitle")] ,@words))
+(define (p . words)
+  (case (world:current-poly-target)
+    [(ltx pdf) (apply string-append `("\n" ,@words))]
+    [else `(p ,@words)]))
 
 (define (newthought . words)
   (case (world:current-poly-target)
@@ -173,7 +176,8 @@ purposes, and replace double-spaces with \vin to indent lines.
        (define poem-text (string-replace (apply string-append text) "  " "\\vin"))
 
        ; Optionally italicize poem text
-       (define fmt-text (if italic (format "{\\itshape ~a}" poem-text) poem-text))
+       (define fmt-text (if italic (format "{\\itshape ~a}" (latex-poem-linebreaks poem-text))
+                                   (latex-poem-linebreaks poem-text)))
 
        (apply string-append `("\n\n" ,poem-title
                               "\n\\settowidth{\\versewidth}{"
@@ -196,6 +200,12 @@ in LaTeX we need to tell it what the longest line is.
 (define (longest-line str)
   (first (sort (string-split str "\n")
                (λ(x y) (> (string-length x) (string-length y))))))
+
+(define (latex-poem-linebreaks text)
+  (regexp-replace* #px"([^[:space:]])\n(?!\n)" ; match newlines that follow non-whitespace
+                                               ; and which are not followed by another newline
+                   text
+                   "\\1 \\\\\\\\\n"))
 
 (define (grey . text)
   (case (world:current-poly-target)
