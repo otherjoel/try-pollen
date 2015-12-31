@@ -30,6 +30,7 @@
      (make-txexpr 'body null
                    (decode-elements elements
                                     #:txexpr-elements-proc (compose1 splice)
+                                    #:inline-txexpr-proc hyperlink-decoder
                                     #:string-proc (compose1 smart-quotes smart-dashes)
                                     #:exclude-tags '(script style figure)))]
 
@@ -37,6 +38,7 @@
       (make-txexpr 'body null
                    (decode-elements elements
                                     #:txexpr-elements-proc (compose1 detect-paragraphs splice)
+                                    #:inline-txexpr-proc hyperlink-decoder
                                     #:string-proc (compose1 smart-quotes smart-dashes)
                                     #:exclude-tags '(script style figure)))]))
 
@@ -49,11 +51,27 @@
                   (if (and (txexpr? x) (member (get-tag x) tags-to-splice))
                       (get-elements x)
                       (list x)))))
+#|
+◊numbered-note, ◊margin-figure, ◊margin-note:
+  These three tag functions produce markup for "sidenotes" in HTML and LaTeX.
+  In our LaTeX template, any hyperlinks also get auto-converted to numbered
+  sidenotes, which is kinda neat. Unfortunately, this also means that when
+  targeting LaTeX, you can't have a hyperlink inside a sidenote since that would
+  equate to a sidenote within a sidenote, which causes Problems.
+
+  We handle this by not using a normal tag function for hyperlinks. Instead,
+  within these three tag functions we call decode-elements to filter out any
+  hyperlinks inside these tags (for LaTeX/PDF only). Then the root function uses
+  a separate decoder to properly handle any hyperlinks that sit outside any of
+  these three tags.
+|#
 
 (define (numbered-note . text)
     (define refid (uuid-generate))
     (case (world:current-poly-target)
-      [(ltx pdf) (apply string-append `("\\footnote{" ,@text "}"))]
+      [(ltx pdf)
+       (define cleantext (decode-elements text #:inline-txexpr-proc latex-no-hyperlinks-in-margin))
+       (apply string-append `("\\footnote{" ,@cleantext "}"))]
       [else
         `(splice-me (label [[for ,refid] [class "margin-toggle sidenote-number"]])
                     (input [[type "checkbox"] [id ,refid] [class "margin-toggle"]])
@@ -62,10 +80,14 @@
 (define (margin-figure source . caption)
     (define refid (uuid-generate))
     (case (world:current-poly-target)
-      [(ltx pdf) (apply string-append `("\\begin{marginfigure}"
-                                        "\\includegraphics{" ,source "}"
-                                        "\\caption{" ,@caption "}"
-                                        "\\end{marginfigure}"))]
+      [(ltx pdf)
+       (define cleantext
+               (decode-elements (make-txexpr 'tag null caption)
+                                #:inline-txexpr-proc latex-no-hyperlinks-in-margin))
+       (apply string-append `("\\begin{marginfigure}"
+                              "\\includegraphics{" ,source "}"
+                              "\\caption{" ,@cleantext "}"
+                              "\\end{marginfigure}"))]
       [else
         `(splice-me (label [[for ,refid] [class "margin-toggle"]] 8853)
                     (input [[type "checkbox"] [id ,refid] [class "margin-toggle"]])
@@ -74,11 +96,37 @@
 (define (margin-note . text)
     (define refid (uuid-generate))
     (case (world:current-poly-target)
-      [(ltx pdf) (apply string-append `("\\marginnote{" ,@text "}"))]
+      [(ltx pdf)
+       (define cleantext
+               (decode-elements text #:inline-txexpr-proc latex-no-hyperlinks-in-margin))
+       (apply string-append `("\\marginnote{"
+                              ,@cleantext
+                              "}"))]
       [else
         `(splice-me (label [[for ,refid] [class "margin-toggle"]] 8853)
                     (input [[type "checkbox"] [id ,refid] [class "margin-toggle"]])
                     (span [[class "marginnote"]] ,@text))]))
+
+#|
+  This function is called from within the margin/sidenote functions when
+  targeting Latex/PDF, to filter out hyperlinks from within those tags.
+  (See notes above)
+|#
+(define (latex-no-hyperlinks-in-margin inline-tx)
+  (if (eq? 'hyperlink (get-tag inline-tx))
+    (apply string-append (cdr (get-elements inline-tx))) ; Return the text contents only
+    inline-tx)) ; otherwise pass through unchanged
+
+(define (hyperlink-decoder inline-tx)
+  (define (hyperlinker url . words)
+    (case (world:current-poly-target)
+      [(ltx pdf) (apply string-append `("\\href{" ,url "}"
+                                        "{" ,@words "}"))]
+      [else `(a [[href ,url]] ,@words)]))
+
+  (if (eq? 'hyperlink (get-tag inline-tx))
+      (apply hyperlinker (get-elements inline-tx))
+      inline-tx))
 
 (register-block-tag 'pre)
 (register-block-tag 'figure)
@@ -209,14 +257,8 @@ in LaTeX we need to tell it what the longest line is.
 
 (define (grey . text)
   (case (world:current-poly-target)
-    [(ltx pdf) (apply string-append `("\\textcolor{gray}{" ,@text "}"))]
+    [(ltx pdf) `("\\textcolor{gray}{" ,@text "}")]
     [else `(span [[style "color: #777"]] ,@text)]))
-
-(define (hyperlink url . words)
-  (case (world:current-poly-target)
-    [(ltx pdf) (apply string-append `("\\href{" ,url "}"
-                                      "{" ,@words "}"))]
-    [else `(a [[href ,url]] ,@words)]))
 
 (define (list-posts-in-series s)
     (define (make-li post)
