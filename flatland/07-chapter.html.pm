@@ -2,7 +2,7 @@
 
 ◊(define-meta chapter-num      "7")
 ◊(define-meta title            "Concerning Irregular Figures.")
-◊(define-meta doc-publish-date "25/08/2015")
+◊(define-meta doc-publish-date "2015-08-25")
 
 ◊newthought{Throughout the} previous pages I have been assuming --- what perhaps should have been laid down at the beginning as a distinct and fundamental proposition --- that every human being in Flatland is a Regular Figure, that is to say of regular construction. By this I mean that a Woman must not only be a line, but a straight line; that an Artisan or Soldier must have two of his sides equal; that Tradesmen must have three sides equal; Lawyers (of which class I am a humble member), four sides equal, and, generally, that in every Polygon, all the sides must be equal.
 

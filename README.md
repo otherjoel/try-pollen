@@ -1,3 +1,5 @@
+# “Try Pollen”, a test Pollen Site (v0.2)
+
 I’ve created this site as a way of playing around with [Pollen](http://pollenpub.com) for myself, but also to help explain it to people who might be interested in using it for themselves. The documentation is well done and improving all the time, and you should really start by reading it thoroughly. But a guided tour through a simple working site might help put the pieces together, and illustrate the benefits of the Pollen system.
 
 You can see it live at <http://tilde.club/~joeld/secretary>. The design and CSS come from [Tufte CSS](http://www.daveliepmann.com/tufte-css/).
@@ -10,6 +12,7 @@ Thanks to Matthew Butterick and Malcolm Still for their help with my Racket and 
 
 1. Install Pollen ([instructions](http://pkg-build.racket-lang.org/doc/pollen/Installation.html))
 2. Install libuuid at the command line with `raco pkg install libuuid`
+3. (Optional) to be able to generate PDFs as well as HTML, you should have a working installation of LaTeX (specifically `xelatex`) and the [Tufte-Latex classes](https://tufte-latex.github.io/tufte-latex/) installed. If you're on a Mac, installing [MacTeX](http://tug.org/mactex/) will satisfy both of these. (Note, if your shell is something other than bash, you'll need to take steps to ensure `/Library/TeX/texbin` is on your PATH.)
 3. Clone or download this repo
 4. `raco pollen start` from the main folder, then point your browser to `http://localhost:8080`
 
@@ -26,11 +29,23 @@ A brief and incomplete self-guided tour of the code follows. I add new things fr
 
 So far I’ve added two minor markup innovations to this project:
 
- 1. A `◊verse` tag for poetry: This is one example of any area that Markdown does not (and likely will never) address properly. By using this tag I can output the exact HTML markup I need, which I can then style with CSS to center based on the width of the longest line.
+ 1. A `◊verse` tag for poetry: This is one example of any area that Markdown does not (and likely will never) address properly. By using this tag I can output the exact HTML markup I need, which I can then style with CSS to center based on the width of the longest line. In LaTeX/PDF, this tag also automatically replaces double-spaces with `\vin` to indent lines.
 
- 2. An `◊index-entry` tag: Intended to mark passages of text for inclusion in a book-style index. A separate page, `bookindex.html`, iterates through the pagetree, gathers up all of these entries and displays them in alphabetical order, grouped by heading. (Basically just like the index at the back of any serious book you have on your shelf.) This is another example of something that would be impossible in Markdown. Of course, on the web, this is something of an anachronism: it would probably be better for the reader to have a normal search form to use. However, besides serving as an illustration, this tag will allow for effortless inclusion of an index when I add support for targeting LaTeX/PDF.
+ 2. An `◊index-entry` tag: Intended to mark passages of text for inclusion in a book-style index. A separate page, `bookindex.html`, iterates through the pagetree, gathers up all of these entries and displays them in alphabetical order, grouped by heading. (Basically just like the index at the back of any serious book you have on your shelf.) This is another example of something that would be impossible in Markdown. Of course, on the web, this is something of an anachronism: it would probably be better for the reader to have a normal search form to use. However, besides serving as an illustration, this tag will allow for effortless inclusion of an index when I add support for this in LaTeX/PDF.
 
      You can see the code used to generate the index at the bottom of `pollen.rkt` and in `template-bookindex.html` file.
+
+### LaTeX/PDF support
+
+Any file with the `.poly.pm` extension can be generated as a `.ltx` file or a `.pdf` file as well as HTML. My LaTeX templates make use of the Tufte-LaTeX document classes, to match the Tufte-CSS in use on the web side.
+
+You may want to edit the fonts specified `\setromanfont` and `\setmonofont` commands in both `template.ltx.p` and `template.pdf.p`; I have them set to Adobe Caslon Pro and Triplicate, respectively, so if you don't have those fonts installed you may get errors.
+
+The official Pollen docs describe [the basic method for LaTeX and PDF targets](http://pkg-build.racket-lang.org/doc/pollen/fourth-tutorial.html), but my method differs somewhat due to the need for additional cleverness.
+
+In my LaTeX template, any hyperlinks also get auto-converted to numbered side-notes. Unfortunately, this niftiness also means that when targeting LaTeX, you can't have a hyperlink inside a side-note since that would equate to a side-note within a side-note, which causes Problems.
+
+I could simply stipulate "don't put hyperlinks in margin notes" but I wanted a more elegant solution. Solving this problem meant departing from the methods in the official tutorial. The method given there is to have your tag functions immediately start rolling everything up into concatenated strings. Instead of doing this, my tag functions all return tagged X-expressions of the form `'(txt [element-1] [element-2] [...etc])` (thus preserving a valid txexpr tree for later operations). I will offer more details on this at a later date.
 
 ### Grouping pages by series
 

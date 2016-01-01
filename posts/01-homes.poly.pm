@@ -1,20 +1,23 @@
 #lang pollen
 
 ◊(define-meta title            "Homes")
-◊(define-meta doc-publish-date "25/08/2015")
+◊(define-meta doc-publish-date "2015-08-25")
 ◊(define-meta author           "Charlotte Anna Perkins Gilman")
 ◊(define-meta series           "series/poems.html")
 
-◊margin-note{◊grey{◊newthought{If you've} never read it before, the lofty & antiquated style of ◊i{Homes} might make you think the author really does think homes are super great. But the high style is all part of its withering sarcasm. In its satire, the poem brings clarity to the ways in which conservative people idolize domestic life. The form used --- the sestina --- is quite strict: each stanza must contain six lines of five feet. The lines must end with the same set of six words, in a specific pattern that changes every stanza. These six words must also be used in the middle and endings of the three lines that make up the closing stanza.}}
+◊margin-note{◊grey{◊newthought{If you've} never read it before, the lofty, antiquated style of ◊i{Homes} might make you think the author really does think homes are super great. But the high style is all part of its withering sarcasm. In its satire, the poem brings clarity to the ways in which conservative people idolize domestic life. The form used --- the sestina --- is quite strict: each stanza must contain six lines of five feet. The lines must end with the same set of six words, in a specific pattern that changes every stanza. These six words must also be used in the middle and endings of the three lines that make up the closing stanza.}
+    ◊index-entry["desires"]{}
+    ◊index-entry["worship"]{}
+}
 
 ◊verse{We are the smiling comfortable homes
 With happy families enthroned therein,
 Where baby souls are brought to meet the world,
-Where women end their duties and ◊index-entry["desires"]{desires},
+Where women end their duties and desires,
 For which men labor as the goal of life,
 That people worship now instead of God.
 
-Do we not teach the child to ◊index-entry["worship"]{worship} God? —
+Do we not teach the child to worship God? —
 Whose soul’s young range is bounded by the homes
 Of those he loves, and where he learns that life
 Is all constrained to serve the wants therein,

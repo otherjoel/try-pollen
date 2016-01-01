@@ -2,7 +2,7 @@
 
 ◊(define-meta chapter-num      "17")
 ◊(define-meta title            "How the Sphere, having in vain tried words, resorted to deeds.")
-◊(define-meta doc-publish-date "25/08/2015")
+◊(define-meta doc-publish-date "2015-08-25")
 
 ◊newthought{It was} in vain. I brought my hardest right angle into violent collision with the Stranger, pressing on him with a force sufficient to have destroyed any ordinary Circle: but I could feel him slowly and unarrestably slipping from my contact; no edging to the right nor to the left, but moving somehow out of the world, and vanishing to nothing. Soon there was a blank. But still I heard the Intruder's voice.
 

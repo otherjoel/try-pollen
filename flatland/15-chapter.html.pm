@@ -2,7 +2,7 @@
 
 ◊(define-meta chapter-num      "15")
 ◊(define-meta title            "Concerning a Stranger from Spaceland.")
-◊(define-meta doc-publish-date "25/08/2015")
+◊(define-meta doc-publish-date "2015-08-25")
 
 ◊newthought{From dreams} I proceed to facts.
 
