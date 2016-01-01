@@ -2,7 +2,7 @@
 
 ◊(define-meta chapter-num      "19")
 ◊(define-meta title            "How, though the Sphere showed me other mysteries of Spaceland, I still desired more; and what came of it.")
-◊(define-meta doc-publish-date "25/08/2015")
+◊(define-meta doc-publish-date "2015-08-25")
 
 ◊newthought{When I} saw my poor brother led away to imprisonment, I attempted to leap down into the Council Chamber, desiring to intercede on his behalf, or at least bid him farewell. But I found that I had no motion of my own. I absolutely depended on the volition of my Guide, who said in gloomy tones, "Heed not thy brother; haply thou shalt have ample time hereafter to condole with him. Follow me."
 

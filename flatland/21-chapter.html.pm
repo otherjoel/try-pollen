@@ -2,7 +2,7 @@
 
 ◊(define-meta chapter-num      "21")
 ◊(define-meta title            "How I tried to teach the theory of Three Dimensions to my Grandson, and with what success.")
-◊(define-meta doc-publish-date "25/08/2015")
+◊(define-meta doc-publish-date "2015-08-25")
 
 ◊newthought{I awoke} rejoicing, and began to reflect on the glorious career before me. I would go forth, methought, at once, and evangelize the whole of Flatland. Even to Women and Soldiers should the Gospel of Three Dimensions be proclaimed. I would begin with my Wife.
 

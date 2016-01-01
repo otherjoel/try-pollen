@@ -2,7 +2,7 @@
 
 ◊(define-meta chapter-num      "20")
 ◊(define-meta title            "How the Sphere encouraged me in a Vision.")
-◊(define-meta doc-publish-date "25/08/2015")
+◊(define-meta doc-publish-date "2015-08-25")
 
 ◊newthought{Although I} had less than a minute for reflection, I felt, by a kind of instinct, that I must conceal my experiences from my Wife. Not that I apprehended, at the moment, any danger from her divulging my secret, but I knew that to any Woman in Flatland the narrative of my adventures must needs be unintelligible. So I endeavoured to reassure her by some story, invented for the occasion, that I had accidentally fallen through the trap-door of the cellar, and had there lain stunned.
 

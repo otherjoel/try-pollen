@@ -2,7 +2,7 @@
 
 ◊(define-meta chapter-num      "6")
 ◊(define-meta title            "Of Recognition by Sight.")
-◊(define-meta doc-publish-date "25/08/2015")
+◊(define-meta doc-publish-date "2015-08-25")
 
 ◊newthought{I am} about to appear very inconsistent. In previous sections I have said that all figures in Flatland present the appearance of a straight line; and it was added or implied, that it is consequently impossible to distinguish by the visual organ between individuals of different classes: yet now I am about to explain to my Spaceland critics how we are able to recognize one another by the sense of sight.
 

@@ -2,7 +2,7 @@
 
 ◊(define-meta chapter-num      "12")
 ◊(define-meta title            "Of the Doctrine of our Priests.")
-◊(define-meta doc-publish-date "25/08/2015")
+◊(define-meta doc-publish-date "2015-08-25")
 
 ◊newthought{As to} the doctrine of the Circles it may briefly be summed up in a single maxim, "Attend to your Configuration." Whether political, ecclesiastical, or moral, all their teaching has for its object the improvement of individual and collective Configuration --- with special reference of course to the Configuration of the Circles, to which all other objects are subordinated.
 

@@ -1,7 +1,9 @@
 *.html
-!template.html
-!template-index.html
-!template-bookindex.html
+*.ltx
+*.pdf
+*.out
+*.aux
+*.log
 compiled/
 pollen-cache/
 pollen.cache
