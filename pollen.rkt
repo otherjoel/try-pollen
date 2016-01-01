@@ -29,8 +29,8 @@
     [(ltx pdf)
      (make-txexpr 'body null
                    (decode-elements elements
-                                    #:txexpr-elements-proc (compose1 splice)
-                                    #:inline-txexpr-proc hyperlink-decoder
+                                    ;#:txexpr-elements-proc detect-paragraphs
+                                    #:inline-txexpr-proc (compose1 txt-decode hyperlink-decoder)
                                     #:string-proc (compose1 smart-quotes smart-dashes)
                                     #:exclude-tags '(script style figure)))]
 
@@ -51,6 +51,18 @@
                   (if (and (txexpr? x) (member (get-tag x) tags-to-splice))
                       (get-elements x)
                       (list x)))))
+
+#|
+`txt` is called by root when targeting LaTeX/PDF. It converts all elements inside
+a ◊txt tag into a single concatenated string. ◊txt is not intended to be used in
+normal markup; its sole purpose is to allow other tag functions to return LaTeX
+code as a valid X-expression rather than as a string.
+|#
+(define (txt-decode xs)
+    (if (eq? 'txt (get-tag xs))
+        (apply string-append (get-elements xs))
+        xs))
+
 #|
 ◊numbered-note, ◊margin-figure, ◊margin-note:
   These three tag functions produce markup for "sidenotes" in HTML and LaTeX.
@@ -71,7 +83,7 @@
     (case (world:current-poly-target)
       [(ltx pdf)
        (define cleantext (decode-elements text #:inline-txexpr-proc latex-no-hyperlinks-in-margin))
-       (apply string-append `("\\footnote{" ,@cleantext "}"))]
+       `(txt "\\footnote{" ,@cleantext "}")]
       [else
         `(splice-me (label [[for ,refid] [class "margin-toggle sidenote-number"]])
                     (input [[type "checkbox"] [id ,refid] [class "margin-toggle"]])
@@ -84,10 +96,10 @@
        (define cleantext
                (decode-elements (make-txexpr 'tag null caption)
                                 #:inline-txexpr-proc latex-no-hyperlinks-in-margin))
-       (apply string-append `("\\begin{marginfigure}"
-                              "\\includegraphics{" ,source "}"
-                              "\\caption{" ,@cleantext "}"
-                              "\\end{marginfigure}"))]
+       `(txt "\\begin{marginfigure}"
+             "\\includegraphics{" ,source "}"
+             "\\caption{" ,@cleantext "}"
+             "\\end{marginfigure}")]
       [else
         `(splice-me (label [[for ,refid] [class "margin-toggle"]] 8853)
                     (input [[type "checkbox"] [id ,refid] [class "margin-toggle"]])
@@ -99,9 +111,7 @@
       [(ltx pdf)
        (define cleantext
                (decode-elements text #:inline-txexpr-proc latex-no-hyperlinks-in-margin))
-       (apply string-append `("\\marginnote{"
-                              ,@cleantext
-                              "}"))]
+       `(txt "\\marginnote{" ,@cleantext "}")]
       [else
         `(splice-me (label [[for ,refid] [class "margin-toggle"]] 8853)
                     (input [[type "checkbox"] [id ,refid] [class "margin-toggle"]])
@@ -114,14 +124,13 @@
 |#
 (define (latex-no-hyperlinks-in-margin inline-tx)
   (if (eq? 'hyperlink (get-tag inline-tx))
-    (apply string-append (cdr (get-elements inline-tx))) ; Return the text contents only
+    `(txt ,@(cdr (get-elements inline-tx))) ; Return the text contents only
     inline-tx)) ; otherwise pass through unchanged
 
 (define (hyperlink-decoder inline-tx)
   (define (hyperlinker url . words)
     (case (world:current-poly-target)
-      [(ltx pdf) (apply string-append `("\\href{" ,url "}"
-                                        "{" ,@words "}"))]
+      [(ltx pdf) `(txt "\\href{" ,url "}" "{" ,@words "}")]
       [else `(a [[href ,url]] ,@words)]))
 
   (if (eq? 'hyperlink (get-tag inline-tx))
@@ -135,32 +144,32 @@
 
 (define (p . words)
   (case (world:current-poly-target)
-    [(ltx pdf) (apply string-append `("\n" ,@words))]
+    [(ltx pdf) `(txt ,@words)]
     [else `(p ,@words)]))
 
 (define (newthought . words)
   (case (world:current-poly-target)
-    [(ltx pdf) (apply string-append `("\\newthought{" ,@words "}"))]
+    [(ltx pdf) `(txt "\\newthought{" ,@words "}")]
     [else `(span [[class "newthought"]] ,@words)]))
 
 (define (smallcaps . words)
   (case (world:current-poly-target)
-    [(ltx pdf) (apply string-append `("\\textsc{" ,@words "}"))]
+    [(ltx pdf) `(txt "\\textsc{" ,@words "}")]
     [else `(span [[class "smallcaps"]] ,@words)]))
 
 (define (center . words)
   (case (world:current-poly-target)
-    [(ltx pdf) (apply string-append `("\\begin{center}" ,@words "\\end{center}"))]
+    [(ltx pdf) `(txt "\\begin{center}" ,@words "\\end{center}")]
     [else `(div [[style "text-align: center"]] ,@words)]))
 
 (define (doc-section title . text)
   (case (world:current-poly-target)
-    [(ltx pdf) (apply string-append `("\\section*{" ,title "}" ,@text))]
+    [(ltx pdf) `(txt "\\section*{" ,title "}" ,@text)]
     [else `(section (h2 ,title) ,@text)]))
 
 (define (index-entry entry . text)
   (case (world:current-poly-target)
-    [(ltx pdf) (apply string-append `("\\index{" ,entry "}" ,@text))]
+    [(ltx pdf) `(txt "\\index{" ,entry "}" ,@text)]
     [else
       (case (apply string-append text)
         [("") `(a [[id ,entry] [class "index-entry"]])]
@@ -168,28 +177,28 @@
 
 (define (figure source . caption)
   (case (world:current-poly-target)
-    [(ltx pdf) (apply string-append `("\\begin{figure}"
-                                      "\\includegraphics{" ,source "}"
-                                      "\\caption{" ,caption "}"
-                                      "\\end{figure}"))]
+    [(ltx pdf) `(txt "\\begin{figure}"
+                     "\\includegraphics{" ,source "}"
+                     "\\caption{" ,caption "}"
+                     "\\end{figure}")]
     [else `(figure (img [[src ,source]]) (figcaption ,@caption))]))
 
 (define (fullwidthfigure source . caption)
   (case (world:current-poly-target)
-    [(ltx pdf) (apply string-append `("\\begin{figure}"
-                                      "\\includegraphics[width=\\linewidth]{" ,source "}"
-                                      "\\caption{" ,caption "}"
-                                      "\\end{figure}"))]
+    [(ltx pdf) `(txt "\\begin{figure}"
+                     "\\includegraphics[width=\\linewidth]{" ,source "}"
+                     "\\caption{" ,caption "}"
+                     "\\end{figure}")]
     [else `(figure [[class "fullwidth"]] (img [[src ,source] [alt ,@caption]]) (figcaption ,@caption))]))
 
 (define (code . text)
   (case (world:current-poly-target)
-    [(ltx pdf) (apply string-append `("\\texttt{" ,@text "}"))]
+    [(ltx pdf) `(txt "\\texttt{" ,@text "}")]
     [else `(span [[class "code"]] ,@text)]))
 
 (define (blockcode . text)
   (case (world:current-poly-target)
-    [(ltx pdf) (apply string-append `("\\begin{verbatim}" ,@text "\\end{verbatim}"))]
+    [(ltx pdf) `(txt "\\begin{verbatim}" ,@text "\\end{verbatim}")]
     [else `(pre [[class "code"]] ,@text)]))
 
 ; In HTML these two tags won't look much different. But when outputting to
@@ -199,12 +208,12 @@
 ; non-italicized.
 (define (i . text)
   (case (world:current-poly-target)
-    [(ltx pdf) (format "{\\itshape ~a}" (apply string-append text))]
+    [(ltx pdf) `(txt "{\\itshape " ,@text "}")]
     [else `(i ,@text)]))
 
 (define (emph . text)
   (case (world:current-poly-target)
-    [(ltx pdf) (format "\\emph{~a}" (apply string-append text))]
+    [(ltx pdf) `(txt "\\emph{" ,@text "}")]
     [else `(em ,@text)]))
 
 #|
@@ -221,19 +230,19 @@ purposes, and replace double-spaces with \vin to indent lines.
                               ""))
 
        ; Replace double spaces with "\vin " to indent lines
-       (define poem-text (string-replace (apply string-append text) "  " "\\vin"))
+       (define poem-text (string-replace (apply string-append text) "  " "\\vin "))
 
        ; Optionally italicize poem text
        (define fmt-text (if italic (format "{\\itshape ~a}" (latex-poem-linebreaks poem-text))
                                    (latex-poem-linebreaks poem-text)))
 
-       (apply string-append `("\n\n" ,poem-title
-                              "\n\\settowidth{\\versewidth}{"
-                              ,(longest-line poem-text)
-                              "}"
-                              "\n\\begin{verse}[\\versewidth]"
-                              ,fmt-text
-                              "\\end{verse}\n\n"))]
+       `(txt "\n\n" ,poem-title
+             "\n\\settowidth{\\versewidth}{"
+             ,(longest-line poem-text)
+             "}"
+             "\n\\begin{verse}[\\versewidth]"
+             ,fmt-text
+             "\\end{verse}\n\n")]
       [else
         `(div [[class "poem"]]
               (pre [[class "verse"]]
@@ -257,7 +266,7 @@ in LaTeX we need to tell it what the longest line is.
 
 (define (grey . text)
   (case (world:current-poly-target)
-    [(ltx pdf) `("\\textcolor{gray}{" ,@text "}")]
+    [(ltx pdf) `(txt "\\textcolor{gray}{" ,@text "}")]
     [else `(span [[style "color: #777"]] ,@text)]))
 
 (define (list-posts-in-series s)
