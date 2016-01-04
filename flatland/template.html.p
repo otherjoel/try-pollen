@@ -7,6 +7,7 @@
   ◊; have to use relative paths instead of absolute ones. Defining path-prefix
   ◊; is just my way of coping with this.
   ◊(define path-prefix (if (string-contains (symbol->string here) "/") "../" ""))
+  ◊(define source-file (select-from-metas 'here-path metas))
   <link rel="stylesheet" href="◊|path-prefix|css/tufte.css"/>
   <link rel="stylesheet" href="◊|path-prefix|css/joel.css"/>
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,8 +28,10 @@
         ◊when/block[(next here)]{
             <li><a href="◊|path-prefix|◊|(next here)|">Next &rarr;</a></li>
         }
-        ◊when/block[(pdfable? here)]{
-            <li><a href="#">◊(string-replace (symbol->string here) "html" "pdf")</a></li>
+        ◊when/block[(pdfable? source-file)]{
+            <li><a href="◊pdfname[source-file]">
+                  <img src="◊|path-prefix|css/pdficon.png" height="15" alt="Download PDF" />
+                  <span class="caps">PDF</span></a></li>
         }
     </ul></nav>
 
