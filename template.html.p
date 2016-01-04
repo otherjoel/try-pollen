@@ -31,7 +31,7 @@
         }
         ◊when/block[(pdfable? source-file)]{
             <li><a href="◊pdfname[source-file]">
-                  <img src="◊|path-prefix|css/pdficon.png" height="30" alt="Download PDF" />
+                  <img src="◊|path-prefix|css/pdficon.png" height="15" alt="Download PDF" />
                   <span class="caps">PDF</span></a></li>
         }
     </ul></nav>
