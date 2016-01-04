@@ -2,6 +2,7 @@
 
 (require pollen/decode
          pollen/world       ; For world:current-poly-target
+         pollen/file
          txexpr
          pollen/tag
          pollen/template
@@ -23,6 +24,12 @@
 (module config racket/base
     (provide (all-defined-out))
     (define poly-targets '(html ltx pdf)))
+
+(define (pdfable? file-path)
+  (string-contains? file-path ".poly"))
+
+(define (pdfname page) (string-replace (path->string (file-name-from-path page))
+                                       "poly.pm" "pdf"))
 
 (define (root . elements)
   (case (world:current-poly-target)

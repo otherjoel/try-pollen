@@ -27,6 +27,9 @@
         ◊when/block[(next here)]{
             <li><a href="◊|path-prefix|◊|(next here)|">Next &rarr;</a></li>
         }
+        ◊when/block[(pdfable? here)]{
+            <li><a href="#">◊(string-replace (symbol->string here) "html" "pdf")</a></li>
+        }
     </ul></nav>
 
 	◊(map ->html (select-from-doc 'body here))
