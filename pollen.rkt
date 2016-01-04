@@ -101,8 +101,7 @@ code as a valid X-expression rather than as a string.
     (case (world:current-poly-target)
       [(ltx pdf)
        (define cleantext
-               (decode-elements (make-txexpr 'tag null caption)
-                                #:inline-txexpr-proc latex-no-hyperlinks-in-margin))
+               (decode-elements caption #:inline-txexpr-proc latex-no-hyperlinks-in-margin))
        `(txt "\\begin{marginfigure}"
              "\\includegraphics{" ,source "}"
              "\\caption{" ,@cleantext "}"
