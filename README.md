@@ -1,4 +1,4 @@
-# “Try Pollen”, a test Pollen Site (v0.2)
+# “Try Pollen”, a test Pollen Site (v0.21)
 
 I’ve created this site as a way of playing around with [Pollen](http://pollenpub.com) for myself, but also to help explain it to people who might be interested in using it for themselves. The documentation is well done and improving all the time, and you should really start by reading it thoroughly. But a guided tour through a simple working site might help put the pieces together, and illustrate the benefits of the Pollen system.
 
