@@ -40,7 +40,7 @@ In a sitting-room, the absence of Fog (and the season happened to be remarkably 
 
 ◊i{I.} An eye in my inside! An eye in my stomach! Your Lordship Jests.
 
-◊i{Stranger.} I am in no jesting humour. I tell you that I come from Space, or, since you will not understand what Space means, from the Land of Three Dimensions whence I but lately looked down upon your Plane which you call Space forsooth. From that position of advantage I discerned all that you speak of as ◊em{solid} (by which you mean "enclosed on four sides"), your houses, your churches, your very chests and safes, yes even your insides and stomachs, all lying open and exposed to my view.
+◊i{Stranger.} I am in no jesting humour. I tell you that I come from Space, or, since you will not understand what Space means, from the Land of Three Dimensions whence I but lately looked down upon your Plane which you call Space forsooth. From that position of advantage I discerned all that you speak of as ◊emph{solid} (by which you mean "enclosed on four sides"), your houses, your churches, your very chests and safes, yes even your insides and stomachs, all lying open and exposed to my view.
 
 ◊i{I.} Such assertions are easily made, my Lord.
 
@@ -120,21 +120,21 @@ Restraining my impatience --- for I was now under a strong temptation to rush bl
 
 ◊i{Sphere.} Oh, certainly. It is all plain and simple, and in strict accordance with Analogy --- only, by the way, you must not speak of the result as being a Figure, but as a Solid. But I will describe it to you. Or rather not I, but Analogy.
 
-We began with a single Point, which of course --- being itself a Point --- has only ◊em{one} terminal Point.
+We began with a single Point, which of course --- being itself a Point --- has only ◊emph{one} terminal Point.
 
-One Point produces a Line with ◊em{two} terminal Points.
+One Point produces a Line with ◊emph{two} terminal Points.
 
-One Line produces a Square with ◊em{four} terminal Points.
+One Line produces a Square with ◊emph{four} terminal Points.
 
 Now you can give yourself the answer to your own question: 1, 2, 4, are evidently in Geometrical Progression. What is the next number?
 
 ◊i{I.} Eight.
 
-◊i{Sphere.} Exactly. The one Square produces a ◊i{Something-which- you-do-not-as-yet-know-a-name-for-But-which-we-call-a-Cube} with ◊em{eight} terminal Points. Now are you convinced?
+◊i{Sphere.} Exactly. The one Square produces a ◊emph{Something-which- you-do-not-as-yet-know-a-name-for-But-which-we-call-a-Cube} with ◊emph{eight} terminal Points. Now are you convinced?
 
 ◊i{I.} And has this Creature sides, as well as angles or what you call "terminal Points"?
 
-◊i{Sphere.} Of course; and all according to Analogy. But, by the way, not what you call sides, but what we call sides. You would call them ◊em{solids}.
+◊i{Sphere.} Of course; and all according to Analogy. But, by the way, not what you call sides, but what we call sides. You would call them ◊emph{solids}.
 
 ◊i{I.} And how many solids or sides will appertain to this Being whom I am to generate by the motion of my inside in an "upward" direction, and whom you call a Cube?
 
