@@ -5,7 +5,7 @@
 ◊(define-meta author           "J. Brander Matthews")
 ◊(define-meta series           "series/poems.html")
 
-◊margin-note{◊grey{◊newthought{Each verse} consists of two lines from the verse before, and passes another two lines to the verse following. The resulting rhythm "really does remind one of the railway travel of the period", according to fellow poet Louella Styles Vincent, ◊hyperlink["https://books.google.com/books?id=Aek3AQAAMAAJ&lpg=PA266&ots=rf1SAfTR5E&dq=en%20route%20brander%20matthews&pg=PA266#v=onepage&q&f=false"]{writing in 1921} ('the period' being the 1870s). Still appropriate for recitation under one's breath during a morning commute. More notes in this ◊hyperlink["https://books.google.com/books?id=XOkGAQAAIAAJ&lpg=PR8&ots=O6Dx_Fsh0g&dq=%22en%20route%22%20brander%20matthews&pg=PA448#v=onepage&q&f=false"]{facsimile of the original}.}}
+◊margin-note{◊grey{◊newthought{Each verse} consists of two lines from the verse before, and passes another two lines to the verse following. The resulting rhythm "really does remind one of the railway travel of the period", according to fellow poet Louella Styles Vincent, ◊hyperlink["https://goo.gl/qTkRYT"]{writing in 1921} ('the period' being the 1870s). Still appropriate for recitation under one's breath during a morning commute. More notes in this ◊hyperlink["https://goo.gl/6ZbzjP"]{facsimile of the original}.}}
 
 ◊verse{Here we are riding the rail,
   Gliding from out of the station;
