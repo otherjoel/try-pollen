@@ -129,8 +129,12 @@ code as a valid X-expression rather than as a string.
   (See notes above)
 |#
 (define (latex-no-hyperlinks-in-margin inline-tx)
+  (define (ltx-escape str)
+    (string-replace (string-replace (string-replace str "%" "\\%") "&" "\\&") "#" "\\#"))
   (if (eq? 'hyperlink (get-tag inline-tx))
-    `(txt ,@(cdr (get-elements inline-tx))) ; Return the text contents only
+    `(txt ,@(cdr (get-elements inline-tx))
+          ; Return the text with the URI in parentheses
+          " (\\url{" ,(ltx-escape (car (get-elements inline-tx))) "})")
     inline-tx)) ; otherwise pass through unchanged
 
 (define (hyperlink-decoder inline-tx)
