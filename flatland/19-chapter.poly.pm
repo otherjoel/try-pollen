@@ -6,7 +6,7 @@
 
 ◊newthought{When I} saw my poor brother led away to imprisonment, I attempted to leap down into the Council Chamber, desiring to intercede on his behalf, or at least bid him farewell. But I found that I had no motion of my own. I absolutely depended on the volition of my Guide, who said in gloomy tones, "Heed not thy brother; haply thou shalt have ample time hereafter to condole with him. Follow me."
 
-Once more we ascended into space. "Hitherto," said the Sphere, "I have shown you naught save Plane Figures and their interiors. Now I must introduce you to Solids, and reveal to you the plan upon which they are constructed. Behold this multitude of moveable square cards.◊margin-figure["img/ch19-fig01.png"]{◊i{"Behold this multitude of moveable square cards"}} See, I put one on another, not, as you supposed, Northward of the other, but on the other. Now a second, now a third. See, I am building up a Solid by a multitude of Squares parallel to one another. Now the Solid is complete, being as high as it is long and broad, and we call it a Cube."
+Once more we ascended into space. "Hitherto," said the Sphere, "I have shown you naught save Plane Figures and their interiors. Now I must introduce you to Solids, and reveal to you the plan upon which they are constructed. Behold this multitude of moveable square cards.◊margin-figure["img/ch19-fig01.png"]{"Behold this multitude of moveable square cards"} See, I put one on another, not, as you supposed, Northward of the other, but on the other. Now a second, now a third. See, I am building up a Solid by a multitude of Squares parallel to one another. Now the Solid is complete, being as high as it is long and broad, and we call it a Cube."
 
 "Pardon me, my Lord," replied I; "but to my eye the appearance is as of an Irregular Figure whose inside is laid open to the view; in other words, methinks I see no Solid, but a Plane such as we infer in Flatland; only of an Irregularity which betokens some monstrous criminal, so that the very sight of it is painful to my eyes."
 
@@ -44,7 +44,7 @@ The Sphere would willingly have continued his lessons by indoctrinating me in th
 
 ◊i{I.} I know not: but doubtless my Teacher knows.
 
-◊i{Sphere.} Not ◊i{I.} There is no such land. The very idea of it is utterly inconceivable.
+◊i{Sphere.} Not ◊emph{I.} There is no such land. The very idea of it is utterly inconceivable.
 
 ◊i{I.} Not inconceivable, my Lord, to me, and therefore still less inconceivable to my Master. Nay, I despair not that, even here, in this region of Three Dimensions, your Lordship's art may make the Fourth Dimension visible to me; just as in the Land of Two Dimensions my Teacher's skill would fain have opened the eyes of his blind servant to the invisible presence of a Third Dimension, though I saw it not.
 
@@ -56,13 +56,13 @@ And besides this, there is the Argument from Analogy of Figures.
 
 ◊i{I.} Your Lordship tempts his servant to see whether he remembers the revelations imparted to him. Trifle not with me, my Lord; I crave, I thirst, for more knowledge. Doubtless we cannot see that other higher Spaceland now, because we have no eye in our stomachs. But, just as there was the realm of Flatland, though that poor puny Lineland Monarch could neither turn to left nor right to discern it, and just as there was close at hand, and touching my frame, the land of Three Dimensions, though I, blind senseless wretch, had no power to touch it, no eye in my interior to discern it, so of a surety there is a Fourth Dimension, which my Lord perceives with the inner eye of thought. And that it must exist my Lord himself has taught me. Or can he have forgotten what he himself imparted to his servant?
 
-In One Dimension, did not a moving Point produce a Line with ◊em{two} terminal points?
+In One Dimension, did not a moving Point produce a Line with ◊emph{two} terminal points?
 
-In Two Dimensions, did not a moving Line produce a Square with ◊em{four} terminal points?
+In Two Dimensions, did not a moving Line produce a Square with ◊emph{four} terminal points?
 
-In Three Dimensions, did not a moving Square produce --- did not this eye of mine behold it --- that blessed Being, a Cube, with ◊em{eight} terminal points?
+In Three Dimensions, did not a moving Square produce --- did not this eye of mine behold it --- that blessed Being, a Cube, with ◊emph{eight} terminal points?
 
-And in Four Dimensions shall not a moving Cube --- alas, for Analogy, and alas for the Progress of Truth, if it be not so --- shall not, I say, the motion of a divine Cube result in a still more divine Organization with ◊em{sixteen} terminal points?
+And in Four Dimensions shall not a moving Cube --- alas, for Analogy, and alas for the Progress of Truth, if it be not so --- shall not, I say, the motion of a divine Cube result in a still more divine Organization with ◊emph{sixteen} terminal points?
 
 Behold the infallible confirmation of the Series, 2, 4, 8, 16: is not this a Geometrical Progression? Is not this --- if I might quote my Lord's own words --- "strictly according to Analogy"?
 

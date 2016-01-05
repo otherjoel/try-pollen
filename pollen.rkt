@@ -2,6 +2,7 @@
 
 (require pollen/decode
          pollen/world       ; For world:current-poly-target
+         pollen/file
          txexpr
          pollen/tag
          pollen/template
@@ -23,6 +24,12 @@
 (module config racket/base
     (provide (all-defined-out))
     (define poly-targets '(html ltx pdf)))
+
+(define (pdfable? file-path)
+  (string-contains? file-path ".poly"))
+
+(define (pdfname page) (string-replace (path->string (file-name-from-path page))
+                                       "poly.pm" "pdf"))
 
 (define (root . elements)
   (case (world:current-poly-target)
@@ -94,8 +101,7 @@ code as a valid X-expression rather than as a string.
     (case (world:current-poly-target)
       [(ltx pdf)
        (define cleantext
-               (decode-elements (make-txexpr 'tag null caption)
-                                #:inline-txexpr-proc latex-no-hyperlinks-in-margin))
+               (decode-elements caption #:inline-txexpr-proc latex-no-hyperlinks-in-margin))
        `(txt "\\begin{marginfigure}"
              "\\includegraphics{" ,source "}"
              "\\caption{" ,@cleantext "}"
@@ -147,6 +153,11 @@ code as a valid X-expression rather than as a string.
     [(ltx pdf) `(txt ,@words)]
     [else `(p ,@words)]))
 
+(define (blockquote . words)
+  (case (world:current-poly-target)
+    [(ltx pdf) `(txt "\\begin{quote}" ,@words "\\end{quote}")]
+    [else `(blockquote ,@words)]))
+
 (define (newthought . words)
   (case (world:current-poly-target)
     [(ltx pdf) `(txt "\\newthought{" ,@words "}")]
@@ -179,7 +190,7 @@ code as a valid X-expression rather than as a string.
   (case (world:current-poly-target)
     [(ltx pdf) `(txt "\\begin{figure}"
                      "\\includegraphics{" ,source "}"
-                     "\\caption{" ,caption "}"
+                     "\\caption{" ,@caption "}"
                      "\\end{figure}")]
     [else `(figure (img [[src ,source]]) (figcaption ,@caption))]))
 
@@ -187,7 +198,7 @@ code as a valid X-expression rather than as a string.
   (case (world:current-poly-target)
     [(ltx pdf) `(txt "\\begin{figure}"
                      "\\includegraphics[width=\\linewidth]{" ,source "}"
-                     "\\caption{" ,caption "}"
+                     "\\caption{" ,@caption "}"
                      "\\end{figure}")]
     [else `(figure [[class "fullwidth"]] (img [[src ,source] [alt ,@caption]]) (figcaption ,@caption))]))
 
@@ -200,6 +211,26 @@ code as a valid X-expression rather than as a string.
   (case (world:current-poly-target)
     [(ltx pdf) `(txt "\\begin{verbatim}" ,@text "\\end{verbatim}")]
     [else `(pre [[class "code"]] ,@text)]))
+
+(define (ol . elements)
+  (case (world:current-poly-target)
+    [(ltx pdf) `(txt "\\begin{enumerate}" ,@elements "\\end{enumerate}")]
+    [else `(ol ,@elements)]))
+
+(define (ul . elements)
+  (case (world:current-poly-target)
+    [(ltx pdf) `(txt "\\begin{itemize}" ,@elements "\\end{itemize}")]
+    [else `(ul ,@elements)]))
+
+(define (li . elements)
+  (case (world:current-poly-target)
+    [(ltx pdf) `(txt "\\item " ,@elements)]
+    [else `(li ,@elements)]))
+
+(define (sup . text)
+  (case (world:current-poly-target)
+    [(ltx pdf) `(txt "\\textsuperscript{" ,@text "}")]
+    [else `(sup ,@text)]))
 
 ; In HTML these two tags won't look much different. But when outputting to
 ; LaTeX, ◊i will italicize multiple blocks of text, where ◊emph should be

@@ -12,9 +12,9 @@ He chirruped, and then complacently continued: "My wives at this moment receivin
 
 "But how," said I, "if a Man feigns a Woman's voice with one of his two voices, or so disguises his Southern voice that it cannot be recognized as the echo of the Northern? May not such deceptions cause great inconvenience? And have you no means of checking frauds of this kind by commanding your neighbouring subjects to feel one another?" This of course was a very stupid question, for feeling could not have answered the purpose; but I asked with the view of irritating the Monarch, and I succeeded perfectly.
 
-"What!" cried he in horror, "explain your meaning." "Feel, touch, come into contact," I replied. "If you mean by ◊em{feeling}," said the King, "approaching so close as to leave no space between two individuals, know, Stranger, that this offence is punishable in my dominions by death. And the reason is obvious. The frail form of a Woman, being liable to be shattered by such an approximation, must be preserved by the State; but since Women cannot be distinguished by the sense of sight from Men, the Law ordains universally that neither Man nor Woman shall be approached so closely as to destroy the interval between the approximator and the approximated.
+"What!" cried he in horror, "explain your meaning." "Feel, touch, come into contact," I replied. "If you mean by ◊emph{feeling}," said the King, "approaching so close as to leave no space between two individuals, know, Stranger, that this offence is punishable in my dominions by death. And the reason is obvious. The frail form of a Woman, being liable to be shattered by such an approximation, must be preserved by the State; but since Women cannot be distinguished by the sense of sight from Men, the Law ordains universally that neither Man nor Woman shall be approached so closely as to destroy the interval between the approximator and the approximated.
 
-"And indeed what possible purpose would be served by this illegal and unnatural excess of approximation which you call ◊em{touching}, when all the ends of so brutal and coarse a process are attained at once more easily and more exactly by the sense of hearing? As to your suggested danger of deception, it is non-existent: for the Voice, being the essence of one's Being, cannot be thus changed at will. But come, suppose that I had the power of passing through solid things, so that I could penetrate my subjects, one after another, even to the number of a billion, verifying the size and distance of each by the sense of ◊em{feeling}: how much time and energy would be wasted in this clumsy and inaccurate method! Whereas now, in one moment of audition, I take as it were the census and statistics, local, corporeal, mental and spiritual, of every living being in Lineland. Hark, only hark!"
+"And indeed what possible purpose would be served by this illegal and unnatural excess of approximation which you call ◊emph{touching}, when all the ends of so brutal and coarse a process are attained at once more easily and more exactly by the sense of hearing? As to your suggested danger of deception, it is non-existent: for the Voice, being the essence of one's Being, cannot be thus changed at will. But come, suppose that I had the power of passing through solid things, so that I could penetrate my subjects, one after another, even to the number of a billion, verifying the size and distance of each by the sense of ◊emph{feeling}: how much time and energy would be wasted in this clumsy and inaccurate method! Whereas now, in one moment of audition, I take as it were the census and statistics, local, corporeal, mental and spiritual, of every living being in Lineland. Hark, only hark!"
 
 So saying he paused and listened, as if in an ecstasy, to a sound which seemed to me no better than a tiny chirping from an innumerable multitude of lilliputian grasshoppers.
 
@@ -26,7 +26,7 @@ So saying he paused and listened, as if in an ecstasy, to a sound which seemed t
 
 ◊i{King.} Out of my Line? Do you mean out of the world? Out of Space?
 
-◊i{I.} Well, yes. Out of ◊em{your} World. Out of ◊em{your} Space. For your Space is not the true Space. True Space is a Plane; but your Space is only a Line.
+◊i{I.} Well, yes. Out of ◊emph{your} World. Out of ◊emph{your} Space. For your Space is not the true Space. True Space is a Plane; but your Space is only a Line.
 
 ◊i{King.} If you cannot indicate this motion from left to right by yourself moving in it, then I beg you to describe it to me in words.
 
@@ -34,7 +34,7 @@ So saying he paused and listened, as if in an ecstasy, to a sound which seemed t
 
 ◊i{King.} I do not in the least understand you.
 
-◊i{I.} Alas! How shall I make it clear? When you move straight on, does it not sometimes occur to you that you ◊em{could} move in some other way, turning your eye round so as to look in the direction towards which your side is now fronting? In other words, instead of always moving in the direction of one of your extremities, do you never feel a desire to move in the direction, so to speak, of your side?
+◊i{I.} Alas! How shall I make it clear? When you move straight on, does it not sometimes occur to you that you ◊emph{could} move in some other way, turning your eye round so as to look in the direction towards which your side is now fronting? In other words, instead of always moving in the direction of one of your extremities, do you never feel a desire to move in the direction, so to speak, of your side?
 
 ◊i{King.} Never. And what do you mean? How can a man's inside "front" in any direction? Or how can a man move in the direction of his inside?
 
