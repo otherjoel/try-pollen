@@ -165,7 +165,7 @@ code as a valid X-expression rather than as a string.
 
 (define (smallcaps . words)
   (case (world:current-poly-target)
-    [(ltx pdf) `(txt "\\textsc{" ,@words "}")]
+    [(ltx pdf) `(txt "\\smallcaps{" ,@words "}")]
     [else `(span [[class "smallcaps"]] ,@words)]))
 
 (define (center . words)
