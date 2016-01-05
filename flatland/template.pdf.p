@@ -29,9 +29,9 @@
     \setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
     \graphicspath{{graphics/}}
 
-    \title{◊(hash-ref metas 'chapter-num). ◊(hash-ref metas 'title)}
+    \title{◊when/block[(select-from-metas 'chapter-num metas)]{◊(hash-ref metas 'chapter-num). }◊(hash-ref metas 'title)}
     % \author{ }
-    % \date{◊(datestring->date (hash-ref metas 'doc-publish-date))}  % if the \date{} command is left out, the current date will be used
+    \date{}  % if the \date{} command is left out, the current date will be used
 
     % The following package makes prettier tables.  We're all about the bling!
     \usepackage{booktabs}
