@@ -31,7 +31,7 @@
 
     \title{◊(hash-ref metas 'title)}
     \author{◊(hash-ref metas 'author)}
-    \date{◊(datestring->date (hash-ref metas 'doc-publish-date))}  % if the \date{} command is left out, the current date will be used
+    \date{◊(pubdate->english (hash-ref metas 'doc-publish-date))}  % if the \date{} command is left out, the current date will be used
 
     % The following package makes prettier tables.  We're all about the bling!
     \usepackage{booktabs}
