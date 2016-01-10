@@ -1,4 +1,6 @@
-# “Try Pollen”, a test Pollen Site (v0.21)
+# “Try Pollen”, a test Pollen Site
+
+*(Version 0.22)*
 
 I’ve created this site as a way of playing around with [Pollen](http://pollenpub.com) for myself, but also to help explain it to people who might be interested in using it for themselves. The documentation is well done and improving all the time, and you should really start by reading it thoroughly. But a guided tour through a simple working site might help put the pieces together, and illustrate the benefits of the Pollen system.
 
@@ -45,7 +47,11 @@ The official Pollen docs describe [the basic method for LaTeX and PDF targets](h
 
 In my LaTeX template, any hyperlinks also get auto-converted to numbered side-notes. Unfortunately, this niftiness also means that when targeting LaTeX, you can't have a hyperlink inside a side-note since that would equate to a side-note within a side-note, which causes Problems.
 
-I could simply stipulate "don't put hyperlinks in margin notes" but I wanted a more elegant solution. Solving this problem meant departing from the methods in the official tutorial. The method given there is to have your tag functions immediately start rolling everything up into concatenated strings. Instead of doing this, my tag functions all return tagged X-expressions of the form `'(txt [element-1] [element-2] [...etc])` (thus preserving a valid txexpr tree for later operations). I will offer more details on this at a later date.
+I could simply stipulate "don't put hyperlinks in margin notes" but I wanted a more elegant solution. Solving this problem meant departing from the methods in the official tutorial. The details are in [this post at the Pollen mailing list](https://groups.google.com/d/msg/pollenpub/SoxbXRHnyMs/fP7hCSLADwAJ)
+
+### RSS feed
+
+The site now generates an RSS feed in Atom 1.0 format (tested at the Feed Validator, of course). The `feed.xml.pp` file is heavily commented and explains how this works.
 
 ### Grouping pages by series
 
