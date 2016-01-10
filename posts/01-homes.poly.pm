@@ -1,8 +1,9 @@
 #lang pollen
 
 ◊(define-meta title            "Homes")
-◊(define-meta doc-publish-date "2015-08-25")
+◊(define-meta doc-publish-date "2015-08-25 08:29")
 ◊(define-meta author           "Charlotte Anna Perkins Gilman")
+◊(define-meta summary          "A sestina in mock-praise of domesticity")
 ◊(define-meta series           "series/poems.html")
 
 ◊margin-note{◊grey{◊newthought{If you've} never read it before, the lofty, antiquated style of ◊i{Homes} might make you think the author really does think homes are super great. But the high style is all part of its withering sarcasm. In its satire, the poem brings clarity to the ways in which conservative people idolize domestic life. The form used --- the sestina --- is quite strict: each stanza must contain six lines of five feet. The lines must end with the same set of six words, in a specific pattern that changes every stanza. These six words must also be used in the middle and endings of the three lines that make up the closing stanza.}

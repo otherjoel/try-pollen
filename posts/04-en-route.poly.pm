@@ -3,6 +3,7 @@
 ◊(define-meta title            "En Route")
 ◊(define-meta doc-publish-date "2015-09-20")
 ◊(define-meta author           "J. Brander Matthews")
+◊(define-meta summary          "Rail travel of the 1870s in chain verse.")
 ◊(define-meta series           "series/poems.html")
 
 ◊margin-note{◊grey{◊newthought{Each verse} consists of two lines from the verse before, and passes another two lines to the verse following. The resulting rhythm "really does remind one of the railway travel of the period", according to fellow poet Louella Styles Vincent, ◊hyperlink["https://goo.gl/qTkRYT"]{writing in 1921} ('the period' being the 1870s). Still appropriate for recitation under one's breath during a morning commute. More notes in this ◊hyperlink["https://goo.gl/6ZbzjP"]{facsimile of the original}.}}
