@@ -1,7 +1,6 @@
 #lang pollen
 
 ◊(define-meta title            "Title and Preface")
-◊(define-meta doc-publish-date "2015-08-25")
 
 ◊center{
 ◊p{To

@@ -2,7 +2,6 @@
 
 ◊(define-meta chapter-num      "14")
 ◊(define-meta title            "How I vainly tried to explain the nature of Flatland.")
-◊(define-meta doc-publish-date "2015-08-25")
 
 ◊newthought{Thinking that} it was time to bring down the Monarch from his raptures to the level of common sense, I determined to endeavour to open up to him some glimpses of the truth, that is to say of the nature of things in Flatland. So I began thus: "How does your Royal Highness distinguish the shapes and positions of his subjects? I for my part noticed by the sense of sight, before I entered your Kingdom, that some of your people are Lines and others Points, and that some of the Lines are larger --- " "You speak of an impossibility," interrupted the King; "you must have seen a vision; for to detect the difference between a Line and a Point by the sense of sight is, as every one knows, in the nature of things, impossible; but it can be detected by the sense of hearing, and by the same means my shape can be exactly ascertained. Behold me --- I am a Line, the longest in Lineland, over six inches of Space --- " "Of Length," I ventured to suggest. "Fool," said he, "Space is Length. Interrupt me again, and I have done."
 

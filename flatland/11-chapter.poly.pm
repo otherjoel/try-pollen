@@ -2,7 +2,6 @@
 
 ◊(define-meta chapter-num      "11")
 ◊(define-meta title            "Concerning Our Priests.")
-◊(define-meta doc-publish-date "2015-08-25")
 
 ◊newthought{It is} high time that I should pass from these brief and discursive notes about things in Flatland to the central event of this book, my initiation into the mysteries of Space. ◊emph{That} is my subject; all that has gone before is merely preface.
 

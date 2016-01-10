@@ -5,6 +5,7 @@
   <title>◊(hash-ref metas 'title)</title>
   <link rel="stylesheet" href="css/tufte.css"/>
   <link rel="stylesheet" href="css/joel.css"/>
+  <link rel="alternate" type="application/atom+xml" title="Atom feed" href="feed.xml" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style type="text/css">
    img { mix-blend-mode: multiply; }
@@ -20,7 +21,8 @@
 
     <p>
         <a href="colophon.html">Notes</a> &middot;
-        <a href="bookindex.html">Index</a>
+        <a href="bookindex.html">Index</a> &middot;
+        <a href="feed.xml"><span class="caps">RSS</span> Feed</a>
     </p>
 
     ◊; HERE IS a simple way of listing pages by an arbitrary grouping.

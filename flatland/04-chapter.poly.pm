@@ -2,7 +2,6 @@
 
 ◊(define-meta chapter-num      "4")
 ◊(define-meta title            "Concerning the Women.")
-◊(define-meta doc-publish-date "2015-08-25")
 
 ◊newthought{If our} highly pointed Triangles of the Soldier class are formidable, it may be readily inferred that far more formidable are our Women. For if a Soldier is a wedge, a Woman is a needle; being, so to speak, all point, at least at the two extremities. Add to this the power of making herself practically invisible at will, and you will perceive that a Female, in Flatland, is a creature by no means to be trifled with.
 

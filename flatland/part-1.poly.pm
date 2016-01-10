@@ -1,7 +1,6 @@
 #lang pollen
 
 ◊(define-meta title            "Part I: This World")
-◊(define-meta doc-publish-date "2015-08-25")
 
 ◊center{
     ◊p{◊i{

@@ -2,7 +2,6 @@
 
 ◊(define-meta chapter-num      "3")
 ◊(define-meta title            "Concerning the Inhabitants of Flatland.")
-◊(define-meta doc-publish-date "2015-08-25")
 
 ◊newthought{The greatest} length or breadth of a full grown inhabitant of Flatland may be estimated at about eleven of your inches. Twelve inches may be regarded as a maximum.
 

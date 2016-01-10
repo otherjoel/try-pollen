@@ -2,7 +2,6 @@
 
 ◊(define-meta chapter-num      "16")
 ◊(define-meta title            "How the Stranger vainly endeavoured to reveal to me in words the mysteries of Spaceland.")
-◊(define-meta doc-publish-date "2015-08-25")
 
 ◊newthought{As soon} as the sound of the Peace-cry of my departing Wife had died away, I began to approach the Stranger with the intention of taking a nearer view and of bidding him be seated: but his appearance struck me dumb and motionless with astonishment. Without the slightest symptoms of angularity he nevertheless varied every instant with gradations of size and brightness scarcely possible for any Figure within the scope of my experience. The thought flashed across me that I might have before me a burglar or cut- throat, some monstrous Irregular Isosceles, who, by feigning the voice of a Circle, had obtained admission somehow into the house, and was now preparing to stab me with his acute angle.
 

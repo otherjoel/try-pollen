@@ -2,7 +2,6 @@
 
 ◊(define-meta chapter-num      "1")
 ◊(define-meta title            "Of the Nature of Flatland.")
-◊(define-meta doc-publish-date "2015-08-25")
 
 ◊newthought{I call} our world Flatland, not because we call it so, but to make its nature clearer to you, my happy readers, who are privileged to live in Space.
 
