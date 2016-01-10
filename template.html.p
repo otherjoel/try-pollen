@@ -10,6 +10,7 @@
   ◊(define source-file (select-from-metas 'here-path metas))
   <link rel="stylesheet" href="◊|path-prefix|css/tufte.css"/>
   <link rel="stylesheet" href="◊|path-prefix|css/joel.css"/>
+  <link rel="alternate" type="application/atom+xml" title="Atom feed" href="◊|path-prefix|feed.xml" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style type="text/css">
    img { mix-blend-mode: multiply; }
