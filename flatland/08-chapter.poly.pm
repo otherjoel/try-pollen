@@ -2,7 +2,6 @@
 
 ◊(define-meta chapter-num      "8")
 ◊(define-meta title            "Of the Ancient Practice of Painting.")
-◊(define-meta doc-publish-date "2015-08-25")
 
 ◊newthought{If my} Readers have followed me with any attention up to this point, they will not be surprised to hear that life is somewhat dull in Flatland. I do not, of course, mean that there are not battles, conspiracies, tumults, factions, and all those other phenomena which are supposed to make History interesting; nor would I deny that the strange mixture of the problems of life and the problems of Mathematics, continually inducing conjecture and giving the opportunity of immediate verification, imparts to our existence a zest which you in Spaceland can hardly comprehend. I speak now from the aesthetic and artistic point of view when I say that life with us is dull; aesthetically and artistically, very dull indeed.
 

@@ -2,7 +2,6 @@
 
 ◊(define-meta chapter-num      "2")
 ◊(define-meta title            "Of the Climate and Houses in Flatland.")
-◊(define-meta doc-publish-date "2015-08-25")
 
 ◊newthought{As with} you, so also with us, there are four points of the compass North, South, East, and West.
 

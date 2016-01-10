@@ -2,7 +2,6 @@
 
 ◊(define-meta chapter-num      "10")
 ◊(define-meta title            "Of the Suppression of the Chromatic Sedition.")
-◊(define-meta doc-publish-date "2015-08-25")
 
 ◊newthought{The agitation} for the Universal Colour Bill continued for three years; and up to the last moment of that period it seemed as though Anarchy were destined to triumph.
 

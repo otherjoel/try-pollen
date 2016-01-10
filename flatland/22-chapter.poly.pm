@@ -2,7 +2,6 @@
 
 ◊(define-meta chapter-num      "22")
 ◊(define-meta title            "How I then tried to diffuse the Theory of Three Dimensions by other means, and of the result.")
-◊(define-meta doc-publish-date "2015-08-25")
 
 ◊newthought{My failure} with my Grandson did not encourage me to communicate my secret to others of my household; yet neither was I led by it to despair of success. Only I saw that I must not wholly rely on the catch-phrase, "Upward, not Northward," but must rather endeavour to seek a demonstration by setting before the public a clear view of the whole subject; and for this purpose it seemed necessary to resort to writing.
 

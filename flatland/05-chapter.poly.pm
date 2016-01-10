@@ -2,7 +2,6 @@
 
 ◊(define-meta chapter-num      "5")
 ◊(define-meta title            "Of our Methods of Recognizing one another.")
-◊(define-meta doc-publish-date "2015-08-25")
 
 ◊newthought{You, who} are blessed with shade as well as light, you, who are gifted with two eyes, endowed with a knowledge of perspective, and charmed with the enjoyment of various colours, you, who can actually see an angle, and contemplate the complete circumference of a Circle in the happy region of the Three Dimensions --- how shall I make clear to you the extreme difficulty which we in Flatland experience in recognizing one another's configuration?
 

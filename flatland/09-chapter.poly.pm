@@ -2,7 +2,6 @@
 
 ◊(define-meta chapter-num      "9")
 ◊(define-meta title            "Of the Universal Colour Bill.")
-◊(define-meta doc-publish-date "2015-08-25")
 
 ◊newthought{But meanwhile} the intellectual Arts were fast decaying.
 
