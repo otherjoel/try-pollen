@@ -4,6 +4,7 @@
 *.out
 *.aux
 *.log
+*.xml
 compiled/
 pollen-cache/
 pollen.cache
