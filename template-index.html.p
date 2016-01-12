@@ -29,12 +29,12 @@
     ◊; I call them ‘series’ but they're the same as what you’d call
     ◊; ‘categories’ in a blog.
     ◊;    For every child of series.html in the pagetree, we list that page’s
-    ◊; title and body, then we list all the children of posts.html that
+    ◊; title and summary, then we list all the children of posts.html that
     ◊; specify that series in their meta definitions.
     ◊;    See the function `list-posts-in-series` in pollen.rkt for more.
 
     ◊(map (lambda(ss) (->html `(section (h2 ,(select-from-metas 'title ss))
-                                        ,@(select-from-doc 'body ss)
+                                        (p ,(select-from-metas 'summary ss))
                                         ,(list-posts-in-series ss))))
           (children 'series.html))
 
