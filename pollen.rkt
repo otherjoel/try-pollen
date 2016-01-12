@@ -279,11 +279,15 @@ purposes, and replace double-spaces with \vin to indent lines.
              ,fmt-text
              "\\end{verse}\n\n")]
       [else
-        `(div [[class "poem"]]
-              (pre [[class "verse"]]
-                   (p [[class "poem-heading"]] ,title)
-                   ,@text))])))
-
+        (define pre-attrs (if italic '([class "verse"] [style "font-style: italic"])
+                                     '([class "verse"])))
+        (define poem-xpr (if (non-empty-string? title)
+                             `(pre ,pre-attrs
+                                   (p [[class "poem-heading"]] ,title)
+                                   ,@text)
+                             `(pre ,pre-attrs
+                                   ,@text)))
+        `(div [[class "poem"]] ,poem-xpr)])))
 #|
 Helper function for typesetting poetry in LaTeX. Poetry should be centered
 on the longest line. Browsers will do this automatically with proper CSS but
