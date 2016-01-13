@@ -308,18 +308,6 @@ in LaTeX we need to tell it what the longest line is.
     [(ltx pdf) `(txt "\\textcolor{gray}{" ,@text "}")]
     [else `(span [[style "color: #777"]] ,@text)]))
 
-(define (list-posts-in-series s)
-    (define (make-li post)
-      `(li (a [[href ,(symbol->string post)]]
-              (i ,(select-from-metas 'title post))) " by " ,(select-from-metas 'author post)))
-
-    `(ul ,@(filter identity
-                   (map (λ(post)
-                          (if (equal? s (string->symbol (select-from-metas 'series post)))
-                              (make-li post)
-                              #f))
-                        (children 'posts.html)))))
-
 #|
 Index functionality: allows creation of a book-style keyword index.
 

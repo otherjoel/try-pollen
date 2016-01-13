@@ -25,18 +25,35 @@
         <a href="feed.xml"><span class="caps">RSS</span> Feed</a>
     </p>
 
-    ◊; HERE IS a simple way of listing pages by an arbitrary grouping.
-    ◊; I call them ‘series’ but they're the same as what you’d call
-    ◊; ‘categories’ in a blog.
+    ◊;    This is a simple way of listing pages by an arbitrary grouping.
+    ◊;    I call them ‘series’ but they're the same as what you’d call
+    ◊;    ‘categories’ in a blog.
+    ◊;      The function list-post-in-series takes a symbol and lists all the
+    ◊;    pages that name a given symbol in the 'series key of their metas.
+    ◊;      This function used to be located in pollen.rkt. But since it generates
+    ◊;    output that's specific to our HTML design, it's a good idea to place it
+    ◊;    right in the template.
+    ◊(define (list-posts-in-series s #:author [author #t])
+        (define (make-li post)
+          (if author
+              `(li (a [[href ,(symbol->string post)]]
+                      (span [[class "smallcaps"]] ,(select-from-metas 'title post))) " by " ,(select-from-metas 'author post))
+              `(li (a [[href ,(symbol->string post)]]
+                      (span [[class "smallcaps"]] ,(select-from-metas 'title post))))))
+
+        (define (is-child-post? p)
+          (equal? s (string->symbol (select-from-metas 'series p))))
+
+        `(section (h2 ,(select-from-metas 'title s))
+                  (ul ,@(map make-li (filter is-child-post? (children 'posts.html))))))
+
     ◊;    For every child of series.html in the pagetree, we list that page’s
     ◊; title and summary, then we list all the children of posts.html that
     ◊; specify that series in their meta definitions.
-    ◊;    See the function `list-posts-in-series` in pollen.rkt for more.
 
-    ◊(map (lambda(ss) (->html `(section (h2 ,(select-from-metas 'title ss))
-                                        (p ,(select-from-metas 'summary ss))
-                                        ,(list-posts-in-series ss))))
-          (children 'series.html))
+    ◊(->html (list-posts-in-series 'series/notebook.html #:author #f))
+
+    ◊(->html (list-posts-in-series 'series/poems.html))
 
     <h2>Flatland: A Romance of Many Dimensions</h2>
 
