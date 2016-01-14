@@ -61,9 +61,12 @@ nav ul {
      font-size: 80%;
  }
 
-nav ul li a {
-    text-decoration: none; border: none;
+nav ul li a:link {
+    text-decoration: none;
+    border: none;
     font-style: italic;
+    background: none;
+    text-shadow: none;
 }
 
 p.poem-heading {
