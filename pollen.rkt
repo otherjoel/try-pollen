@@ -42,12 +42,14 @@
                                     #:exclude-tags '(script style figure)))]
 
     [else
+      (define first-pass (decode-elements elements
+                                          #:txexpr-elements-proc (compose1 detect-paragraphs splice)
+                                          #:exclude-tags '(script style figure)))
       (make-txexpr 'body null
-                   (decode-elements elements
-                                    #:txexpr-elements-proc (compose1 detect-paragraphs splice)
+                   (decode-elements first-pass
                                     #:inline-txexpr-proc hyperlink-decoder
                                     #:string-proc (compose1 smart-quotes smart-dashes)
-                                    #:exclude-tags '(script style figure)))]))
+                                    #:exclude-tags '(script style)))]))
 
 #|
 `splice` lifts the elements of an X-expression into its enclosing X-expression.
@@ -79,18 +81,17 @@ code as a valid X-expression rather than as a string.
   equate to a sidenote within a sidenote, which causes Problems.
 
   We handle this by not using a normal tag function for hyperlinks. Instead,
-  within these three tag functions we call decode-elements to filter out any
-  hyperlinks inside these tags (for LaTeX/PDF only). Then the root function uses
-  a separate decoder to properly handle any hyperlinks that sit outside any of
-  these three tags.
+  within these three tag functions we call latex-no-hyperlinks-in-margin to
+  filter out any hyperlinks inside these tags (for LaTeX/PDF only). Then the
+  root function uses a separate decoder to properly handle any hyperlinks that
+  sit outside any of these three tags.
 |#
 
 (define (numbered-note . text)
     (define refid (uuid-generate))
     (case (world:current-poly-target)
       [(ltx pdf)
-       (define cleantext (decode-elements text #:inline-txexpr-proc latex-no-hyperlinks-in-margin))
-       `(txt "\\footnote{" ,@cleantext "}")]
+       `(txt "\\footnote{" ,@(latex-no-hyperlinks-in-margin text) "}")]
       [else
         `(splice-me (label [[for ,refid] [class "margin-toggle sidenote-number"]])
                     (input [[type "checkbox"] [id ,refid] [class "margin-toggle"]])
@@ -100,11 +101,9 @@ code as a valid X-expression rather than as a string.
     (define refid (uuid-generate))
     (case (world:current-poly-target)
       [(ltx pdf)
-       (define cleantext
-               (decode-elements caption #:inline-txexpr-proc latex-no-hyperlinks-in-margin))
        `(txt "\\begin{marginfigure}"
              "\\includegraphics{" ,source "}"
-             "\\caption{" ,@cleantext "}"
+             "\\caption{" ,@(latex-no-hyperlinks-in-margin caption) "}"
              "\\end{marginfigure}")]
       [else
         `(splice-me (label [[for ,refid] [class "margin-toggle"]] 8853)
@@ -115,9 +114,7 @@ code as a valid X-expression rather than as a string.
     (define refid (uuid-generate))
     (case (world:current-poly-target)
       [(ltx pdf)
-       (define cleantext
-               (decode-elements text #:inline-txexpr-proc latex-no-hyperlinks-in-margin))
-       `(txt "\\marginnote{" ,@cleantext "}")]
+       `(txt "\\marginnote{" ,@(latex-no-hyperlinks-in-margin text) "}")]
       [else
         `(splice-me (label [[for ,refid] [class "margin-toggle"]] 8853)
                     (input [[type "checkbox"] [id ,refid] [class "margin-toggle"]])
@@ -128,14 +125,19 @@ code as a valid X-expression rather than as a string.
   targeting Latex/PDF, to filter out hyperlinks from within those tags.
   (See notes above)
 |#
-(define (latex-no-hyperlinks-in-margin inline-tx)
-  (define (ltx-escape str)
-    (string-replace (string-replace (string-replace str "%" "\\%") "&" "\\&") "#" "\\#"))
-  (if (eq? 'hyperlink (get-tag inline-tx))
-    `(txt ,@(cdr (get-elements inline-tx))
-          ; Return the text with the URI in parentheses
-          " (\\url{" ,(ltx-escape (car (get-elements inline-tx))) "})")
-    inline-tx)) ; otherwise pass through unchanged
+(define (latex-no-hyperlinks-in-margin txpr)
+  ; First define a local function that will transform each ◊hyperlink
+  (define (cleanlinks inline-tx)
+      (define (ltx-escape str)
+        (string-replace (string-replace (string-replace str "%" "\\%") "&" "\\&") "#" "\\#"))
+      (if (eq? 'hyperlink (get-tag inline-tx))
+        `(txt ,@(cdr (get-elements inline-tx))
+              ; Return the text with the URI in parentheses
+              " (\\url{" ,(ltx-escape (car (get-elements inline-tx))) "})")
+        inline-tx)) ; otherwise pass through unchanged
+  ; Run txpr through the decode-elements wringer using the above function to
+  ; flatten out any ◊hyperlink tags
+  (decode-elements txpr #:inline-txexpr-proc cleanlinks))
 
 (define (hyperlink-decoder inline-tx)
   (define (hyperlinker url . words)
@@ -196,7 +198,7 @@ code as a valid X-expression rather than as a string.
   (case (world:current-poly-target)
     [(ltx pdf) `(txt "\\begin{figure}"
                      "\\includegraphics{" ,source "}"
-                     "\\caption{" ,@caption "}"
+                     "\\caption{" ,@(latex-no-hyperlinks-in-margin caption) "}"
                      "\\end{figure}")]
     [else `(figure (img [[src ,source]]) (figcaption ,@caption))]))
 
