@@ -18,6 +18,10 @@
     %\geometry{showframe}% for debugging purposes -- displays the margins
 
     \usepackage{amsmath}
+    
+    %%
+    % Prints a trailing space in a smart way.
+    \usepackage{xspace}
 
     % Set the main and monospaced fonts
     %

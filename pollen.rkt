@@ -245,17 +245,12 @@ code as a valid X-expression rather than as a string.
 
 #|
   Just because we can, here's a tag function for typesetting the LaTeX logo
-  in both HTML and (obv.) LaTeX. In “straight” LaTeX you need to hard-code a
-  space after the logo (e.g. "\LaTeX\ ") if you intend for one to be there.
-  Since this is probably the most common case, you can use "◊Latex{}" if the
-  logo will be followed by a space, or "◊Latex[#:space #f]{}" if it will be
-  followed by something else (e.g. a comma or period). This could be done more
-  intelligently based on surrounding context but it works for me, for now.
+  in both HTML and (obv.) LaTeX.
 |#
-(define (Latex #:space [space #t])
+(define (Latex)
   (case (world:current-poly-target)
     [(ltx pdf)
-     `(txt ,(string-append "\\LaTeX" (if space "\\ " "")))]
+     `(txt "\\LaTeX\\xspace")]      ; \xspace adds a space if the next char is not punctuation
     [else `(span [[class "latex"]]
              "L"
              (span [[class "latex-sup"]] "a")
