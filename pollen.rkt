@@ -38,7 +38,7 @@
                    (decode-elements elements
                                     ;#:txexpr-elements-proc detect-paragraphs
                                     #:inline-txexpr-proc (compose1 txt-decode hyperlink-decoder)
-                                    #:string-proc (compose1 smart-quotes smart-dashes)
+                                    #:string-proc (compose1 ltx-escape-str smart-quotes smart-dashes)
                                     #:exclude-tags '(script style figure)))]
 
     [else
@@ -60,6 +60,12 @@
                   (if (and (txexpr? x) (member (get-tag x) tags-to-splice))
                       (get-elements x)
                       (list x)))))
+
+; Escape $,%,# and & for LaTeX
+; The approach here is rather indiscriminate; I’ll probably have to change
+; it once I get around to handline inline math, etc.
+(define (ltx-escape-str str)
+  (regexp-replace* #px"([$#%&])" str "\\\\\\1"))
 
 #|
 `txt` is called by root when targeting LaTeX/PDF. It converts all elements inside
@@ -119,7 +125,6 @@ code as a valid X-expression rather than as a string.
         `(splice-me (label [[for ,refid] [class "margin-toggle"]] 8853)
                     (input [[type "checkbox"] [id ,refid] [class "margin-toggle"]])
                     (span [[class "marginnote"]] ,@text))]))
-
 #|
   This function is called from within the margin/sidenote functions when
   targeting Latex/PDF, to filter out hyperlinks from within those tags.
@@ -128,12 +133,10 @@ code as a valid X-expression rather than as a string.
 (define (latex-no-hyperlinks-in-margin txpr)
   ; First define a local function that will transform each ◊hyperlink
   (define (cleanlinks inline-tx)
-      (define (ltx-escape str)
-        (string-replace (string-replace (string-replace str "%" "\\%") "&" "\\&") "#" "\\#"))
       (if (eq? 'hyperlink (get-tag inline-tx))
         `(txt ,@(cdr (get-elements inline-tx))
               ; Return the text with the URI in parentheses
-              " (\\url{" ,(ltx-escape (car (get-elements inline-tx))) "})")
+              " (\\url{" ,(ltx-escape-str (car (get-elements inline-tx))) "})")
         inline-tx)) ; otherwise pass through unchanged
   ; Run txpr through the decode-elements wringer using the above function to
   ; flatten out any ◊hyperlink tags

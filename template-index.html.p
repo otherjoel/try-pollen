@@ -63,19 +63,18 @@
 
     ◊(define (chapter-li chapter)
              (->html `(li (span [[class "smallcaps"]]
-                             ,(select-from-metas 'chapter-num chapter) ". "
                              (a [[href ,(symbol->string chapter)]]
                                 ,(select-from-metas 'title chapter))))))
 
     <h3>Part I: This World</h3>
-    <ul>
+    <ol>
         ◊(map chapter-li (children 'flatland/part-1.html))
-    </ul>
+    </ol>
 
     <h3>Part II: Other Worlds</h3>
-    <ul>
+    <ol start="13">
         ◊(map chapter-li (children 'flatland/part-2.html))
-    </ul>
+    </ol>
 
     </article>
 </body>
