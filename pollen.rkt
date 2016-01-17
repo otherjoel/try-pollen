@@ -34,12 +34,11 @@
 (define (root . elements)
   (case (world:current-poly-target)
     [(ltx pdf)
-     (make-txexpr 'body null
-                   (decode-elements elements
-                                    ;#:txexpr-elements-proc detect-paragraphs
-                                    #:inline-txexpr-proc (compose1 txt-decode hyperlink-decoder)
-                                    #:string-proc (compose1 ltx-escape-str smart-quotes smart-dashes)
-                                    #:exclude-tags '(script style figure)))]
+     (define first-pass (decode-elements elements
+                                         #:inline-txexpr-proc (compose1 txt-decode hyperlink-decoder)
+                                         #:string-proc (compose1 ltx-escape-str smart-quotes smart-dashes)
+                                         #:exclude-tags '(script style figure txt-noescape)))
+     (make-txexpr 'body null (decode-elements first-pass #:inline-txexpr-proc txt-decode))]
 
     [else
       (define first-pass (decode-elements elements
@@ -74,7 +73,7 @@ normal markup; its sole purpose is to allow other tag functions to return LaTeX
 code as a valid X-expression rather than as a string.
 |#
 (define (txt-decode xs)
-    (if (eq? 'txt (get-tag xs))
+    (if (member (get-tag xs) '(txt txt-noescape))
         (apply string-append (get-elements xs))
         xs))
 
@@ -177,7 +176,10 @@ code as a valid X-expression rather than as a string.
     [(ltx pdf) `(txt "\\smallcaps{" ,@words "}")]
     [else `(span [[class "smallcaps"]] ,@words)]))
 
-(define ∆ smallcaps)
+(define (∆ . elems)
+  (case (world:current-poly-target)
+    [(ltx pdf) `(txt-noescape "$" ,@elems "$")]
+    [else `(span "\\(" ,@elems "\\)")]))
 
 (define (center . words)
   (case (world:current-poly-target)
@@ -186,7 +188,9 @@ code as a valid X-expression rather than as a string.
 
 (define (doc-section title . text)
   (case (world:current-poly-target)
-    [(ltx pdf) `(txt "\\section*{" ,title "}" ,@text)]
+    [(ltx pdf) `(txt "\\section*{" ,title "}"
+                 "\\label{sec:" ,title ,(symbol->string (gensym)) "}"
+                 ,@text)]
     [else `(section (h2 ,title) ,@text)]))
 
 (define (index-entry entry . text)
