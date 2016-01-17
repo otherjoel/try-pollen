@@ -1,6 +1,6 @@
 # “Try Pollen”, a test Pollen Site
 
-*(Version 0.22)*
+*(Version 0.23)*
 
 I’ve created this site as a way of playing around with [Pollen](http://pollenpub.com) for myself, but also to help explain it to people who might be interested in using it for themselves. The documentation is well done and improving all the time, and you should really start by reading it thoroughly. But a guided tour through a simple working site might help put the pieces together, and illustrate the benefits of the Pollen system.
 
@@ -41,13 +41,13 @@ So far I’ve added two minor markup innovations to this project:
 
 Any file with the `.poly.pm` extension can be generated as a `.ltx` file or a `.pdf` file as well as HTML. My LaTeX templates make use of the Tufte-LaTeX document classes, to match the Tufte-CSS in use on the web side.
 
+In addition, the preprocessor files `flatland/flatland-book.ltx.pp` and `flatland/flatland-book.pdf.pp` generate a complete PDF of the entire Flatland book.
+
 You may want to edit the fonts specified `\setromanfont` and `\setmonofont` commands in both `template.ltx.p` and `template.pdf.p`; I have them set to Adobe Caslon Pro and Triplicate, respectively, so if you don't have those fonts installed you may get errors.
 
 The official Pollen docs describe [the basic method for LaTeX and PDF targets](http://pkg-build.racket-lang.org/doc/pollen/fourth-tutorial.html), but my method differs somewhat due to the need for additional cleverness.
 
-In my LaTeX template, any hyperlinks also get auto-converted to numbered side-notes. Unfortunately, this niftiness also means that when targeting LaTeX, you can't have a hyperlink inside a side-note since that would equate to a side-note within a side-note, which causes Problems.
-
-I could simply stipulate "don't put hyperlinks in margin notes" but I wanted a more elegant solution. Solving this problem meant departing from the methods in the official tutorial. The details are in [this post at the Pollen mailing list](https://groups.google.com/d/msg/pollenpub/SoxbXRHnyMs/fP7hCSLADwAJ)
+In my LaTeX template, any hyperlinks also get auto-converted to numbered side-notes. Unfortunately, this niftiness also means that when targeting LaTeX, you can't have a hyperlink inside a side-note since that would equate to a side-note within a side-note, which causes Problems. I could simply stipulate "don't put hyperlinks in margin notes" but I wanted a more elegant solution. Solving this problem meant departing from the methods in the official tutorial. The details are in [this post at the Pollen mailing list](https://groups.google.com/d/msg/pollenpub/SoxbXRHnyMs/fP7hCSLADwAJ).
 
 ### RSS feed
 
