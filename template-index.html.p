@@ -51,31 +51,35 @@
     ◊; title and summary, then we list all the children of posts.html that
     ◊; specify that series in their meta definitions.
 
-    ◊(->html (list-posts-in-series 'series/notebook.html #:author #f))
+    ◊;(->html (list-posts-in-series 'series/notebook.html #:author #f))
 
     ◊(->html (list-posts-in-series 'series/poems.html))
 
-    <h2>Flatland: A Romance of Many Dimensions</h2>
+        <section>
+            <h2>Flatland: A Romance of Many Dimensions</h2>
 
-    <p><label for="margin-bookcover" class="margin-toggle">&#8853;</label>
-        <input type="checkbox" id="margin-bookcover" class="margin-toggle" />
-        <span class="marginnote"><img src="flatland/img/flatland-cover.png" /></span></p>
+            <p><label for="margin-bookcover" class="margin-toggle">&#8853;</label>
+                <input type="checkbox" id="margin-bookcover" class="margin-toggle" />
+                <span class="marginnote"><img src="flatland/img/flatland-cover.png" /></span></p>
 
-    ◊(define (chapter-li chapter)
-             (->html `(li (span [[class "smallcaps"]]
-                             (a [[href ,(symbol->string chapter)]]
-                                ,(select-from-metas 'title chapter))))))
+            <p>&rarr; <a href="flatland/flatland-book.pdf"><img src="css/pdficon.png" height="15" alt="PDF Download" />
+                Download the complete book</a></p>
 
-    <h3>Part I: This World</h3>
-    <ol>
-        ◊(map chapter-li (children 'flatland/part-1.html))
-    </ol>
+            ◊(define (chapter-li chapter)
+                     (->html `(li (span [[class "smallcaps"]]
+                                     (a [[href ,(symbol->string chapter)]]
+                                        ,(select-from-metas 'title chapter))))))
 
-    <h3>Part II: Other Worlds</h3>
-    <ol start="13">
-        ◊(map chapter-li (children 'flatland/part-2.html))
-    </ol>
+            <h3>Part I: This World</h3>
+            <ol>
+                ◊(map chapter-li (children 'flatland/part-1.html))
+            </ol>
 
+            <h3>Part II: Other Worlds</h3>
+            <ol start="13">
+                ◊(map chapter-li (children 'flatland/part-2.html))
+            </ol>
+        </section>
     </article>
 </body>
 </html>
