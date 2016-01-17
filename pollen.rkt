@@ -34,20 +34,21 @@
 (define (root . elements)
   (case (world:current-poly-target)
     [(ltx pdf)
-     (make-txexpr 'body null
-                   (decode-elements elements
-                                    ;#:txexpr-elements-proc detect-paragraphs
-                                    #:inline-txexpr-proc (compose1 txt-decode hyperlink-decoder)
-                                    #:string-proc (compose1 smart-quotes smart-dashes)
-                                    #:exclude-tags '(script style figure)))]
+     (define first-pass (decode-elements elements
+                                         #:inline-txexpr-proc (compose1 txt-decode hyperlink-decoder)
+                                         #:string-proc (compose1 ltx-escape-str smart-quotes smart-dashes)
+                                         #:exclude-tags '(script style figure txt-noescape)))
+     (make-txexpr 'body null (decode-elements first-pass #:inline-txexpr-proc txt-decode))]
 
     [else
+      (define first-pass (decode-elements elements
+                                          #:txexpr-elements-proc (compose1 detect-paragraphs splice)
+                                          #:exclude-tags '(script style figure)))
       (make-txexpr 'body null
-                   (decode-elements elements
-                                    #:txexpr-elements-proc (compose1 detect-paragraphs splice)
+                   (decode-elements first-pass
                                     #:inline-txexpr-proc hyperlink-decoder
                                     #:string-proc (compose1 smart-quotes smart-dashes)
-                                    #:exclude-tags '(script style figure)))]))
+                                    #:exclude-tags '(script style)))]))
 
 #|
 `splice` lifts the elements of an X-expression into its enclosing X-expression.
@@ -59,6 +60,12 @@
                       (get-elements x)
                       (list x)))))
 
+; Escape $,%,# and & for LaTeX
+; The approach here is rather indiscriminate; I’ll probably have to change
+; it once I get around to handline inline math, etc.
+(define (ltx-escape-str str)
+  (regexp-replace* #px"([$#%&])" str "\\\\\\1"))
+
 #|
 `txt` is called by root when targeting LaTeX/PDF. It converts all elements inside
 a ◊txt tag into a single concatenated string. ◊txt is not intended to be used in
@@ -66,7 +73,7 @@ normal markup; its sole purpose is to allow other tag functions to return LaTeX
 code as a valid X-expression rather than as a string.
 |#
 (define (txt-decode xs)
-    (if (eq? 'txt (get-tag xs))
+    (if (member (get-tag xs) '(txt txt-noescape))
         (apply string-append (get-elements xs))
         xs))
 
@@ -79,18 +86,17 @@ code as a valid X-expression rather than as a string.
   equate to a sidenote within a sidenote, which causes Problems.
 
   We handle this by not using a normal tag function for hyperlinks. Instead,
-  within these three tag functions we call decode-elements to filter out any
-  hyperlinks inside these tags (for LaTeX/PDF only). Then the root function uses
-  a separate decoder to properly handle any hyperlinks that sit outside any of
-  these three tags.
+  within these three tag functions we call latex-no-hyperlinks-in-margin to
+  filter out any hyperlinks inside these tags (for LaTeX/PDF only). Then the
+  root function uses a separate decoder to properly handle any hyperlinks that
+  sit outside any of these three tags.
 |#
 
 (define (numbered-note . text)
     (define refid (uuid-generate))
     (case (world:current-poly-target)
       [(ltx pdf)
-       (define cleantext (decode-elements text #:inline-txexpr-proc latex-no-hyperlinks-in-margin))
-       `(txt "\\footnote{" ,@cleantext "}")]
+       `(txt "\\footnote{" ,@(latex-no-hyperlinks-in-margin text) "}")]
       [else
         `(splice-me (label [[for ,refid] [class "margin-toggle sidenote-number"]])
                     (input [[type "checkbox"] [id ,refid] [class "margin-toggle"]])
@@ -100,11 +106,9 @@ code as a valid X-expression rather than as a string.
     (define refid (uuid-generate))
     (case (world:current-poly-target)
       [(ltx pdf)
-       (define cleantext
-               (decode-elements caption #:inline-txexpr-proc latex-no-hyperlinks-in-margin))
        `(txt "\\begin{marginfigure}"
              "\\includegraphics{" ,source "}"
-             "\\caption{" ,@cleantext "}"
+             "\\caption{" ,@(latex-no-hyperlinks-in-margin caption) "}"
              "\\end{marginfigure}")]
       [else
         `(splice-me (label [[for ,refid] [class "margin-toggle"]] 8853)
@@ -115,27 +119,27 @@ code as a valid X-expression rather than as a string.
     (define refid (uuid-generate))
     (case (world:current-poly-target)
       [(ltx pdf)
-       (define cleantext
-               (decode-elements text #:inline-txexpr-proc latex-no-hyperlinks-in-margin))
-       `(txt "\\marginnote{" ,@cleantext "}")]
+       `(txt "\\marginnote{" ,@(latex-no-hyperlinks-in-margin text) "}")]
       [else
         `(splice-me (label [[for ,refid] [class "margin-toggle"]] 8853)
                     (input [[type "checkbox"] [id ,refid] [class "margin-toggle"]])
                     (span [[class "marginnote"]] ,@text))]))
-
 #|
   This function is called from within the margin/sidenote functions when
   targeting Latex/PDF, to filter out hyperlinks from within those tags.
   (See notes above)
 |#
-(define (latex-no-hyperlinks-in-margin inline-tx)
-  (define (ltx-escape str)
-    (string-replace (string-replace (string-replace str "%" "\\%") "&" "\\&") "#" "\\#"))
-  (if (eq? 'hyperlink (get-tag inline-tx))
-    `(txt ,@(cdr (get-elements inline-tx))
-          ; Return the text with the URI in parentheses
-          " (\\url{" ,(ltx-escape (car (get-elements inline-tx))) "})")
-    inline-tx)) ; otherwise pass through unchanged
+(define (latex-no-hyperlinks-in-margin txpr)
+  ; First define a local function that will transform each ◊hyperlink
+  (define (cleanlinks inline-tx)
+      (if (eq? 'hyperlink (get-tag inline-tx))
+        `(txt ,@(cdr (get-elements inline-tx))
+              ; Return the text with the URI in parentheses
+              " (\\url{" ,(ltx-escape-str (car (get-elements inline-tx))) "})")
+        inline-tx)) ; otherwise pass through unchanged
+  ; Run txpr through the decode-elements wringer using the above function to
+  ; flatten out any ◊hyperlink tags
+  (decode-elements txpr #:inline-txexpr-proc cleanlinks))
 
 (define (hyperlink-decoder inline-tx)
   (define (hyperlinker url . words)
@@ -172,6 +176,11 @@ code as a valid X-expression rather than as a string.
     [(ltx pdf) `(txt "\\smallcaps{" ,@words "}")]
     [else `(span [[class "smallcaps"]] ,@words)]))
 
+(define (∆ . elems)
+  (case (world:current-poly-target)
+    [(ltx pdf) `(txt-noescape "$" ,@elems "$")]
+    [else `(span "\\(" ,@elems "\\)")]))
+
 (define (center . words)
   (case (world:current-poly-target)
     [(ltx pdf) `(txt "\\begin{center}" ,@words "\\end{center}")]
@@ -179,7 +188,9 @@ code as a valid X-expression rather than as a string.
 
 (define (doc-section title . text)
   (case (world:current-poly-target)
-    [(ltx pdf) `(txt "\\section*{" ,title "}" ,@text)]
+    [(ltx pdf) `(txt "\\section*{" ,title "}"
+                 "\\label{sec:" ,title ,(symbol->string (gensym)) "}"
+                 ,@text)]
     [else `(section (h2 ,title) ,@text)]))
 
 (define (index-entry entry . text)
@@ -194,7 +205,7 @@ code as a valid X-expression rather than as a string.
   (case (world:current-poly-target)
     [(ltx pdf) `(txt "\\begin{figure}"
                      "\\includegraphics{" ,source "}"
-                     "\\caption{" ,@caption "}"
+                     "\\caption{" ,@(latex-no-hyperlinks-in-margin caption) "}"
                      "\\end{figure}")]
     [else `(figure (img [[src ,source]]) (figcaption ,@caption))]))
 
@@ -235,6 +246,21 @@ code as a valid X-expression rather than as a string.
   (case (world:current-poly-target)
     [(ltx pdf) `(txt "\\textsuperscript{" ,@text "}")]
     [else `(sup ,@text)]))
+
+#|
+  Just because we can, here's a tag function for typesetting the LaTeX logo
+  in both HTML and (obv.) LaTeX.
+|#
+(define (Latex)
+  (case (world:current-poly-target)
+    [(ltx pdf)
+     `(txt "\\LaTeX\\xspace")]      ; \xspace adds a space if the next char is not punctuation
+    [else `(span [[class "latex"]]
+             "L"
+             (span [[class "latex-sup"]] "a")
+             "T"
+             (span [[class "latex-sub"]] "e")
+             "X")]))
 
 ; In HTML these two tags won't look much different. But when outputting to
 ; LaTeX, ◊i will italicize multiple blocks of text, where ◊emph should be
@@ -279,11 +305,15 @@ purposes, and replace double-spaces with \vin to indent lines.
              ,fmt-text
              "\\end{verse}\n\n")]
       [else
-        `(div [[class "poem"]]
-              (pre [[class "verse"]]
-                   (p [[class "poem-heading"]] ,title)
-                   ,@text))])))
-
+        (define pre-attrs (if italic '([class "verse"] [style "font-style: italic"])
+                                     '([class "verse"])))
+        (define poem-xpr (if (non-empty-string? title)
+                             `(pre ,pre-attrs
+                                   (p [[class "poem-heading"]] ,title)
+                                   ,@text)
+                             `(pre ,pre-attrs
+                                   ,@text)))
+        `(div [[class "poem"]] ,poem-xpr)])))
 #|
 Helper function for typesetting poetry in LaTeX. Poetry should be centered
 on the longest line. Browsers will do this automatically with proper CSS but
@@ -303,18 +333,6 @@ in LaTeX we need to tell it what the longest line is.
   (case (world:current-poly-target)
     [(ltx pdf) `(txt "\\textcolor{gray}{" ,@text "}")]
     [else `(span [[style "color: #777"]] ,@text)]))
-
-(define (list-posts-in-series s)
-    (define (make-li post)
-      `(li (a [[href ,(symbol->string post)]]
-              (i ,(select-from-metas 'title post))) " by " ,(select-from-metas 'author post)))
-
-    `(ul ,@(filter identity
-                   (map (λ(post)
-                          (if (equal? s (string->symbol (select-from-metas 'series post)))
-                              (make-li post)
-                              #f))
-                        (children 'posts.html)))))
 
 #|
 Index functionality: allows creation of a book-style keyword index.

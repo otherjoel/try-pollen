@@ -19,6 +19,10 @@
 
     \usepackage{amsmath}
 
+    %%
+    % Prints a trailing space in a smart way.
+    \usepackage{xspace}
+    
     % Set the main and monospaced fonts
     %
     \setromanfont[Mapping=tex-text,Ligatures={Common, Rare, Discretionary},Numbers=OldStyle]{Adobe Caslon Pro}
@@ -54,8 +58,14 @@
     % Make hyperlinks appear as footnotes
     % Taken from https://groups.google.com/forum/#!topic/pandoc-discuss/O-N0H1eBnVU
     \usepackage{url}
+    % This bit ensures hyperlinks can have linebreaks on hyphens
+    % see http://tex.stackexchange.com/questions/3033/forcing-linebreaks-in-url
+    \makeatletter
+    \g@addto@macro{\UrlBreaks}{\UrlOrds}
+    \makeatother
     \renewcommand{\href}[2]{#2\footnote{\raggedright\url{#1}}}
-    \renewcommand\UrlFont{\ttfamily} %optionally add \itshape to get italics
+    % optionally add \itshape to get italics, or replace \rmfamily with \ttfamily
+    \renewcommand\UrlFont{\rmfamily\itshape}
 
     % These commands are used to pretty-print LaTeX commands
     \newcommand{\doccmd}[1]{\texttt{\textbackslash#1}}% command name -- adds backslash automatically

@@ -80,8 +80,8 @@
                          (~r (date-minute d) #:min-width 2 #:pad-string "0")
                          (~r (date-second d) #:min-width 2 #:pad-string "0")
                          (if (and (date-dst? d) adjust-daylight-savings?)
-                             (~r (+ 1 opt-feed-timezone) #:min-width 2 #:pad-string "0")
-                             (~r opt-feed-timezone #:min-width 2 #:pad-string "0")))))
+                             (~r (+ 1 opt-feed-timezone) #:min-width 2 #:pad-string "0" #:sign '++)
+                             (~r opt-feed-timezone #:min-width 2 #:pad-string "0" #:sign '++)))))
 
 #|
   make-rss

@@ -14,6 +14,9 @@
   <style type="text/css">
    img { mix-blend-mode: multiply; }
   </style>
+  <script type="text/javascript" async
+    src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
+  </script>
 </head>
 <body><article>
     <h1>◊when/block[(select-from-metas 'chapter-num metas)]{

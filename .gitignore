@@ -5,6 +5,7 @@
 *.aux
 *.log
 *.xml
+*.toc
 compiled/
 pollen-cache/
 pollen.cache

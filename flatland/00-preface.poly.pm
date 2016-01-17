@@ -1,31 +1,9 @@
 #lang pollen
 
-◊(define-meta title            "Title and Preface")
+◊(define-meta title "Preface to the Second and Revised Edition")
+◊(define-meta author "Edwin Abbot")
 
-◊center{
-◊p{To
-The Inhabitants of ◊smallcaps{Space in General}
-And ◊smallcaps{H. C. in Particular}
-This Work is Dedicated
-By a Humble Native of Flatland
-In the Hope that
-Even as he was Initiated into the Mysteries
-Of ◊smallcaps{Three} Dimensions
-Having been previously conversant
-With ◊smallcaps{Only Two}
-So the Citizens of that Celestial Region
-May aspire yet higher and higher
-To the Secrets of ◊smallcaps{Four Five or Even Six} Dimensions
-Thereby contributing
-To the Enlargement of ◊smallcaps{The Imagination}
-And the possible Development
-Of that most rare and excellent Gift of ◊smallcaps{Modesty}
-Among the Superior Races
-Of ◊smallcaps{Solid Humanity}
-}}
-
-◊doc-section["Preface to the Second and Revised Edition"]{
-If my poor Flatland friend retained the vigour of mind which he enjoyed when he began to compose these Memoirs, I should not now need to represent him in this preface, in which he desires, firstly, to return his thanks to his readers and critics in Spaceland, whose appreciation has, with unexpected celerity, required a second edition of his work; secondly, to apologize forcertain errors and misprints (for which, however, he is not entirely responsible); and, thirdly, to explain one or two misconceptions. But he is not the Square he once was. Years of imprisonment, and the still heavier burden of general incredulity and mockery, have combined with the natural decay of old age to erase from his mind many of the thoughts and notions, and much also of the terminology, which he acquired during his short stay in Spaceland. He has, therefore, requested me to reply in his behalf to two special objections, one of an intellectual, the other of a moral nature.
+◊newthought{If my} poor Flatland friend retained the vigour of mind which he enjoyed when he began to compose these Memoirs, I should not now need to represent him in this preface, in which he desires, firstly, to return his thanks to his readers and critics in Spaceland, whose appreciation has, with unexpected celerity, required a second edition of his work; secondly, to apologize forcertain errors and misprints (for which, however, he is not entirely responsible); and, thirdly, to explain one or two misconceptions. But he is not the Square he once was. Years of imprisonment, and the still heavier burden of general incredulity and mockery, have combined with the natural decay of old age to erase from his mind many of the thoughts and notions, and much also of the terminology, which he acquired during his short stay in Spaceland. He has, therefore, requested me to reply in his behalf to two special objections, one of an intellectual, the other of a moral nature.
 
 The first objection is, that a Flatlander, seeing a Line, sees something that must be thick to the eye as well as long to the eye (otherwise it would not be visible, if it had not some thickness); and consequently he ought (it is argued) to acknowledge that his countrymen are not only long and broad, but also (though doubtless in a very slight degree) thick or high. His objection is plausible, and, to Spacelanders, almost irresistible, so that, I confess, when I first heard it, I knew not what to reply. But my poor old friend's answer appears to me completely to meet it.
 
@@ -40,4 +18,3 @@ The first objection is, that a Flatlander, seeing a Line, sees something that mu
 On this, point the defence of the Square seems to me to be impregnable. I wish I could say that his answer to the second (or moral) objection was equally clear and cogent. lt has been objected that he is a woman-hater; and as this objection has been vehemently urged by those whom Nature's decree has constituted the somewhat larger half of the Spaceland race, I should like to remove it, so far as I can honestly do so. But the Square is so unaccustomed to the use of the moral terminology of Spaceland that I should be doing him an injustice if I were literally to transcribe his defence against this charge. Acting, therefore, as his interpreter and summarizer, I gather that in the course of an imprisonment of seven years he has himself modified his own personal views, both as regards Women and as regards the Isosceles or Lower Classes. Personally, he now inclines to the opinion of the Sphere that the Straight Lines are in many important respects superior to the Circles. But, writing as a Historian, he has identified himself (perhaps too closely) with the views generally adopted by Flatland, and (as he has been informed) even Spaceland, Historians; in whose pages (until very recent times) the destinies of Women and of the masses of mankind have seldom been deemed worthy of mention and never of careful consideration.
 
 In a still more obscure passage he now desires to disavow the Circular or aristocratic tendencies with which some critics have naturally credited him. While doing justice to the intellectual power with which a few Circles for many generations maintained their supremacy over immense multitudes of their countrymen, he believes that the facts of Flatland, speaking for themselves without comment On his part, declare that Revolutions cannot always be suppressed by slaughter; and that Nature, in sentencing the Circles to infecundity, has condemned them to ultimate failure --- "and herein," he says, "I see a fulfillment of the great Law of all worlds, that while the wisdom of Man thinks it is working one thing, the wisdom of Nature constrains it to work another, and quite a different and far better thing." For the rest, he begs his readers not to suppose that every minute detail in the daily life of Flatland must needs correspond to some other detail in Spaceland; and yet he hopes that, taken as a whole, his work may prove suggestive as well as amusing, to those Spacelanders of moderate and modest minds who - speaking of that which is of the highest importance, but lies beyond experience --- decline to say on the one hand, "This can never be," and on the other hand, "It must needs be precisely thus, and we know all about it."
-}
