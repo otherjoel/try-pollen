@@ -37,7 +37,7 @@ other-html := posts.html series.html
 # The ‘all’ rule references the rules BELOW it (the above are just variable
 # definitions, not rules).
 all: $(posts-sourcelistings) $(posts-html) $(flatland-sourcelistings) $(flatland-html) \
-	$(posts-pdf) $(flatland-pdf) $(other-html) index.html feed.xml bookindex.html
+	$(posts-pdf) $(flatland-pdf) $(other-html) flatland/flatland-book.pdf index.html feed.xml bookindex.html
 
 # My dependencies are roughly as follows: for each .poly.pm file I want to
 # generate an HTML file, a PDF file, and a .pollen.html file (so people can see
@@ -72,6 +72,12 @@ $(flatland-html): %.html: %.poly.pm
 $(flatland-pdf): pollen.rkt flatland/template.pdf.p
 $(flatland-pdf): %.pdf: %.poly.pm
 	raco pollen render -t pdf $<
+
+flatland/flatland-book.pdf: flatland/flatland-book.pdf.pp flatland/flatland-book.ltx
+	raco pollen render $@
+
+flatland/flatland-book.ltx: $(core-files) $(flatland-sourcefiles) flatland/flatland-book.ltx.pp
+	raco pollen render $@
 
 feed.xml: $(core-files) $(posts-sourcefiles) feed.xml.pp
 	raco pollen render feed.xml.pp
