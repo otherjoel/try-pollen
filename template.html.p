@@ -8,6 +8,8 @@
   ◊; is just my way of coping with this.
   ◊(define path-prefix (if (string-contains (symbol->string here) "/") "../" ""))
   ◊(define source-file (select-from-metas 'here-path metas))
+  ◊(define pollen-source-listing
+      (regexp-replace #px"(.*)\\/(.+).html" (symbol->string here) "\\2.pollen.html"))
   <link rel="stylesheet" href="◊|path-prefix|css/tufte.css"/>
   <link rel="stylesheet" href="◊|path-prefix|css/joel.css"/>
   <link rel="alternate" type="application/atom+xml" title="Atom feed" href="◊|path-prefix|feed.xml" />
@@ -33,7 +35,12 @@
         ◊when/block[(pdfable? source-file)]{
             <li><a href="◊pdfname[source-file]">
                   <img src="◊|path-prefix|css/pdficon.png" height="15" alt="Download PDF" />
-                  <span class="caps">PDF</span></a></li>
+                  <span class="caps" style="font-style: normal">PDF</span></a></li>
+        }
+        ◊when/block[(string-contains path-prefix "/")]{
+            <li style="width: auto;">
+              <a href="◊|pollen-source-listing|" title="View the Pollen source for this file"
+                 class=" sourcelink code">&loz; Pollen Source</a></li>
         }
     </ul></nav>
 

@@ -53,7 +53,7 @@ nav ul {
 
  nav ul li {
      display: inline-block;
-     border-left: solid #ccc 1px;
+     /* border-left: solid #ccc 1px; */
      border-right: solid #ccc 1px;
      width: 5em;
      margin: 0; padding: 0;
@@ -67,6 +67,12 @@ nav ul li a:link {
     font-style: italic;
     background: none;
     text-shadow: none;
+}
+
+a.sourcelink:link {
+    padding-right: 0.3em;
+    font-size: 0.75em;
+    font-style: normal;
 }
 
 p.poem-heading {
