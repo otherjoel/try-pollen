@@ -1,14 +1,14 @@
-# “Try Pollen”, a test Pollen Site
+# “Secretary of Foreign Relations”
 
-*(Version 0.23)*
+*(A test Pollen site: version 0.24)*
 
-I’ve created this site as a way of playing around with [Pollen](http://pollenpub.com) for myself, but also to help explain it to people who might be interested in using it for themselves. The documentation is well done and improving all the time, and you should really start by reading it thoroughly. But a guided tour through a simple working site might help put the pieces together, and illustrate the benefits of the Pollen system.
+I’ve created this site as a way of playing around with [Pollen](http://pollenpub.com) for myself, but also to help explain it to people who might be interested in using it for themselves. The [official documentation](http://pkg-build.racket-lang.org/doc/pollen/index.html) is well done and improving all the time, and you should really start by reading it thoroughly. But a quasi-guided tour through a simple working site might help put the pieces together, and illustrate the benefits of the Pollen system.
 
-You can see it live at <http://tilde.club/~joeld/secretary>. The design and CSS come from [Tufte CSS](http://www.daveliepmann.com/tufte-css/).
+You can see it live at <http://tilde.club/~joeld/secretary>. The design and CSS come from [Tufte CSS](http://www.daveliepmann.com/tufte-css/). While browsing there, be sure to click on the “◊ Pollen Source” links at the top of the individual pages to see the Pollen markup that was used to generate that page.
 
 The code is not very well commented yet. I’m working on it though.
 
-Thanks to Matthew Butterick and Malcolm Still for their help with my Racket and Pollen questions.
+Thanks to [Matthew Butterick](http://typographyforlawyers.com/about.html) and [Malcolm Still](http://mstill.io) for their help with my Racket and Pollen questions.
 
 ## Setup
 
@@ -18,14 +18,16 @@ Thanks to Matthew Butterick and Malcolm Still for their help with my Racket and 
 3. Clone or download this repo
 4. `raco pollen start` from the main folder, then point your browser to `http://localhost:8080`
 
-To generate the static website into a folder on your desktop, do `raco pollen publish`. See the [docs on `raco pollen`](http://pkg-build.racket-lang.org/doc/pollen/raco-pollen.html) for info on other ways of generating the files.
+If you have GNU Make installed (Mac or Linux) you can run `make` from the main project folder. Run `make spritz` to clean up various working directories, or `make zap` to delete all the output files and start fresh. See the [makefile](makefile) for more info (it’s pretty well commented), and of course see the [docs on `raco pollen`](http://pkg-build.racket-lang.org/doc/pollen/raco-pollen.html) for more on generating the files in Pollen.
 
 ## Points of interest
 
 A brief and incomplete self-guided tour of the code follows. I add new things from time to time, so check back.
 
 * Look at `pollen.rkt` to see the definitions for the markup I use in this project, and the code that glues everything together.
-* Look through the `.pm` files to see what writing in Pollen markup looks like.
+* `feed.xml.pp` is where the RSS feed is generated.
+* The two files `flatland-book.pdf.pp` and `flatland-book.ltx.pp` generate a complete PDF book of Flatland using the same `.poly.pm` source files in the `flatland/` subfolder.
+* Look through the `.pm` files to see what writing in Pollen markup looks like. (Another way to do this is to click the “Pollen source” links on sub-pages at the [live site](http://tilde.club/~joeld/secretary/).)
 
 ### Custom markup
 
@@ -35,11 +37,11 @@ So far I’ve added two minor markup innovations to this project:
 
  2. An `◊index-entry` tag: Intended to mark passages of text for inclusion in a book-style index. A separate page, `bookindex.html`, iterates through the pagetree, gathers up all of these entries and displays them in alphabetical order, grouped by heading. (Basically just like the index at the back of any serious book you have on your shelf.) This is another example of something that would be impossible in Markdown. Of course, on the web, this is something of an anachronism: it would probably be better for the reader to have a normal search form to use. However, besides serving as an illustration, this tag will allow for effortless inclusion of an index when I add support for this in LaTeX/PDF.
 
-     You can see the code used to generate the index at the bottom of `pollen.rkt` and in `template-bookindex.html` file.
+     You can see the code used to generate the index at the bottom of `pollen.rkt` and in the `template-bookindex.html` file.
 
 ### LaTeX/PDF support
 
-Any file with the `.poly.pm` extension can be generated as a `.ltx` file or a `.pdf` file as well as HTML. My LaTeX templates make use of the Tufte-LaTeX document classes, to match the Tufte-CSS in use on the web side.
+Any file with the `.poly.pm` extension can be generated as a pretty darn nice-looking PDF file as well as HTML. My LaTeX templates make use of the Tufte-LaTeX document classes, to match the Tufte-CSS in use on the web side.
 
 In addition, the preprocessor files `flatland/flatland-book.ltx.pp` and `flatland/flatland-book.pdf.pp` generate a complete PDF of the entire Flatland book.
 
@@ -69,11 +71,11 @@ The file `template-index.html` (the template specified in `index.html.pm`) inclu
 
 ### Converting Markdown to Pollen
 
-I’ve created a basic custom writer for [pandoc](http://pandoc.org) that allows you to convert Markdown files (or anything, really) into Pollen markup. The code is in `pandoc-pollen.lua`, and you can use it like so:
+I’ve created a basic custom writer for [pandoc](http://pandoc.org) that allows you to convert Markdown files (or anything, really) into Pollen markup. The code is in `util/pandoc-pollen.lua`, and you can use it like so:
 
     pandoc -t pandoc-pollen.lua -o pollen-out.html.pm sourcefile.txt
 
-Ideally you should open up `pandoc-pollen.lua` and customize the code to match the Pollen markup for your project.
+Ideally you should open up `util/pandoc-pollen.lua` and customize the code to match the Pollen markup for your project.
 
 I’d see three appropriate uses for this. One is for banging out first drafts that consist of long stretches of simple prose. In those cases there's not a lot of structure or metadata to be concerned with at the very outset, and you can take advantage of editors and tools that recognize Markdown syntax. Second, it allows you to more easily accept drafts in other formats from other people who aren't familiar with Pollen concepts. Third (the big one for me) it can help a lot with automating the process of mass-importing old material into a Pollen publication.
 
@@ -81,6 +83,6 @@ I’d see three appropriate uses for this. One is for banging out first drafts t
 
 Besides getting answers to my inane noob questions in the discussion group (which I try my best to keep to a minimum), I’m greatly assisted by being able to peruse the code of a couple of other Pollen creations.
 
-It’s linked from the main Pollen site, but Matthew Butterick's article [Making a dual typed/untyped Racket library](http://unitscale.com/mb/technique/dual-typed-untyped-library.html) was created with Pollen and is a good learning resource. I initially missed the links at the bottom to the Pollen source code for the article, which is very well commented. (The article itself is a little beyond me.)
+It’s linked from the main Pollen site, but Matthew Butterick's article [Making a dual typed/untyped Racket library](http://unitscale.com/mb/technique/dual-typed-untyped-library.html) was created with Pollen and is a good learning resource. I initially missed the links at the bottom to the Pollen source code for the article, which is very well commented.
 
 Malcolm Still also has the code for [his blog](http://mstill.io) in a [public repository](https://github.com/malcolmstill/mstill.io).
