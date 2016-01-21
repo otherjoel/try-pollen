@@ -8,6 +8,8 @@
   ◊; is just my way of coping with this.
   ◊(define path-prefix (if (string-contains (symbol->string here) "/") "../" ""))
   ◊(define source-file (select-from-metas 'here-path metas))
+  ◊(define pollen-source-listing
+      (regexp-replace #px"(.*)\\/(.+).html" (symbol->string here) "\\2.pollen.html"))
   <link rel="stylesheet" href="◊|path-prefix|css/tufte.css"/>
   <link rel="stylesheet" href="◊|path-prefix|css/joel.css"/>
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -35,6 +37,11 @@
             <li><a href="◊pdfname[source-file]">
                   <img src="◊|path-prefix|css/pdficon.png" height="15" alt="Download PDF" />
                   <span class="caps">PDF</span></a></li>
+        }
+        ◊when/block[(string-contains path-prefix "/")]{
+            <li style="width: auto;">
+              <a href="◊|pollen-source-listing|" title="View the Pollen source for this file"
+                 class=" sourcelink code">&loz; Pollen Source</a></li>
         }
     </ul></nav>
 
