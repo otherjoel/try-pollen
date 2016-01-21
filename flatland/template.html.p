@@ -8,6 +8,8 @@
   ◊; is just my way of coping with this.
   ◊(define path-prefix (if (string-contains (symbol->string here) "/") "../" ""))
   ◊(define source-file (select-from-metas 'here-path metas))
+  ◊(define pollen-source-listing
+      (regexp-replace #px"(.*)\\/(.+).html" (symbol->string here) "\\2.pollen.html"))
   <link rel="stylesheet" href="◊|path-prefix|css/tufte.css"/>
   <link rel="stylesheet" href="◊|path-prefix|css/joel.css"/>
   <meta name="viewport" content="width=device-width, initial-scale=1">
