@@ -27,8 +27,9 @@
         ◊when/block[(and (previous here) (not (eq? (parent here) (previous here))))]{
             <li><a href="◊|path-prefix|◊|(previous here)|">&larr; Previous</a></li>
         }
-        ◊when/block[(and (parent here) (not (eq? (parent here) 'pagetree-root)))]{<li><a href="◊|path-prefix|◊|(parent here)|">&uarr; Up</a></li>}
-        ◊when/block[(or (not (parent here)) (eq? (parent here) 'pagetree-root))]{<li><a href="◊|path-prefix|index.html">&uarr; Up</a></li>}
+        ◊when/block[(not (eq? here 'index.html))]{
+            <li><a href="◊|path-prefix|index.html">&uarr; Up</a></li>
+        }
         ◊when/block[(next here)]{
             <li><a href="◊|path-prefix|◊|(next here)|">Next &rarr;</a></li>
         }
