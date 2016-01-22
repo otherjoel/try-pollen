@@ -29,7 +29,7 @@
             <li><a href="◊|path-prefix|◊|(previous here)|">&larr; Previous</a></li>
         }
         <li><a href="../index.html">&uarr; Up</a></li>
-        ◊when/block[(next here)]{
+        ◊when/block[(and (next here) (member (next here) (siblings here)))]{
             <li><a href="◊|path-prefix|◊|(next here)|">Next &rarr;</a></li>
         }
         ◊when/block[(pdfable? source-file)]{

@@ -30,7 +30,7 @@
         ◊when/block[(not (eq? here 'index.html))]{
             <li><a href="◊|path-prefix|index.html">&uarr; Up</a></li>
         }
-        ◊when/block[(next here)]{
+        ◊when/block[(and (next here) (member (next here) (siblings here)))]{
             <li><a href="◊|path-prefix|◊|(next here)|">Next &rarr;</a></li>
         }
         ◊when/block[(pdfable? source-file)]{
