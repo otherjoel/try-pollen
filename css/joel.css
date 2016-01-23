@@ -91,5 +91,19 @@ a.index-entry { text-decoration: none; border: none; }
     letter-spacing: 1px;
 }
 
+hr {
+    border:none;
+    width: 50%;
+    overflow:hidden;
+    height:3em;
+}
+
+hr:before {
+  content:"⁂";
+  color: #fffff8; /* effectively invisible on tufte-css body */
+  font-size: 4rem;
+  letter-spacing:0px;
+}
+
 @media (max-width: 760px) {
     div.poem { max-width: 90%; } }
