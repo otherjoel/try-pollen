@@ -186,7 +186,12 @@ code as a valid X-expression rather than as a string.
     [(ltx pdf) `(txt "\\begin{center}" ,@words "\\end{center}")]
     [else `(div [[style "text-align: center"]] ,@words)]))
 
-(define (doc-section title . text)
+(define (pause)
+  (case (world:current-poly-target)
+    [(ltx pdf) '(txt)]
+    [else '(hr)]))
+
+(define (section title . text)
   (case (world:current-poly-target)
     [(ltx pdf) `(txt "\\section*{" ,title "}"
                  "\\label{sec:" ,title ,(symbol->string (gensym)) "}"
