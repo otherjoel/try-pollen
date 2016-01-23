@@ -22,7 +22,7 @@
     %%
     % Prints a trailing space in a smart way.
     \usepackage{xspace}
-    
+
     % Set the main and monospaced fonts
     %
     \setromanfont[Mapping=tex-text,Ligatures={Common, Rare, Discretionary},Numbers=OldStyle]{Adobe Caslon Pro}
