@@ -42,11 +42,12 @@
 
     [else
       (define first-pass (decode-elements elements
-                                          #:txexpr-elements-proc (compose1 detect-paragraphs splice)
+                                          #:txexpr-elements-proc detect-paragraphs
                                           #:exclude-tags '(script style figure)))
       (make-txexpr 'body null
                    (decode-elements first-pass
                                     #:block-txexpr-proc detect-newthoughts
+                                    #:txexpr-elements-proc splice
                                     #:inline-txexpr-proc hyperlink-decoder
                                     #:string-proc (compose1 smart-quotes smart-dashes)
                                     #:exclude-tags '(script style)))]))
@@ -234,8 +235,8 @@ handle it at the Pollen processing level.
               ; Note the syntax for calling another tag function, margin-note,
               ; from inside this one. Because caption is a list, we need to use
               ; (apply) to pass the values in that list as individual arguments.
-              `(figure [[class "fullwidth"]] ,(apply margin-note caption) (img [[src ,source] [alt ,@caption]]))
-              `(figure ,(apply margin-note caption) (img [[src ,source] [alt ,@caption]])))]))
+              `(figure [[class "fullwidth"]] ,(apply margin-note caption) (img [[src ,source]]))
+              `(figure ,(apply margin-note caption) (img [[src ,source]])))]))
 
 (define (code . text)
   (case (world:current-poly-target)
