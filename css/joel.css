@@ -51,7 +51,7 @@ nav ul {
     margin:0; padding: 0;
 }
 
- nav ul li {
+nav ul li {
      display: inline-block;
      /* border-left: solid #ccc 1px; */
      border-right: solid #ccc 1px;
@@ -89,6 +89,13 @@ a.index-entry { text-decoration: none; border: none; }
     text-transform: uppercase;
     font-size: 90%;
     letter-spacing: 1px;
+}
+
+p + p.pause-before,
+blockquote + p.pause-before,
+table + p.pause-before,
+figure + p.pause-before {
+    margin-top: 4rem;
 }
 
 hr {

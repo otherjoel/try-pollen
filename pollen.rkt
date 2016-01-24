@@ -46,6 +46,7 @@
                                           #:exclude-tags '(script style figure)))
       (make-txexpr 'body null
                    (decode-elements first-pass
+                                    #:block-txexpr-proc detect-newthoughts
                                     #:inline-txexpr-proc hyperlink-decoder
                                     #:string-proc (compose1 smart-quotes smart-dashes)
                                     #:exclude-tags '(script style)))]))
@@ -76,6 +77,26 @@ code as a valid X-expression rather than as a string.
     (if (member (get-tag xs) '(txt txt-noescape))
         (apply string-append (get-elements xs))
         xs))
+
+#|
+detect-newthoughts: called by root above when targeting HTML.
+The ◊newthought tag (defined further below) makes use of the \newthought
+command in Tufte-LaTeX and the .newthought CSS style in Tufte-CSS to start a
+new section with some words in small caps. In LaTeX, this command additionally
+adds some vertical spacing in front of the enclosing paragraph. There is no way
+to do this in HTML/CSS without adding in some Javascript: i.e., there is no
+CSS selector for “p tags that contain a span of class ‘newthought’”. So we can
+handle it at the Pollen processing level.
+|#
+(define (detect-newthoughts block-xpr)
+  (define is-newthought? (λ(x) (and (txexpr? x)
+                                    (eq? 'span (get-tag x))
+                                    (attrs-have-key? x 'class)
+                                    (string=? "newthought" (attr-ref x 'class)))))
+  (if (and(eq? (get-tag block-xpr) 'p)             ; Is it a <p> tag?
+          (findf-txexpr block-xpr is-newthought?)) ; Does it contain a <span class="newthought">?
+      (attr-set block-xpr 'class "pause-before")   ; Add the ‘pause-before’ class
+      block-xpr))                                  ; Otherwise return it unmodified
 
 #|
 ◊numbered-note, ◊margin-figure, ◊margin-note:
@@ -185,11 +206,6 @@ code as a valid X-expression rather than as a string.
   (case (world:current-poly-target)
     [(ltx pdf) `(txt "\\begin{center}" ,@words "\\end{center}")]
     [else `(div [[style "text-align: center"]] ,@words)]))
-
-(define (pause)
-  (case (world:current-poly-target)
-    [(ltx pdf) '(txt)]
-    [else '(hr)]))
 
 (define (section title . text)
   (case (world:current-poly-target)
