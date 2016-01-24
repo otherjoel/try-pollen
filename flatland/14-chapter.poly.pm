@@ -41,7 +41,7 @@ So saying he paused and listened, as if in an ecstasy, to a sound which seemed t
 
 At the word I began to ◊index-entry["disappearance"]{move my body out of Lineland}. As long as any part of me remained in his dominion and in his view, the King kept exclaiming, "I see you, I see you still; you are not moving." But when I had at last moved myself out of his Line, he cried in his shrillest voice, "She is vanished; she is dead." "I am not dead," replied I; "I am simply out of Lineland, that is to say, out of the Straight Line which you call Space, and in the true Space, where I can see things as they are. And at this moment I can see your Line, or side --- or inside as you are pleased to call it; and I can see also the Men and Women on the North and South of you, whom I will now enumerate, describing their order, their size, and the interval between each."
 
-◊figure["img/ch14-fig01.png"]{}
+◊figure["img/ch14-fig01.png"]{How I appeared to the King as I moved through Lineland}
 
 When I had done this at great length, I cried triumphantly, "Does that at last convince you?" And, with that, I once more entered Lineland, taking up the same position as before.
 

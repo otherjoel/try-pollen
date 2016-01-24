@@ -7,7 +7,7 @@
 
 I saw before me a vast multitude of small Straight Lines (which I naturally assumed to be Women) interspersed with other Beings still smaller and of the nature of lustrous points --- all moving to and fro in one and the same Straight Line, and, as nearly as I could judge, with the same velocity.
 
-◊figure["img/ch13-fig01.png"]{}
+◊figure["img/ch13-fig01.png"]{A vision of Lineland}
 
 A noise of confused, multitudinous chirping or twittering issued from them at intervals as long as they were moving; but sometimes they ceased from motion, and then all was silence.
 

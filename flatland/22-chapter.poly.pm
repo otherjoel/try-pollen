@@ -34,4 +34,4 @@ Hence I am absolutely destitute of converts, and, for aught that I can see, the 
 
 That is the hope of my brighter moments. Alas, it is not always so. Heavily weighs on me at times the burdensome reflection that I cannot honestly say I am confident as to the exact shape of the once-seen, oft-regretted Cube; and in my nightly visions the mysterious precept, "Upward, not Northward," haunts me like a soul-devouring Sphinx. It is part of the martyrdom which I endure for the cause of the Truth that there are seasons of mental weakness, when Cubes and Spheres flit away into the background of scarce-possible existences; when the Land of Three Dimensions seems almost as visionary as the Land of One or None; nay, when even this hard wall that bars me from my freedom, these very tablets on which I am writing, and all the substantial realities of Flatland itself, appear no better than the offspring of a diseased imagination, or the baseless fabric of a dream.
 
-◊figure["img/ch22-fig01.png"]{}
+◊figure["img/ch22-fig01.png"]{The End}
