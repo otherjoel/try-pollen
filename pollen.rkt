@@ -222,21 +222,20 @@ handle it at the Pollen processing level.
         [("") `(a [[id ,entry] [class "index-entry"]])]
         [else `(a [[id ,entry] [class "index-entry"]] ,@text)])]))
 
-(define (figure source . caption)
+(define (figure source #:fullwidth [fullwidth #f] . caption)
   (case (world:current-poly-target)
-    [(ltx pdf) `(txt "\\begin{figure}"
-                     "\\includegraphics{" ,source "}"
-                     "\\caption{" ,@(latex-no-hyperlinks-in-margin caption) "}"
-                     "\\end{figure}")]
-    [else `(figure (img [[src ,source]]) (figcaption ,@caption))]))
-
-(define (fullwidthfigure source . caption)
-  (case (world:current-poly-target)
-    [(ltx pdf) `(txt "\\begin{figure}"
-                     "\\includegraphics[width=\\linewidth]{" ,source "}"
-                     "\\caption{" ,@caption "}"
-                     "\\end{figure}")]
-    [else `(figure [[class "fullwidth"]] (img [[src ,source] [alt ,@caption]]) (figcaption ,@caption))]))
+    [(ltx pdf)
+     (define figure-env (if fullwidth "figure*" "figure"))
+     `(txt "\\begin{" ,figure-env "}"
+           "\\includegraphics{" ,source "}"
+           "\\caption{" ,@(latex-no-hyperlinks-in-margin caption) "}"
+           "\\end{" ,figure-env "}")]
+    [else (if fullwidth
+              ; Note the syntax for calling another tag function, margin-note,
+              ; from inside this one. Because caption is a list, we need to use
+              ; (apply) to pass the values in that list as individual arguments.
+              `(figure [[class "fullwidth"]] ,(apply margin-note caption) (img [[src ,source] [alt ,@caption]]))
+              `(figure ,(apply margin-note caption) (img [[src ,source] [alt ,@caption]])))]))
 
 (define (code . text)
   (case (world:current-poly-target)
