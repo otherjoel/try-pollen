@@ -34,6 +34,10 @@ local function escape(s, in_attribute)
     end)
 end
 
+function trim (s)
+  return (string.gsub(s, "^%s*(.-)%s*$", "%1"))
+end
+
 -- Helper function to convert an attributes table into
 -- a string that can be put into Pollen tags:
 -- e.g.: ◊span['class:"author" 'id:"primary" 'living:"true"]{Prof. Leonard}
@@ -42,10 +46,10 @@ local function attributes(attr)
   local attr_table = {}
   for x,y in pairs(attr) do
     if y and y ~= "" then
-      table.insert(attr_table, ' \'' .. x .. ':"' .. escape(y,true) .. '"')
+      table.insert(attr_table, ' #:' .. x .. ' "' .. escape(y,true) .. '"')
     end
   end
-  return table.concat(attr_table)
+  return trim(table.concat(attr_table))
 end
 
 -- Run cmd on a temporary file containing inp and return result.
@@ -81,7 +85,7 @@ function Doc(body, metadata, variables)
   local function add(s)
     table.insert(buffer, s)
   end
-  add('#lang pollen\n')
+  -- add('#lang pollen\n')
   add(body)
 
 --[[ NOT NEEDED, left in for example purposes:
@@ -109,12 +113,16 @@ function Space()
   return " "
 end
 
+function SoftBreak()
+  return "\n"
+end
+
 function LineBreak()
   return '\n'
 end
 
 function Emph(s)
-  return "◊em{" .. s .. "}"
+  return "◊emph{" .. s .. "}"
 end
 
 function Strong(s)
@@ -140,35 +148,34 @@ end
 -- This assumes you have defined a ◊hyperlink tag function;
 -- customize for your needs.
 function Link(s, src, tit)
-  return '◊hyperlink\["' .. escape(src,true) .. '"\]{' .. s .. "}"
+  return '◊hyperlink\["' .. src .. '"\]{' .. s .. "}"
 end
 
 -- This assumes you have defined a ◊figure tag function;
 -- customize for your needs.
 function Image(s, src, tit)
-  return '◊figure\["' .. escape(src,true) .. "\"\]{" ..
-    escape(tit,true) .. "}"
+  return '◊figure\["' .. src .. "\"\]{" .. tit .. "}"
 -- Alternate:
---  return "◊img\['src:\"" .. escape(src,true) .. "\" 'title:\"" ..
+--  return "◊img\[#:src \"" .. src .. "\" #:title \"" ..
 --         escape(tit,true) .. "\"\]{}"
 end
 
 function CaptionedImage(src, tit, caption)
-   return "◊figure\[\"" .. escape(src,true) .. "\"\]{" ..
+   return "◊figure\[\"" .. src .. "\"\]{" ..
       caption .. "}"
 end
 
 function Code(s, attr)
-  return "◊code{" .. escape(s) .. "}"
+  return "◊code{" .. s .. "}"
   -- OLD: return "<code" .. attributes(attr) .. ">" .. escape(s) .. "</code>"
 end
 
 function InlineMath(s)
-  return "\\(" .. escape(s) .. "\\)"
+  return "\\(" .. s .. "\\)"
 end
 
 function DisplayMath(s)
-  return "\\[" .. escape(s) .. "\\]"
+  return "\\[" .. s .. "\\]"
 end
 
 function Note(s)
@@ -204,7 +211,8 @@ function Plain(s)
 end
 
 function Para(s)
-  return "◊p{" .. s .. "}"
+  -- return "◊p{" .. s .. "}"
+  return s
 end
 
 -- lev is an integer, the header level.
@@ -228,7 +236,7 @@ function CodeBlock(s, attr)
     return '<img src="data:image/png;base64,' .. png .. '"/>'
   -- otherwise treat as code (one could pipe through a highlighter)
   else
-    return "◊pre{◊code{" .. escape(s) .. "}}"
+    return "◊blockcode{" .. s .. "}"
   end
 end
 

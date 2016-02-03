@@ -71,13 +71,21 @@ The file `template-index.html` (the template specified in `index.html.pm`) inclu
 
 ### Converting Markdown to Pollen
 
-I’ve created a basic custom writer for [pandoc](http://pandoc.org) that allows you to convert Markdown files (or anything, really) into Pollen markup. The code is in `util/pandoc-pollen.lua`, and you can use it like so:
+I’ve created a basic custom writer for [pandoc](http://pandoc.org) that allows you to convert Markdown files (or anything, really) into Pollen markup. I’d see three appropriate uses for this. One is for banging out first drafts that consist of long stretches of simple prose. In those cases there's not a lot of structure or metadata to be concerned with at the very outset, and you can take advantage of editors and tools that recognize Markdown syntax. Second, it allows you to more easily accept drafts in other formats from other people who aren't familiar with Pollen concepts. Third (the big one for me) it can help a lot with automating the process of mass-importing old material into a Pollen publication.
 
-    pandoc -t pandoc-pollen.lua -o pollen-out.html.pm sourcefile.txt
+The code is in `util/pandoc-pollen.lua`, and the template file is in `util/pandoc-pollen-template.pm`. You can use it like so from within the project root folder:
 
-Ideally you should open up `util/pandoc-pollen.lua` and customize the code to match the Pollen markup for your project.
+    pandoc -t util/pandoc-pollen.lua -o YOUR-OUTPUT.poly.pm --template=util/pandoc-pollen-template.pm SOURCEFILE.md
 
-I’d see three appropriate uses for this. One is for banging out first drafts that consist of long stretches of simple prose. In those cases there's not a lot of structure or metadata to be concerned with at the very outset, and you can take advantage of editors and tools that recognize Markdown syntax. Second, it allows you to more easily accept drafts in other formats from other people who aren't familiar with Pollen concepts. Third (the big one for me) it can help a lot with automating the process of mass-importing old material into a Pollen publication.
+Or to convert a bunch of Markdown files at once, run this Bash script:
+
+    #!/bin/bash
+
+    for f in *.md; do \
+     pandoc --template=util/pandoc-pollen-template.pm -t pandoc-pollen.lua "$f" > "$f.poly.pm"
+    done
+
+You should open up `util/pandoc-pollen.lua` and `util/pandoc-pollen-template.pm` and customize the code to match the Pollen markup for your project. You’ll likely still need to clean up the resulting files once they’ve been sent through the wringer, but this will do a lot of the tedious work for you.
 
 ## Other good examples
 
