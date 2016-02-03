@@ -77,7 +77,7 @@ Do you not remember --- for I, who see all things, discerned last night the phan
 
 The diminished brightness of your eye indicates incredulity. But now prepare to receive proof positive of the truth of my assertions. You cannot indeed see more than one of my sections, or Circles, at a time; for you have no power to raise your eye out of the plane of Flatland; but you can at least see that, as I rise in Space, so my sections become smaller. See now, I will rise; and the effect upon your eye will be that my Circle will become smaller and smaller till it dwindles to a point and finally vanishes.
 
-◊fullwidthfigure["img/ch16-fig01.png"]{ }
+◊figure["img/ch16-fig01.png" #:fullwidth #t]{The Sphere rises through Flatland}
 
 There was no "rising" that I could see; but he diminished and finally vanished. I winked once or twice to make sure that I was not dreaming. But it was no dream. For from the depths of nowhere came forth a hollow voice --- close to my heart it seemed --- "Am I quite gone? Are you convinced now? Well, now I will gradually return to Flatland and you shall see my section become larger and larger."
 
