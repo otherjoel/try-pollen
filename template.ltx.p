@@ -1,3 +1,5 @@
+◊(define (print-if thing fmt)
+   (if thing (format fmt thing) ""))
 \documentclass{tufte-handout}
 \let\orignewcommand\newcommand  % store the original \newcommand
 \let\newcommand\providecommand  % make \newcommand behave like \providecommand
@@ -32,9 +34,9 @@
 \setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
 \graphicspath{{graphics/}}
 
-\title{◊(hash-ref metas 'title)}
-\author{◊(hash-ref metas 'author)}
-\date{◊(pubdate->english (hash-ref metas 'doc-publish-date))}  % if the \date{} command is left out, the current date will be used
+\title{◊(print-if (select-from-metas 'title metas) "~a")}
+\author{◊(print-if (select-from-metas 'author metas) "~a")}
+\date{◊(unless (not (select-from-metas 'doc-publish-date metas)) (pubdate->english (select-from-metas 'doc-publish-date metas)))}  % if the \date{} command is left out, the current date will be used
 
 % The following package makes prettier tables.  We're all about the bling!
 \usepackage{booktabs}

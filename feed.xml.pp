@@ -12,8 +12,8 @@
 |#
 
 (require xml
-         pollen/template
          pollen/file
+         pollen/core
          racket/date
          racket/format)   ; For ~r
 

@@ -1,4 +1,6 @@
 ◊(local-require racket/file racket/system)
+◊(define (print-if thing fmt)
+   (if thing (format fmt thing) ""))
 ◊(define latex-source ◊string-append{
     \documentclass{tufte-handout}
     \let\orignewcommand\newcommand  % store the original \newcommand
@@ -18,7 +20,7 @@
     %\geometry{showframe}% for debugging purposes -- displays the margins
 
     \usepackage{amsmath}
-    
+
     %%
     % Prints a trailing space in a smart way.
     \usepackage{xspace}
@@ -33,7 +35,7 @@
     \setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
     \graphicspath{{graphics/}}
 
-    \title{◊when/block[(select-from-metas 'chapter-num metas)]{◊(hash-ref metas 'chapter-num). }◊(hash-ref metas 'title)}
+    \title{◊(print-if (select-from-metas 'chapter-num metas) "~a. ")◊(select-from-metas 'title metas)}
     % \author{ }
     \date{}  % if the \date{} command is left out, the current date will be used
 

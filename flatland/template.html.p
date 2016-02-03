@@ -21,23 +21,23 @@
   </script>
 </head>
 <body><article>
-    <h1>◊when/block[(select-from-metas 'chapter-num metas)]{
-        ◊(hash-ref metas 'chapter-num). }<i>◊(hash-ref metas 'title)</i></h1>
+    <h1>◊when/splice[(select-from-metas 'chapter-num metas)]{
+        ◊(select-from-metas 'chapter-num metas). }<i>◊(hash-ref metas 'title)</i></h1>
 
     <nav><ul>
-        ◊when/block[(and (previous here) (not (eq? (parent here) (previous here))))]{
+        ◊when/splice[(and (previous here) (not (eq? (parent here) (previous here))))]{
             <li><a href="◊|path-prefix|◊|(previous here)|">&larr; Previous</a></li>
         }
         <li><a href="../index.html">&uarr; Up</a></li>
-        ◊when/block[(and (next here) (member (next here) (siblings here)))]{
+        ◊when/splice[(and (next here) (member (next here) (siblings here)))]{
             <li><a href="◊|path-prefix|◊|(next here)|">Next &rarr;</a></li>
         }
-        ◊when/block[(pdfable? source-file)]{
+        ◊when/splice[(pdfable? source-file)]{
             <li><a href="◊pdfname[source-file]">
                   <img src="◊|path-prefix|css/pdficon.png" height="15" alt="Download PDF" />
                   <span class="caps">PDF</span></a></li>
         }
-        ◊when/block[(string-contains path-prefix "/")]{
+        ◊when/splice[(string-contains path-prefix "/")]{
             <li style="width: auto;">
               <a href="◊|pollen-source-listing|" title="View the Pollen source for this file"
                  class=" sourcelink code">&loz; Pollen Source</a></li>
