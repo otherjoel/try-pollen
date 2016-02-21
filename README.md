@@ -26,7 +26,7 @@ A brief and incomplete self-guided tour of the code follows. I add new things fr
 
 * Look at `pollen.rkt` to see the definitions for the markup I use in this project, and the code that glues everything together.
 * `feed.xml.pp` is where the RSS feed is generated.
-* The two files `flatland-book.pdf.pp` and `flatland-book.ltx.pp` generate a complete PDF book of Flatland using the same `.poly.pm` source files in the `flatland/` subfolder.
+* The two files `flatland-book.pdf.pp` and `flatland-book.ltx.pp` generate a complete PDF book of Flatland using the same `.poly.pm` source files in the `flatland/` subfolder. This PDF file can be sent right to CreateSpace or any other print-on-demand service; as a demonstration, I’ve made the print book [available for order at CreateSpace](https://www.createspace.com/6059658).
 * Look through the `.pm` files to see what writing in Pollen markup looks like. (Another way to do this is to click the “Pollen source” links on sub-pages at the [live site](http://tilde.club/~joeld/secretary/).)
 
 ### Custom markup
