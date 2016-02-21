@@ -268,11 +268,13 @@ handle it at the Pollen processing level.
              (span [[class "latex-sub"]] "e")
              "X")]))
 
-; In HTML these two tags won't look much different. But when outputting to
+; In HTML the <i> and <em> tags won't look much different. But when outputting to
 ; LaTeX, ◊i will italicize multiple blocks of text, where ◊emph should be
 ; used for words or phrases that are intended to be emphasized. In LaTeX,
 ; if the surrounding text is already italic then the emphasized words will be
 ; non-italicized.
+;   A similar approach is offered for boldface text.
+;
 (define (i . text)
   (case (current-poly-target)
     [(ltx pdf) `(txt "{\\itshape " ,@text "}")]
@@ -282,6 +284,16 @@ handle it at the Pollen processing level.
   (case (current-poly-target)
     [(ltx pdf) `(txt "\\emph{" ,@text "}")]
     [else `(em ,@text)]))
+
+(define (b . text)
+  (case (current-poly-target)
+    [(ltf pdf) `(txt "{\\bfseries " ,@text "}")]
+    [else `(b ,@text)]))
+
+(define (strong . text)
+  (case (current-poly-target)
+    [(ltx pdf) `(txt "\\textbf{" ,@text "}")]
+    [else `(strong ,@text)]))
 
 #|
 Typesetting poetry in LaTeX or HTML. HTML uses a straightforward <pre> with
@@ -339,6 +351,17 @@ in LaTeX we need to tell it what the longest line is.
   (case (current-poly-target)
     [(ltx pdf) `(txt "\\textcolor{gray}{" ,@text "}")]
     [else `(span [[style "color: #777"]] ,@text)]))
+
+(define (video source #:loop [loop #f] #:autoplay [autoplay #f] #:image [thumbnail #f] #:link [link #f])
+  (case (current-poly-target)
+    [(ltx pdf) (if thumbnail (figure thumbnail "") '(txt ""))]
+    [else (let*
+            ([vid-tag `(video [[src ,source]])]
+             [vid-tag (if loop (attr-set vid-tag 'loop "loop") vid-tag)]
+             [vid-tag (if autoplay (attr-set vid-tag 'autoplay "autoplay") vid-tag)]
+             [vid-tag (if thumbnail (attr-set vid-tag 'poster thumbnail) vid-tag)]
+             [vid-tag (if link `(a [[href ,link]] ,vid-tag) vid-tag)])
+            `(p [[class "video"]] ,vid-tag))]))
 
 #|
 Index functionality: allows creation of a book-style keyword index.

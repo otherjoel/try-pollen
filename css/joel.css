@@ -98,6 +98,15 @@ figure + p.pause-before {
     margin-top: 4rem;
 }
 
+p.video {
+    text-align: center;
+}
+
+p.video a {
+    background: none;
+    text-shadow: none;
+}
+
 hr {
     border:none;
     width: 50%;
