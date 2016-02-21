@@ -20,7 +20,7 @@
     ◊(map ->html (select-from-doc 'body here))
 
     <p>
-        <a href="colophon.html">Notes</a> &middot;
+        <a href="colophon.html">Colophon</a> &middot;
         <a href="bookindex.html">Index</a> &middot;
         <a href="feed.xml"><span class="caps">RSS</span> Feed</a>
     </p>
@@ -51,7 +51,7 @@
     ◊; title and summary, then we list all the children of posts.html that
     ◊; specify that series in their meta definitions.
 
-    ◊;(->html (list-posts-in-series 'series/notebook.html #:author #f))
+    ◊(->html (list-posts-in-series 'series/notebook.html #:author #f))
 
     ◊(->html (list-posts-in-series 'series/poems.html))
 
@@ -63,7 +63,7 @@
                 <span class="marginnote"><img src="flatland/img/flatland-cover.png" /></span></p>
 
             <p>&rarr; <a href="flatland/flatland-book.pdf"><img src="css/pdficon.png" height="15" alt="PDF Download" />
-                Download the complete book</a></p>
+                Download the complete book</a> or <a href="https://www.createspace.com/6059658">order the print version</a></p>
 
             ◊(define (chapter-li chapter)
                      (->html `(li (span [[class "smallcaps"]]
