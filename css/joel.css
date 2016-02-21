@@ -68,6 +68,7 @@ nav ul li a:link {
     background: none;
     text-shadow: none;
 }
+nav ul li a:link img { width: auto; }
 
 a.sourcelink:link {
     padding-right: 0.3em;
@@ -106,6 +107,8 @@ p.video a {
     background: none;
     text-shadow: none;
 }
+
+video { width: 100%; }
 
 hr {
     border:none;

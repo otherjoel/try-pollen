@@ -35,7 +35,7 @@
         }
         ◊when/splice[(pdfable? source-file)]{
             <li><a href="◊pdfname[source-file]">
-                  <img src="◊|path-prefix|css/pdficon.png" height="15" alt="Download PDF" />
+                  <img src="◊|path-prefix|css/pdficon.png" width="15" height="15" alt="Download PDF" />
                   <span class="caps" style="font-style: normal">PDF</span></a></li>
         }
         ◊when/splice[(string-contains path-prefix "/")]{
