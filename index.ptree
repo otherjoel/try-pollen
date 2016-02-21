@@ -6,8 +6,10 @@ index.html
     posts/02-milkweed.html
     posts/03-strange.html
     posts/04-en-route.html
+    posts/web-books.html
 }
 ◊series.html{
+    series/notebook.html
     series/poems.html
 }
 flatland/00-preface.html
