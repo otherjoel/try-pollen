@@ -28,7 +28,7 @@
             <li><a href="◊|path-prefix|◊|(previous here)|">&larr; Previous</a></li>
         }
         ◊when/splice[(not (eq? here 'index.html))]{
-            <li><a href="◊|path-prefix|index.html">&uarr; Up</a></li>
+            <li><a href="◊|path-prefix|index.html">&uarr; Home</a></li>
         }
         ◊when/splice[(and (next here) (member (next here) (siblings here)))]{
             <li><a href="◊|path-prefix|◊|(next here)|">Next &rarr;</a></li>
@@ -47,5 +47,10 @@
 
 	◊(map ->html (select-from-doc 'body here))
 </article>
+◊when/splice[(equal? "Joel Dueck" (select-from-metas 'author here))]{
+    <footer><hr>
+    <p>My name is <a href="https://keybase.io/joeld">Joel Dueck</a>. I’ve been <a href="https://thelocalyarn.com/blog">writing online</a> since 1998. You can contact me on the Twitters <a href="https://twitter.com/joeld">@joeld</a> or by email at <a href="mailto:joel@jdueck.net">joel@jdueck.net</a>, or see my <a href="https://github.com/otherjoel">Github profile</a>. <a href="◊|path-prefix|colophon.html">Read about this site</a>.</p>
+    </footer>
+}
 </body>
 </html>
