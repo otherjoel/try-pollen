@@ -1,10 +1,10 @@
 # “Secretary of Foreign Relations”
 
-*(A test Pollen site: version 0.24)*
+*(A test Pollen site: version 0.25)*
 
-I’ve created this site as a way of playing around with [Pollen](http://pollenpub.com) for myself, but also to help explain it to people who might be interested in using it for themselves. The [official documentation](http://pkg-build.racket-lang.org/doc/pollen/index.html) is well done and improving all the time, and you should really start by reading it thoroughly. But a quasi-guided tour through a simple working site might help put the pieces together, and illustrate the benefits of the Pollen system.
+I’ve created this site to experiment with [making websites that are also printed books](http://tilde.club/~joeld/secretary/posts/web-books.html) using [Pollen](http://pollenpub.com), as well as to help explain Pollen to people who might be interested in using it for themselves. The [official Pollen documentation](http://pkg-build.racket-lang.org/doc/pollen/index.html) is well done and improving all the time, and you should really start by reading it thoroughly. But a quasi-guided tour through a simple working site might help put the pieces together, and illustrate the benefits of the Pollen system.
 
-You can see it live at <http://tilde.club/~joeld/secretary>. The design and CSS come from [Tufte CSS](http://www.daveliepmann.com/tufte-css/). While browsing there, be sure to click on the “◊ Pollen Source” links at the top of the individual pages to see the Pollen markup that was used to generate that page.
+You can see the site live at <http://tilde.club/~joeld/secretary>. While browsing there, be sure to click on the “◊ Pollen Source” links at the top of the individual pages to see the Pollen markup that was used to generate that page.
 
 The code is not very well commented yet. I’m working on it though.
 
@@ -89,7 +89,7 @@ You should open up `util/pandoc-pollen.lua` and `util/pandoc-pollen-template.pm`
 
 ## Other good examples
 
-Besides getting answers to my inane noob questions in the discussion group (which I try my best to keep to a minimum), I’m greatly assisted by being able to peruse the code of a couple of other Pollen creations.
+Besides getting answers to my inane newbie questions in the discussion group (which I try my best to keep to a minimum), I’m greatly assisted by being able to peruse the code of a couple of other Pollen creations.
 
 It’s linked from the main Pollen site, but Matthew Butterick's article [Making a dual typed/untyped Racket library](http://unitscale.com/mb/technique/dual-typed-untyped-library.html) was created with Pollen and is a good learning resource. I initially missed the links at the bottom to the Pollen source code for the article, which is very well commented.
 
