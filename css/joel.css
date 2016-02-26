@@ -49,6 +49,7 @@ nav {
 
 nav ul {
     margin:0; padding: 0;
+    width: 100%;
 }
 
 nav ul li {
@@ -112,17 +113,26 @@ video { width: 100%; }
 
 hr {
     border:none;
-    width: 50%;
     overflow:hidden;
     height:3em;
+    text-align: center;
 }
 
 hr:before {
   content:"⁂";
-  color: #fffff8; /* effectively invisible on tufte-css body */
-  font-size: 4rem;
+  color: #555;
+  font-size: 2rem;
   letter-spacing:0px;
+  margin: 0;
+  padding: 0;
 }
+
+footer {
+    text-align: center;
+    font-size: 1rem;
+}
+
+footer p { width: 100%; font-size: 1.125rem; }
 
 @media (max-width: 760px) {
     div.poem { max-width: 90%; } }
