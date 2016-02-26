@@ -1,4 +1,6 @@
 ◊(local-require racket/file racket/system)
+◊(define (print-if thing fmt)
+   (if thing (format fmt thing) ""))
 ◊(define latex-source ◊string-append{
     \documentclass{tufte-handout}
     \let\orignewcommand\newcommand  % store the original \newcommand
@@ -34,7 +36,7 @@
     \graphicspath{{graphics/}}
 
     \title{◊(hash-ref metas 'title)}
-    \author{◊(hash-ref metas 'author)}
+    \author{◊(print-if (select-from-metas 'author metas) "~a")}
     \date{◊(pubdate->english (hash-ref metas 'doc-publish-date))}  % if the \date{} command is left out, the current date will be used
 
     % The following package makes prettier tables.  We're all about the bling!
