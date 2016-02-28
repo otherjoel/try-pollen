@@ -261,6 +261,7 @@ label.margin-toggle:not(.sidenote-number) { display: none; }
                                                                    margin: 1rem 2.5%;
                                                                    vertical-align: baseline;
                                                                    position: relative; }
+                            label.margin-toggle, label.sidenote-number { color: red; }
                             label { cursor: pointer; }
                             pre.code { width: 90%;
                                        padding: 0; }
