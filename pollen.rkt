@@ -66,7 +66,7 @@ code as a valid X-expression rather than as a string.
 |#
 (define (txt-decode xs)
     (if (member (get-tag xs) '(txt txt-noescape))
-        (apply string-append (get-elements xs))
+        (get-elements xs)
         xs))
 
 #|
