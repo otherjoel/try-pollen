@@ -38,6 +38,7 @@ other-html := posts.html series.html
 # definitions, not rules).
 all: $(posts-sourcelistings) $(posts-html) $(flatland-sourcelistings) $(flatland-html) \
 	$(posts-pdf) $(flatland-pdf) $(other-html) flatland/flatland-book.pdf index.html feed.xml bookindex.html
+all: ## Re-generate site including PDFs and RSS
 
 # My dependencies are roughly as follows: for each .poly.pm file I want to
 # generate an HTML file, a PDF file, and a .pollen.html file (so people can see
@@ -100,7 +101,7 @@ $(other-html): pollen.rkt template.html.p
 $(other-html): %.html: %.html.pm
 	raco pollen render $@
 
-.PHONY: all publish spritz zap
+.PHONY: all publish spritz zap help
 
 # Doing ‘make publish’ automatically upload everything except the Pollen source
 # files to the public web server. The SECRETARY_SRV is defined as an environment
@@ -108,7 +109,7 @@ $(other-html): %.html: %.html.pm
 # Make sure yours is of the form ‘username@serverdomain.com:public_html/’
 # See also the docs for ‘raco pollen publish’:
 #  http://pkg-build.racket-lang.org/doc/pollen/raco-pollen.html
-publish:
+publish: ## Rsync the website to the public web server
 	rm -rf posts/pollen-latex-work flatland/pollen-latex-work; \
 	raco pollen publish; \
     rsync -av ~/Desktop/publish/ -e ssh $(SECRETARY_SRV) --exclude=.git --exclude=.DS_Store --exclude=.gitignore --exclude 'template*.*'; \
@@ -116,13 +117,19 @@ publish:
 
 # ‘make spritz’ just cleans up the pollen-latex-work files; ‘make zap’ deletes
 # all output files as well.
-spritz:
+spritz: ## Just cleans up LaTeX working folders
 	rm -rf posts/pollen-latex-work flatland/pollen-latex-work pollen-latex-work
 
-zap:
+zap: ## Resets Pollen cache, deletes LaTeX working folders, feed.xml and all .html, .ltx files
 	rm -rf posts/pollen-latex-work flatland/pollen-latex-work pollen-latex-work; \
 	rm posts/*.html posts/*.ltx; \
 	rm flatland/*.html flatland/*.pdf flatland/*.ltx; \
 	rm feed.xml; \
 	rm *.html *.pdf *.xml *.ltx; \
 	raco pollen reset
+
+# Self-documenting make file (http://marmelab.com/blog/2016/02/29/auto-documented-makefile.html)
+help: ## Displays this help screen
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
+
+.DEFAULT_GOAL := help

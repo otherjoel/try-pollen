@@ -18,7 +18,7 @@ Thanks to [Matthew Butterick](http://typographyforlawyers.com/about.html) and [M
 3. Clone or download this repo
 4. `raco pollen start` from the main folder, then point your browser to `http://localhost:8080`
 
-If you have GNU Make installed (Mac or Linux) you can run `make` from the main project folder. Run `make spritz` to clean up various working directories, or `make zap` to delete all the output files and start fresh. See the [makefile](makefile) for more info (it’s pretty well commented), and of course see the [docs on `raco pollen`](http://pkg-build.racket-lang.org/doc/pollen/raco-pollen.html) for more on generating the files in Pollen.
+If you have GNU Make installed (Mac or Linux) you can run `make all` from the main project folder. Run `make spritz` to clean up various working directories, or `make zap` to delete all the output files and start fresh. See the [makefile](makefile) for more info (it’s pretty well commented), and of course see the [docs on `raco pollen`](http://pkg-build.racket-lang.org/doc/pollen/raco-pollen.html) for more on generating the files in Pollen.
 
 ## Points of interest
 
