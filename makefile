@@ -110,9 +110,9 @@ $(other-html): %.html: %.html.pm
 # See also the docs for ‘raco pollen publish’:
 #  http://pkg-build.racket-lang.org/doc/pollen/raco-pollen.html
 publish: ## Rsync the website to the public web server
-	rm -rf posts/pollen-latex-work flatland/pollen-latex-work; \
+	rm -rf posts/pollen-latex-work flatland/pollen-latex-work pollen-latex-work; \
 	raco pollen publish; \
-    rsync -av ~/Desktop/publish/ -e ssh $(SECRETARY_SRV) --exclude=.git --exclude=.DS_Store --exclude=.gitignore --exclude 'template*.*'; \
+    rsync -av ~/Desktop/publish/ -e 'ssh -p $(WEB_SRV_PORT)' $(SECRETARY_SRV) --delete-before --exclude=.git --exclude=.DS_Store --exclude=.gitignore --exclude 'template*.*'; \
     rm -rf ~/Desktop/publish
 
 # ‘make spritz’ just cleans up the pollen-latex-work files; ‘make zap’ deletes
