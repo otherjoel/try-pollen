@@ -206,7 +206,7 @@
 
     \par\smallcaps{This edition published \the\year\ by \thanklesspublisher}
 
-    \par\smallcaps{tilde.club/\textasciitilde{}joeld/secretary}
+    \par\smallcaps{thelocalyarn.com/excursus/secretary}
 
     \par This work has been identified as being free of known restrictions under copyright law, including all related and neighboring rights. You can copy, modify, distribute and perform the work, even for commercial purposes, all without asking permission.
 

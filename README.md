@@ -2,9 +2,9 @@
 
 *(A test Pollen site: version 0.25)*
 
-I’ve created this site to experiment with [making websites that are also printed books](http://tilde.club/~joeld/secretary/posts/web-books.html) using [Pollen](http://pollenpub.com), as well as to help explain Pollen to people who might be interested in using it for themselves. The [official Pollen documentation](http://pkg-build.racket-lang.org/doc/pollen/index.html) is well done and improving all the time, and you should really start by reading it thoroughly. But a quasi-guided tour through a simple working site might help put the pieces together, and illustrate the benefits of the Pollen system.
+I’ve created this site to experiment with [making websites that are also printed books](https://thelocalyarn/excursus/secretary/posts/web-books.html) using [Pollen](http://pollenpub.com), as well as to help explain Pollen to people who might be interested in using it for themselves. The [official Pollen documentation](http://pkg-build.racket-lang.org/doc/pollen/index.html) is well done and improving all the time, and you should really start by reading it thoroughly. But a quasi-guided tour through a simple working site might help put the pieces together, and illustrate the benefits of the Pollen system.
 
-You can see the site live at <http://tilde.club/~joeld/secretary>. While browsing there, be sure to click on the “◊ Pollen Source” links at the top of the individual pages to see the Pollen markup that was used to generate that page.
+You can see the site live at <https://thelocalyarn/excursus/secretary>. While browsing there, be sure to click on the “◊ Pollen Source” links at the top of the individual pages to see the Pollen markup that was used to generate that page.
 
 The code is not very well commented yet. I’m working on it though.
 
@@ -27,7 +27,7 @@ A brief and incomplete self-guided tour of the code follows. I add new things fr
 * Look at `pollen.rkt` to see the definitions for the markup I use in this project, and the code that glues everything together.
 * `feed.xml.pp` is where the RSS feed is generated.
 * The two files `flatland-book.pdf.pp` and `flatland-book.ltx.pp` generate a complete PDF book of Flatland using the same `.poly.pm` source files in the `flatland/` subfolder. This PDF file can be sent right to CreateSpace or any other print-on-demand service; as a demonstration, I’ve made the print book [available for order at CreateSpace](https://www.createspace.com/6059658).
-* Look through the `.pm` files to see what writing in Pollen markup looks like. (Another way to do this is to click the “Pollen source” links on sub-pages at the [live site](http://tilde.club/~joeld/secretary/).)
+* Look through the `.pm` files to see what writing in Pollen markup looks like. (Another way to do this is to click the “Pollen source” links on sub-pages at the [live site](https://thelocalyarn/excursus/secretary/).)
 
 ### Custom markup
 
