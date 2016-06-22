@@ -10,7 +10,7 @@ The files under this repository are owned by myself (Joel Dueck) and are not lic
 
 * Included poems are owned by their respective authors.
 
-* The CSS styles in `tufte.css` are owned by the [Tufte CSS project](https://github.com/edwardtufte/tufte-css), where as of January 2016 they are provided under the MIT license.
+* The CSS styles in `tufte.css` come from the [Tufte CSS project](https://github.com/edwardtufte/tufte-css), where as of January 2016 they are provided under the MIT license.
 
 ## Public Domain Mark 1.0
 
