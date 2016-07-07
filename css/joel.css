@@ -26,7 +26,7 @@ div.poem {
 
 /* *** */
 pre.verse {
-  font-family: ETBembo, Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
+  font-family: et-book, Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
 	margin: 1.5em auto;
 	width: auto;
     display:table;
