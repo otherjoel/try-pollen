@@ -62,7 +62,7 @@
                 <input type="checkbox" id="margin-bookcover" class="margin-toggle" />
                 <span class="marginnote"><img src="flatland/img/flatland-cover.png" /></span></p>
 
-            <p>&rarr; <a href="flatland/flatland-book.pdf"><img src="css/pdficon.png" height="15" alt="PDF Download" />
+            <p>&rarr; <a href="flatland/flatland-book.pdf"><img src="css/pdficon.png" height="15" width="15" style="width:auto" alt="PDF Download" />
                 Download the complete book</a> or <a href="https://www.createspace.com/6059658">order the print version</a></p>
 
             ◊(define (chapter-li chapter)
