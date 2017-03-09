@@ -4,7 +4,7 @@
 
 I’ve created this site to experiment with [making websites that are also printed books](https://thelocalyarn/excursus/secretary/posts/web-books.html) using [Pollen](http://pollenpub.com), as well as to help explain Pollen to people who might be interested in using it for themselves. The [official Pollen documentation](http://pkg-build.racket-lang.org/doc/pollen/index.html) is well done and improving all the time, and you should really start by reading it thoroughly. But a quasi-guided tour through a simple working site might help put the pieces together, and illustrate the benefits of the Pollen system.
 
-You can see the site live at <https://thelocalyarn/excursus/secretary>. While browsing there, be sure to click on the “◊ Pollen Source” links at the top of the individual pages to see the Pollen markup that was used to generate that page.
+You can see the site live at <https://thelocalyarn.com/excursus/secretary>. While browsing there, be sure to click on the “◊ Pollen Source” links at the top of the individual pages to see the Pollen markup that was used to generate that page.
 
 The code is not very well commented yet. I’m working on it though.
 
@@ -33,7 +33,7 @@ A brief and incomplete self-guided tour of the code follows. I add new things fr
 
 So far I’ve added two minor markup innovations to this project:
 
- 1. A `◊verse` tag for poetry: This is one example of any area that Markdown does not (and likely will never) address properly. By using this tag I can output the exact HTML markup I need, which I can then style with CSS to center based on the width of the longest line. In LaTeX/PDF, this tag also automatically replaces double-spaces with `\vin` to indent lines.
+ 1. A `◊verse` tag for poetry: This is one example of an area that Markdown does not (and likely will never) address properly. By using this tag I can output the exact HTML markup I need, which I can then style with CSS to center based on the width of the longest line. In LaTeX/PDF, this tag also automatically replaces double-spaces with `\vin` to indent lines.
 
  2. An `◊index-entry` tag: Intended to mark passages of text for inclusion in a book-style index. A separate page, `bookindex.html`, iterates through the pagetree, gathers up all of these entries and displays them in alphabetical order, grouped by heading. (Basically just like the index at the back of any serious book you have on your shelf.) This is another example of something that would be impossible in Markdown. Of course, on the web, this is something of an anachronism: it would probably be better for the reader to have a normal search form to use. However, besides serving as an illustration, this tag will allow for effortless inclusion of an index when I add support for this in LaTeX/PDF.
 
