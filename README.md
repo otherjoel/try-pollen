@@ -14,7 +14,7 @@ Thanks to [Matthew Butterick](http://typographyforlawyers.com/about.html) and [M
 
 1. Install Pollen ([instructions](http://pkg-build.racket-lang.org/doc/pollen/Installation.html))
 2. Install libuuid at the command line with `raco pkg install libuuid`
-3. (Optional) to be able to generate PDFs as well as HTML, you should have a working installation of LaTeX (specifically `xelatex`) and the [Tufte-Latex classes](https://tufte-latex.github.io/tufte-latex/) installed. If you're on a Mac, installing [MacTeX](http://tug.org/mactex/) will satisfy both of these. (Note, if your shell is something other than bash, you'll need to take steps to ensure `/Library/TeX/texbin` is on your PATH.)
+3. (Optional) To be able to generate PDFs as well as HTML, you should have a working installation of LaTeX (specifically `xelatex`) and the [Tufte-Latex classes](https://tufte-latex.github.io/tufte-latex/) installed. If you're on a Mac, installing [MacTeX](http://tug.org/mactex/) will satisfy both of these. (Note, if your shell is something other than bash, you'll need to take steps to ensure `/Library/TeX/texbin` is on your PATH.) Also see the note in the [LaTeX/PDF](#latex-pdfsupport) section (further down) on specifying fonts that you have installed on your system, otherwise PDF builds may fail.
 3. Clone or download this repo
 4. `raco pollen start` from the main folder, then point your browser to `http://localhost:8080`
 
@@ -45,7 +45,7 @@ Any file with the `.poly.pm` extension can be generated as a pretty darn nice-lo
 
 In addition, the preprocessor files `flatland/flatland-book.ltx.pp` and `flatland/flatland-book.pdf.pp` generate a complete PDF of the entire Flatland book.
 
-You may want to edit the fonts specified `\setromanfont` and `\setmonofont` commands in both `template.ltx.p` and `template.pdf.p`; I have them set to Adobe Caslon Pro and Triplicate, respectively, so if you don't have those fonts installed you may get errors.
+You may want to edit the fonts specified `\setromanfont` and `\setmonofont` commands in  `template.ltx.p`, `template.pdf.p` and `flatland/flatland-book.ltx.pp`; I have them set to Adobe Caslon Pro and Triplicate, respectively, so if you don't have those fonts installed you may get errors.
 
 The official Pollen docs describe [the basic method for LaTeX and PDF targets](http://pkg-build.racket-lang.org/doc/pollen/fourth-tutorial.html), but my method differs somewhat due to the need for additional cleverness.
 
@@ -91,6 +91,8 @@ You should open up `util/pandoc-pollen.lua` and `util/pandoc-pollen-template.pm`
 
 Besides getting answers to my inane newbie questions in the discussion group (which I try my best to keep to a minimum), I’m greatly assisted by being able to peruse the code of a couple of other Pollen creations.
 
-It’s linked from the main Pollen site, but Matthew Butterick's article [Making a dual typed/untyped Racket library](http://unitscale.com/mb/technique/dual-typed-untyped-library.html) was created with Pollen and is a good learning resource. I initially missed the links at the bottom to the Pollen source code for the article, which is very well commented.
+Matthew Butterick's article [Making a dual typed/untyped Racket library](http://unitscale.com/mb/technique/dual-typed-untyped-library.html) was created with Pollen and is a good learning resource. I initially missed the links at the bottom to the Pollen source code for the article, which is very well commented.
 
 Malcolm Still also has the code for [his blog](http://mstill.io) in a [public repository](https://github.com/malcolmstill/mstill.io).
+
+Matthew Butterick also keeps [a list of other Pollen projects and guides](https://docs.racket-lang.org/pollen/Getting_more_help.html?q=pollen#%28part._.More_projects___guides%29) in the official Pollen documentation.
