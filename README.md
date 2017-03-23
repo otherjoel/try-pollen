@@ -45,7 +45,7 @@ Any file with the `.poly.pm` extension can be generated as a pretty darn nice-lo
 
 In addition, the preprocessor files `flatland/flatland-book.ltx.pp` and `flatland/flatland-book.pdf.pp` generate a complete PDF of the entire Flatland book.
 
-You may want to edit the fonts specified `\setromanfont` and `\setmonofont` commands in  `template.ltx.p`, `template.pdf.p` and `flatland/flatland-book.ltx.pp`; I have them set to Adobe Caslon Pro and Triplicate, respectively, so if you don't have those fonts installed you may get errors.
+You may want to edit the fonts specified in the `\setromanfont` and `\setmonofont` commands in  `template.ltx.p`, `template.pdf.p` and `flatland/flatland-book.ltx.pp`; I have them set to Adobe Caslon Pro and Triplicate, respectively, so if you don't have those fonts installed you will get errors.
 
 The official Pollen docs describe [the basic method for LaTeX and PDF targets](http://pkg-build.racket-lang.org/doc/pollen/fourth-tutorial.html), but my method differs somewhat due to the need for additional cleverness.
 
