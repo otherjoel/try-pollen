@@ -2,7 +2,7 @@
 
 *(A test Pollen site: version 0.25)*
 
-I’ve created this site to experiment with [making websites that are also printed books](https://thelocalyarn/excursus/secretary/posts/web-books.html) using [Pollen](http://pollenpub.com), as well as to help explain Pollen to people who might be interested in using it for themselves. The [official Pollen documentation](http://pkg-build.racket-lang.org/doc/pollen/index.html) is well done and improving all the time, and you should really start by reading it thoroughly. But a quasi-guided tour through a simple working site might help put the pieces together, and illustrate the benefits of the Pollen system.
+I’ve created this site to experiment with [making websites that are also printed books](https://thelocalyarn.com/excursus/secretary/posts/web-books.html) using [Pollen](http://pollenpub.com), as well as to help explain Pollen to people who might be interested in using it for themselves. The [official Pollen documentation](http://pkg-build.racket-lang.org/doc/pollen/index.html) is well done and improving all the time, and you should really start by reading it thoroughly. But a quasi-guided tour through a simple working site might help put the pieces together, and illustrate the benefits of the Pollen system.
 
 You can see the site live at <https://thelocalyarn.com/excursus/secretary>. While browsing there, be sure to click on the “◊ Pollen Source” links at the top of the individual pages to see the Pollen markup that was used to generate that page.
 
