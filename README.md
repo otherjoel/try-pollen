@@ -6,9 +6,13 @@ I’ve created this site to experiment with [making websites that are also print
 
 You can see the site live at <https://thelocalyarn.com/excursus/secretary>. While browsing there, be sure to click on the “◊ Pollen Source” links at the top of the individual pages to see the Pollen markup that was used to generate that page.
 
-The code is not very well commented yet. I’m working on it though.
-
 Thanks to [Matthew Butterick](http://typographyforlawyers.com/about.html) and [Malcolm Still](http://mstill.io) for their help with my Racket and Pollen questions.
+
+### Support
+
+If you find this project helpful, consider chipping a few bucks towards the author!
+
+<a href='https://ko-fi.com/B0B1MJ3B' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://az743702.vo.msecnd.net/cdn/kofi1.png?v=0' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
 ## Setup
 
