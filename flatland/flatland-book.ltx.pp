@@ -1,6 +1,6 @@
 #lang pollen
 
-◊(local-require racket/file racket/system pollen/file racket/string pollen/template)
+◊(local-require pollen/file racket/string pollen/pagetree)
 
 ◊(define main-pagetree (dynamic-require "../index.ptree" 'doc))
 
