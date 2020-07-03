@@ -1,19 +1,19 @@
-#lang racket
+#lang racket/base
 
-(require pollen/decode
+(require pollen/core
+         pollen/decode
          pollen/setup
-         pollen/file
-         txexpr
-         pollen/tag
-         pollen/template
-         pollen/core
-         pollen/pagetree
          racket/date
-         libuuid)            ; for uuid-generate
+         racket/list
+         racket/match
+         racket/path
+         racket/string
+         (only-in srfi/13
+                  string-contains)
+         txexpr)
 
 ; We want srfi/13 for string-contains but need to avoid collision between
 ; its string-replace function and the one in racket/string
-(require (only-in srfi/13 string-contains))
 
 (provide add-between
          attr-ref
@@ -105,7 +105,7 @@ handle it at the Pollen processing level.
 |#
 
 (define (numbered-note . text)
-    (define refid (uuid-generate))
+    (define refid (number->string (equal-hash-code (car text))))
     (case (current-poly-target)
       [(ltx pdf)
        `(txt "\\footnote{" ,@(latex-no-hyperlinks-in-margin text) "}")]
@@ -115,7 +115,7 @@ handle it at the Pollen processing level.
             (span [(class "sidenote")] ,@text))]))
 
 (define (margin-figure source . caption)
-    (define refid (uuid-generate))
+    (define refid (number->string (equal-hash-code source)))
     (case (current-poly-target)
       [(ltx pdf)
        `(txt "\\begin{marginfigure}"
@@ -128,7 +128,7 @@ handle it at the Pollen processing level.
             (span [[class "marginnote"]] (img [[src ,source]]) ,@caption))]))
 
 (define (margin-note . text)
-    (define refid (uuid-generate))
+    (define refid (number->string (equal-hash-code (car text))))
     (case (current-poly-target)
       [(ltx pdf)
        `(txt "\\marginnote{" ,@(latex-no-hyperlinks-in-margin text) "}")]

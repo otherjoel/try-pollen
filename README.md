@@ -17,8 +17,7 @@ If you find this project helpful, consider chipping a few bucks towards the auth
 ## Setup
 
 1. Install Pollen ([instructions](http://pkg-build.racket-lang.org/doc/pollen/Installation.html))
-2. Install libuuid at the command line with `raco pkg install libuuid`
-3. (Optional) To be able to generate PDFs as well as HTML, you should have a working installation of LaTeX (specifically `xelatex`) and the [Tufte-Latex classes](https://tufte-latex.github.io/tufte-latex/) installed. If you're on a Mac, installing [MacTeX](http://tug.org/mactex/) will satisfy both of these. (Note, if your shell is something other than bash, you'll need to take steps to ensure `/Library/TeX/texbin` is on your PATH.) Also see the note in the [LaTeX/PDF](#latexpdf-support) section (further down) on specifying fonts that you have installed on your system, otherwise PDF builds may fail.
+2. (Optional) To be able to generate PDFs as well as HTML, you should have a working installation of LaTeX (specifically `xelatex`) and the [Tufte-Latex classes](https://tufte-latex.github.io/tufte-latex/) installed. If you're on a Mac, installing [MacTeX](http://tug.org/mactex/) will satisfy both of these. (Note, if your shell is something other than bash, you'll need to take steps to ensure `/Library/TeX/texbin` is on your PATH.) Also see the note in the [LaTeX/PDF](#latexpdf-support) section (further down) on specifying fonts that you have installed on your system, otherwise PDF builds may fail.
 3. Clone or download this repo
 4. `raco pollen start` from the main folder, then point your browser to `http://localhost:8080`
 
