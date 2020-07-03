@@ -1,4 +1,4 @@
-#lang racket
+#lang racket/base
 
 #|
   Pollen preprocessor file to generate a valid Atom 1.0 XML feed from a given
@@ -6,24 +6,19 @@
   following minor changes:
    - Use Atom instead of RSS 2.0, and RFC 3339 dates
    - Allow additional filtering to determine which pages should be included
-   - Allow poly sources to be loaded if .html.pm source does not exist
    - Add a call to (flatten) to support nested pagetrees
    -
 |#
 
-(require xml
+(require pollen/core
          pollen/file
-         pollen/core
          racket/date
-         racket/format)   ; For ~r
-
-#|
-  Really only need datestring->date from here. If you wanted to make this file
-  entirely self-contained you could copy/paste that function's definition here.
-  This is the function that interprets datestrings in the markup sources, in
-  this case in the format "yyyy-mm-dd" or "yyyy-mm-dd hh:mm".
-|#
-(require (only-in "pollen.rkt" datestring->date))
+         racket/format
+         racket/list
+         racket/string
+         xml
+         (only-in "pollen.rkt"
+                  datestring->date))
 
 #|
   Customizeable values
@@ -88,8 +83,7 @@
   This function builds a complete X-expression representation of an RSS feed using
   the Atom 1.0 format.
 |#
-(define/contract (make-feed-xexpr title link rss-items)
-  (string? string? (listof rss-item?) . -> . xexpr?)
+(define (make-feed-xexpr title link rss-items)
   (define items (for/list ([ri (in-list rss-items)])
                           (define item-url (string-append* (list link (rss-item-link ri))))
                           `(entry
@@ -115,18 +109,6 @@
           (name ,opt-author-name)
           (email ,@(email-encode opt-author-email)))
          ,@items))
-
-#|
-  A slightly smarter version of ->markup-source-path. A file listed as
-  "page.html" in a pagetree might have a source page.html.pm, but it might
-  instead have a source "page.poly.pm". This function tests for the existence
-  of the .html.pm version; if that fails, the .poly.pm version is returned.
-|#
-(define (get-markup-source str)
-  (let* ([default-source (->markup-source-path str)])
-    (if (file-exists? default-source)
-        default-source
-        (string->path (string-replace (path->string default-source) ".html" ".poly")))))
 
 #|
   This is the function that determines whether to include a page in the feed.
@@ -170,8 +152,7 @@
     (sort rss-unsorted-item-structs > #:key (λ(i) (date->seconds (datestring->date (rss-item-pubdate i)))))))
 
 ; Generates a string for the whole RSS feed
-(define/contract (complete-feed rss-xexpr)
-  (xexpr? . -> . string?)
+(define (complete-feed rss-xexpr)
   (string-append "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
                  (xexpr->string rss-xexpr)))
 
