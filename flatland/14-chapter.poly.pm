@@ -17,11 +17,15 @@ He chirruped, and then complacently continued: "My wives at this moment receivin
 
 So saying he paused and listened, as if in an ecstasy, to a sound which seemed to me no better than a tiny chirping from an innumerable multitude of lilliputian grasshoppers.
 
-"Truly," replied I, "your sense of hearing serves you in good stead, and fills up many of your deficiencies. But permit me to point out that your life in Lineland must be deplorably dull. To see nothing but a Point! Not even to be able to contemplate a Straight Line! Nay, not even to know what a Straight Line isl To see, yet be cut off from those Linear prospects which are vouchsafed to us in Flatland! Better surely to have no sense of sight at all than to see so little! I grant you I have not your discriminative faculty of hearing; for the concert of all Lineland which gives you such intense pleasure, is to me no better than a multitudinous twittering or chirping. But at least I can discern, by sight, a Line from a Point. And let me prove it. Just before I came into your kingdom, I saw you dancing from left to right, and then from right to left, with Seven Men and a Woman in your immediate proximity on the left, and eight Men and two Women on your right. Is not this correct?"
+"Truly," replied I, "your sense of hearing serves you in good stead, and fills up many of your deficiencies. But permit me to point out that your life in Lineland must be deplorably dull. To see nothing but a Point! Not even to be able to contemplate a Straight Line! Nay, not even to know what a Straight Line is! To see, yet be cut off from those Linear prospects which are vouchsafed to us in Flatland! Better surely to have no sense of sight at all than to see so little! I grant you I have not your discriminative faculty of hearing; for the concert of all Lineland which gives you such intense pleasure, is to me no better than a multitudinous twittering or chirping. But at least I can discern, by sight, a Line from a Point. And let me prove it. Just before I came into your kingdom, I saw you dancing from left to right, and then from right to left, with Seven Men and a Woman in your immediate proximity on the left, and eight Men and two Women on your right. Is not this correct?"
 
 "It is correct," said the King, "so far as the numbers and sexes are concerned, though I know not what you mean by 'right' and 'left.' But I deny that you saw these things. For how could you see the Line, that is to say the inside, of any Man? But you must have heard these things, and then dreamed that you saw them. And let me ask what you mean by those words 'left' and 'right.' I suppose it is your way of saying Northward and Southward."
 
-"Not so," replied I; "besides your motion of Northward and Southward, there is another motion which I call from right to left." King. Exhibit to me, if you please, this motion from left to right. I. Nay, that I cannot do, unless you could step out of your Line altogether.
+"Not so," replied I; "besides your motion of Northward and Southward, there is another motion which I call from right to left."
+
+◊i{King.} Exhibit to me, if you please, this motion from left to right.
+
+◊i{I.} Nay, that I cannot do, unless you could step out of your Line altogether.
 
 ◊i{King.} Out of my Line? Do you mean out of the world? Out of Space?
 

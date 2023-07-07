@@ -69,7 +69,7 @@ Again, was I not taught by my Lord that as in a Line there are two bounding Poin
 
 O, my Lord, my Lord, behold, I cast myself in faith upon conjecture, not knowing the facts; and I appeal to your Lordship to confirm or deny my logical anticipations. If I am wrong, I yield, and will no longer demand a fourth Dimension; but, if I am right, my Lord will listen to reason.
 
-I ask therefore, is it, or is it not, the fact, that ere now your countrymen also have witnessed the descent of Beings of a higher order than their own, entering closed rooms, even as your Lordship entered mine, without the.opening of doors or windows, and appearing and vanishing at will? On the reply to this question I am ready to stake everything. Deny it, and I am henceforth silent. Only vouchsafe an answer.
+I ask therefore, is it, or is it not, the fact, that ere now your countrymen also have witnessed the descent of Beings of a higher order than their own, entering closed rooms, even as your Lordship entered mine, without the opening of doors or windows, and appearing and vanishing at will? On the reply to this question I am ready to stake everything. Deny it, and I am henceforth silent. Only vouchsafe an answer.
 
 ◊i{Sphere (after a pause).} It is reported so. But men are divided in opinion as to the facts. And even granting the facts, they explain them in different ways. And in any case, however great may be the number of different explanations, no one has adopted or suggested the theory of a Fourth Dimension. Therefore, pray have done with this trifling, and let us return to business.
 
