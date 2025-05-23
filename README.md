@@ -6,7 +6,7 @@ I’ve created this site to experiment with [making websites that are also print
 
 You can see the site live at <https://thelocalyarn.com/excursus/secretary>. While browsing there, be sure to click on the “◊ Pollen Source” links at the top of the individual pages to see the Pollen markup that was used to generate that page.
 
-Thanks to [Matthew Butterick](http://typographyforlawyers.com/about.html) and [Malcolm Still](http://mstill.io) for their help with my Racket and Pollen questions.
+Thanks to [Matthew Butterick](http://typographyforlawyers.com/about.html) and [Malcolm Still](http://mstill.dev) for their help with my Racket and Pollen questions.
 
 ### Support
 
